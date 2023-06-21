@@ -1,0 +1,17 @@
+name: noted_models
+description: A collection of models for use in the Noted ecosystem.
+version: 0.0.1
+
+environment:
+  sdk: '>=3.0.1 <4.0.0'
+
+dependencies:
+
+dev_dependencies:
+  noted_lints:
+    git:
+      url: https://github.com/NotedApp/noted_lints.git
+      ref: master
+
+  test: ^1.21.0
+
