@@ -21,16 +21,18 @@ NotedColorScheme _$NotedColorSchemeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$NotedColorScheme {
   NotedBrightness get brightness => throw _privateConstructorUsedError;
-  String get primary => throw _privateConstructorUsedError;
-  String get onPrimary => throw _privateConstructorUsedError;
-  String get secondary => throw _privateConstructorUsedError;
-  String get onSecondary => throw _privateConstructorUsedError;
-  String get tertiary => throw _privateConstructorUsedError;
-  String get onTertiary => throw _privateConstructorUsedError;
-  String get surface => throw _privateConstructorUsedError;
-  String get onSurface => throw _privateConstructorUsedError;
-  String get background => throw _privateConstructorUsedError;
-  String get onBackground => throw _privateConstructorUsedError;
+  int get primary => throw _privateConstructorUsedError;
+  int get onPrimary => throw _privateConstructorUsedError;
+  int get secondary => throw _privateConstructorUsedError;
+  int get onSecondary => throw _privateConstructorUsedError;
+  int get tertiary => throw _privateConstructorUsedError;
+  int get onTertiary => throw _privateConstructorUsedError;
+  int get error => throw _privateConstructorUsedError;
+  int get onError => throw _privateConstructorUsedError;
+  int get surface => throw _privateConstructorUsedError;
+  int get onSurface => throw _privateConstructorUsedError;
+  int get background => throw _privateConstructorUsedError;
+  int get onBackground => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,16 +48,18 @@ abstract class $NotedColorSchemeCopyWith<$Res> {
   @useResult
   $Res call(
       {NotedBrightness brightness,
-      String primary,
-      String onPrimary,
-      String secondary,
-      String onSecondary,
-      String tertiary,
-      String onTertiary,
-      String surface,
-      String onSurface,
-      String background,
-      String onBackground});
+      int primary,
+      int onPrimary,
+      int secondary,
+      int onSecondary,
+      int tertiary,
+      int onTertiary,
+      int error,
+      int onError,
+      int surface,
+      int onSurface,
+      int background,
+      int onBackground});
 }
 
 /// @nodoc
@@ -78,6 +82,8 @@ class _$NotedColorSchemeCopyWithImpl<$Res, $Val extends NotedColorScheme>
     Object? onSecondary = null,
     Object? tertiary = null,
     Object? onTertiary = null,
+    Object? error = null,
+    Object? onError = null,
     Object? surface = null,
     Object? onSurface = null,
     Object? background = null,
@@ -91,43 +97,51 @@ class _$NotedColorSchemeCopyWithImpl<$Res, $Val extends NotedColorScheme>
       primary: null == primary
           ? _value.primary
           : primary // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       onPrimary: null == onPrimary
           ? _value.onPrimary
           : onPrimary // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       secondary: null == secondary
           ? _value.secondary
           : secondary // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       onSecondary: null == onSecondary
           ? _value.onSecondary
           : onSecondary // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       tertiary: null == tertiary
           ? _value.tertiary
           : tertiary // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       onTertiary: null == onTertiary
           ? _value.onTertiary
           : onTertiary // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
+      error: null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as int,
+      onError: null == onError
+          ? _value.onError
+          : onError // ignore: cast_nullable_to_non_nullable
+              as int,
       surface: null == surface
           ? _value.surface
           : surface // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       onSurface: null == onSurface
           ? _value.onSurface
           : onSurface // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       background: null == background
           ? _value.background
           : background // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       onBackground: null == onBackground
           ? _value.onBackground
           : onBackground // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
     ) as $Val);
   }
 }
@@ -142,16 +156,18 @@ abstract class _$$_NotedColorSchemeCopyWith<$Res>
   @useResult
   $Res call(
       {NotedBrightness brightness,
-      String primary,
-      String onPrimary,
-      String secondary,
-      String onSecondary,
-      String tertiary,
-      String onTertiary,
-      String surface,
-      String onSurface,
-      String background,
-      String onBackground});
+      int primary,
+      int onPrimary,
+      int secondary,
+      int onSecondary,
+      int tertiary,
+      int onTertiary,
+      int error,
+      int onError,
+      int surface,
+      int onSurface,
+      int background,
+      int onBackground});
 }
 
 /// @nodoc
@@ -172,6 +188,8 @@ class __$$_NotedColorSchemeCopyWithImpl<$Res>
     Object? onSecondary = null,
     Object? tertiary = null,
     Object? onTertiary = null,
+    Object? error = null,
+    Object? onError = null,
     Object? surface = null,
     Object? onSurface = null,
     Object? background = null,
@@ -185,43 +203,51 @@ class __$$_NotedColorSchemeCopyWithImpl<$Res>
       primary: null == primary
           ? _value.primary
           : primary // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       onPrimary: null == onPrimary
           ? _value.onPrimary
           : onPrimary // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       secondary: null == secondary
           ? _value.secondary
           : secondary // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       onSecondary: null == onSecondary
           ? _value.onSecondary
           : onSecondary // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       tertiary: null == tertiary
           ? _value.tertiary
           : tertiary // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       onTertiary: null == onTertiary
           ? _value.onTertiary
           : onTertiary // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
+      error: null == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as int,
+      onError: null == onError
+          ? _value.onError
+          : onError // ignore: cast_nullable_to_non_nullable
+              as int,
       surface: null == surface
           ? _value.surface
           : surface // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       onSurface: null == onSurface
           ? _value.onSurface
           : onSurface // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       background: null == background
           ? _value.background
           : background // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
       onBackground: null == onBackground
           ? _value.onBackground
           : onBackground // ignore: cast_nullable_to_non_nullable
-              as String,
+              as int,
     ));
   }
 }
@@ -237,6 +263,8 @@ class _$_NotedColorScheme implements _NotedColorScheme {
       required this.onSecondary,
       required this.tertiary,
       required this.onTertiary,
+      required this.error,
+      required this.onError,
       required this.surface,
       required this.onSurface,
       required this.background,
@@ -248,29 +276,33 @@ class _$_NotedColorScheme implements _NotedColorScheme {
   @override
   final NotedBrightness brightness;
   @override
-  final String primary;
+  final int primary;
   @override
-  final String onPrimary;
+  final int onPrimary;
   @override
-  final String secondary;
+  final int secondary;
   @override
-  final String onSecondary;
+  final int onSecondary;
   @override
-  final String tertiary;
+  final int tertiary;
   @override
-  final String onTertiary;
+  final int onTertiary;
   @override
-  final String surface;
+  final int error;
   @override
-  final String onSurface;
+  final int onError;
   @override
-  final String background;
+  final int surface;
   @override
-  final String onBackground;
+  final int onSurface;
+  @override
+  final int background;
+  @override
+  final int onBackground;
 
   @override
   String toString() {
-    return 'NotedColorScheme(brightness: $brightness, primary: $primary, onPrimary: $onPrimary, secondary: $secondary, onSecondary: $onSecondary, tertiary: $tertiary, onTertiary: $onTertiary, surface: $surface, onSurface: $onSurface, background: $background, onBackground: $onBackground)';
+    return 'NotedColorScheme(brightness: $brightness, primary: $primary, onPrimary: $onPrimary, secondary: $secondary, onSecondary: $onSecondary, tertiary: $tertiary, onTertiary: $onTertiary, error: $error, onError: $onError, surface: $surface, onSurface: $onSurface, background: $background, onBackground: $onBackground)';
   }
 
   @override
@@ -291,6 +323,8 @@ class _$_NotedColorScheme implements _NotedColorScheme {
                 other.tertiary == tertiary) &&
             (identical(other.onTertiary, onTertiary) ||
                 other.onTertiary == onTertiary) &&
+            (identical(other.error, error) || other.error == error) &&
+            (identical(other.onError, onError) || other.onError == onError) &&
             (identical(other.surface, surface) || other.surface == surface) &&
             (identical(other.onSurface, onSurface) ||
                 other.onSurface == onSurface) &&
@@ -311,6 +345,8 @@ class _$_NotedColorScheme implements _NotedColorScheme {
       onSecondary,
       tertiary,
       onTertiary,
+      error,
+      onError,
       surface,
       onSurface,
       background,
@@ -333,16 +369,18 @@ class _$_NotedColorScheme implements _NotedColorScheme {
 abstract class _NotedColorScheme implements NotedColorScheme {
   const factory _NotedColorScheme(
       {required final NotedBrightness brightness,
-      required final String primary,
-      required final String onPrimary,
-      required final String secondary,
-      required final String onSecondary,
-      required final String tertiary,
-      required final String onTertiary,
-      required final String surface,
-      required final String onSurface,
-      required final String background,
-      required final String onBackground}) = _$_NotedColorScheme;
+      required final int primary,
+      required final int onPrimary,
+      required final int secondary,
+      required final int onSecondary,
+      required final int tertiary,
+      required final int onTertiary,
+      required final int error,
+      required final int onError,
+      required final int surface,
+      required final int onSurface,
+      required final int background,
+      required final int onBackground}) = _$_NotedColorScheme;
 
   factory _NotedColorScheme.fromJson(Map<String, dynamic> json) =
       _$_NotedColorScheme.fromJson;
@@ -350,25 +388,29 @@ abstract class _NotedColorScheme implements NotedColorScheme {
   @override
   NotedBrightness get brightness;
   @override
-  String get primary;
+  int get primary;
   @override
-  String get onPrimary;
+  int get onPrimary;
   @override
-  String get secondary;
+  int get secondary;
   @override
-  String get onSecondary;
+  int get onSecondary;
   @override
-  String get tertiary;
+  int get tertiary;
   @override
-  String get onTertiary;
+  int get onTertiary;
   @override
-  String get surface;
+  int get error;
   @override
-  String get onSurface;
+  int get onError;
   @override
-  String get background;
+  int get surface;
   @override
-  String get onBackground;
+  int get onSurface;
+  @override
+  int get background;
+  @override
+  int get onBackground;
   @override
   @JsonKey(ignore: true)
   _$$_NotedColorSchemeCopyWith<_$_NotedColorScheme> get copyWith =>

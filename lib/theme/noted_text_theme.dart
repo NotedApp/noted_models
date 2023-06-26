@@ -11,4 +11,12 @@ class NotedTextTheme with _$NotedTextTheme {
   }) = _NotedTextTheme;
 
   factory NotedTextTheme.fromJson(Map<String, Object?> json) => _$NotedTextThemeFromJson(json);
+
+  static const NotedTextTheme poppins = NotedTextTheme(fontFamily: 'Poppins');
+
+  static const NotedTextTheme roboto = NotedTextTheme(fontFamily: 'Roboto');
+
+  static const NotedTextTheme lora = NotedTextTheme(fontFamily: 'Lora');
+
+  static const NotedTextTheme vollkorn = NotedTextTheme(fontFamily: 'Vollkorn');
 }

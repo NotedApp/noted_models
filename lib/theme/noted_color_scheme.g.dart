@@ -9,16 +9,18 @@ part of 'noted_color_scheme.dart';
 _$_NotedColorScheme _$$_NotedColorSchemeFromJson(Map<String, dynamic> json) =>
     _$_NotedColorScheme(
       brightness: $enumDecode(_$NotedBrightnessEnumMap, json['brightness']),
-      primary: json['primary'] as String,
-      onPrimary: json['onPrimary'] as String,
-      secondary: json['secondary'] as String,
-      onSecondary: json['onSecondary'] as String,
-      tertiary: json['tertiary'] as String,
-      onTertiary: json['onTertiary'] as String,
-      surface: json['surface'] as String,
-      onSurface: json['onSurface'] as String,
-      background: json['background'] as String,
-      onBackground: json['onBackground'] as String,
+      primary: json['primary'] as int,
+      onPrimary: json['onPrimary'] as int,
+      secondary: json['secondary'] as int,
+      onSecondary: json['onSecondary'] as int,
+      tertiary: json['tertiary'] as int,
+      onTertiary: json['onTertiary'] as int,
+      error: json['error'] as int,
+      onError: json['onError'] as int,
+      surface: json['surface'] as int,
+      onSurface: json['onSurface'] as int,
+      background: json['background'] as int,
+      onBackground: json['onBackground'] as int,
     );
 
 Map<String, dynamic> _$$_NotedColorSchemeToJson(_$_NotedColorScheme instance) =>
@@ -30,6 +32,8 @@ Map<String, dynamic> _$$_NotedColorSchemeToJson(_$_NotedColorScheme instance) =>
       'onSecondary': instance.onSecondary,
       'tertiary': instance.tertiary,
       'onTertiary': instance.onTertiary,
+      'error': instance.error,
+      'onError': instance.onError,
       'surface': instance.surface,
       'onSurface': instance.onSurface,
       'background': instance.background,
