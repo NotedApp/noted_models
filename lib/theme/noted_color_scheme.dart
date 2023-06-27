@@ -1,29 +1,40 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 
-part 'noted_color_scheme.freezed.dart';
-part 'noted_color_scheme.g.dart';
+part 'noted_color_scheme.mapper.dart';
 
 /// A model for a color scheme. The model has a [NotedBrightness] to specify its brightness, and a set of [int]s to
 /// specify its different colors.
-@freezed
-class NotedColorScheme with _$NotedColorScheme {
-  const factory NotedColorScheme({
-    required NotedBrightness brightness,
-    required int primary,
-    required int onPrimary,
-    required int secondary,
-    required int onSecondary,
-    required int tertiary,
-    required int onTertiary,
-    required int error,
-    required int onError,
-    required int surface,
-    required int onSurface,
-    required int background,
-    required int onBackground,
-  }) = _NotedColorScheme;
+@MappableClass()
+class NotedColorScheme with NotedColorSchemeMappable {
+  final NotedBrightness brightness;
+  final int primary;
+  final int onPrimary;
+  final int secondary;
+  final int onSecondary;
+  final int tertiary;
+  final int onTertiary;
+  final int error;
+  final int onError;
+  final int surface;
+  final int onSurface;
+  final int background;
+  final int onBackground;
 
-  factory NotedColorScheme.fromJson(Map<String, Object?> json) => _$NotedColorSchemeFromJson(json);
+  const NotedColorScheme({
+    required this.brightness,
+    required this.primary,
+    required this.onPrimary,
+    required this.secondary,
+    required this.onSecondary,
+    required this.tertiary,
+    required this.onTertiary,
+    required this.error,
+    required this.onError,
+    required this.surface,
+    required this.onSurface,
+    required this.background,
+    required this.onBackground,
+  });
 
   static const NotedColorScheme blue = NotedColorScheme(
     brightness: NotedBrightness.light,
@@ -106,6 +117,7 @@ class NotedColorScheme with _$NotedColorScheme {
   );
 }
 
+@MappableEnum()
 enum NotedBrightness {
   dark,
   light,

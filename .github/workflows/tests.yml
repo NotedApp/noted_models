@@ -25,6 +25,9 @@ jobs:
       - name: update dependencies
         run: flutter pub get
 
+      - name: generate files
+        run: dart run build_runner build
+
       - name: analyze
         run: flutter analyze
 

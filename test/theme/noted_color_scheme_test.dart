@@ -5,8 +5,8 @@ void main() {
   group('NotedColorScheme', () {
     test('parses to and from json', () {
       NotedColorScheme scheme = NotedColorScheme.blue;
-      Map<String, Object?> json = scheme.toJson();
-      NotedColorScheme parsed = NotedColorScheme.fromJson(json);
+      String json = scheme.toJson();
+      NotedColorScheme parsed = NotedColorSchemeMapper.fromJson(json);
 
       expect(scheme, parsed);
     });
