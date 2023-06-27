@@ -2,5 +2,4 @@ include: package:noted_lints/noted_lints.yaml
 
 analyzer:
   exclude:
-    - '**/*.freezed.dart'
-    - '**/*.g.dart'
+    - '**/*.mappable.dart'

@@ -1,16 +1,15 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 
-part 'noted_text_theme.freezed.dart';
-part 'noted_text_theme.g.dart';
+part 'noted_text_theme.mapper.dart';
 
 /// A model for a text theme. The model specifies a [String] font family name.
-@freezed
-class NotedTextTheme with _$NotedTextTheme {
-  const factory NotedTextTheme({
-    required String fontFamily,
-  }) = _NotedTextTheme;
+@MappableClass()
+class NotedTextTheme with NotedTextThemeMappable {
+  final String fontFamily;
 
-  factory NotedTextTheme.fromJson(Map<String, Object?> json) => _$NotedTextThemeFromJson(json);
+  const NotedTextTheme({
+    required this.fontFamily,
+  });
 
   static const NotedTextTheme poppins = NotedTextTheme(fontFamily: 'Poppins');
 
