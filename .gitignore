@@ -9,8 +9,5 @@ pubspec.lock
 # Code coverage files.
 coverage/
 
-# Generated files
-*.mapper.dart
-
 # Build folder
 build/
