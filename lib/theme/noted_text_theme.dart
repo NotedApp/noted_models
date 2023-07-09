@@ -7,6 +7,9 @@ part 'noted_text_theme.mapper.dart';
 class NotedTextTheme with NotedTextThemeMappable {
   final String fontFamily;
 
+  static final fromMap = NotedTextThemeMapper.fromMap;
+  static final fromJson = NotedTextThemeMapper.fromJson;
+
   const NotedTextTheme({
     required this.fontFamily,
   });

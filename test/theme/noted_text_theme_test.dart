@@ -6,7 +6,15 @@ void main() {
     test('parses to and from json', () {
       NotedTextTheme theme = NotedTextTheme.poppins;
       String json = theme.toJson();
-      NotedTextTheme parsed = NotedTextThemeMapper.fromJson(json);
+      NotedTextTheme parsed = NotedTextTheme.fromJson(json);
+
+      expect(theme, parsed);
+    });
+
+    test('parses to and from map', () {
+      NotedTextTheme theme = NotedTextTheme.lora;
+      Map<String, dynamic> map = theme.toMap();
+      NotedTextTheme parsed = NotedTextTheme.fromMap(map);
 
       expect(theme, parsed);
     });
