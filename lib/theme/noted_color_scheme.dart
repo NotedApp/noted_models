@@ -20,6 +20,9 @@ class NotedColorScheme with NotedColorSchemeMappable {
   final int background;
   final int onBackground;
 
+  static final fromMap = NotedColorSchemeMapper.fromMap;
+  static final fromJson = NotedColorSchemeMapper.fromJson;
+
   const NotedColorScheme({
     required this.brightness,
     required this.primary,
