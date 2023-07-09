@@ -1,3 +1,3 @@
-typedef NotedDocument = Map<String, dynamic>;
+typedef NotedDocument = List<dynamic>;
 
-typedef NotedUpdate = Map<String, dynamic>;
+typedef NotedUpdate = List<dynamic>;

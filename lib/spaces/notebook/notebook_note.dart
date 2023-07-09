@@ -23,5 +23,5 @@ class NotebookNote extends NotedNote with NotebookNoteMappable {
   NotebookNote.empty({
     required this.id,
   })  : title = '',
-        document = Map<String, dynamic>();
+        document = [];
 }
