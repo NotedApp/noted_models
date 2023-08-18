@@ -27,7 +27,7 @@ class NotedSettingsMapper extends ClassMapperBase<NotedSettings> {
 
   static NotedStyleSettings _$style(NotedSettings v) => v.style;
   static const Field<NotedSettings, NotedStyleSettings> _f$style =
-      Field('style', _$style);
+      Field('style', _$style, opt: true, def: const NotedStyleSettings());
 
   @override
   final Map<Symbol, Field<NotedSettings, dynamic>> fields = const {
