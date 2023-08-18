@@ -12,6 +12,6 @@ class NotedSettings with NotedSettingsMappable {
   static final fromJson = NotedSettingsMapper.fromJson;
 
   const NotedSettings({
-    required this.style,
+    this.style = const NotedStyleSettings(),
   });
 }
