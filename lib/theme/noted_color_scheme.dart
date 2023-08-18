@@ -2,6 +2,12 @@ import 'package:dart_mappable/dart_mappable.dart';
 
 part 'noted_color_scheme.mapper.dart';
 
+@MappableEnum()
+enum NotedBrightness {
+  dark,
+  light,
+}
+
 /// A model for a color scheme. The model has a [NotedBrightness] to specify its brightness, and a set of [int]s to
 /// specify its different colors.
 @MappableClass()
@@ -87,7 +93,7 @@ class NotedColorScheme with NotedColorSchemeMappable {
     onSurface: 0xFFEEEEEE,
   );
 
-  static const NotedColorScheme oledColorScheme = NotedColorScheme(
+  static const NotedColorScheme oled = NotedColorScheme(
     brightness: NotedBrightness.dark,
     primary: 0xFF789395,
     onPrimary: 0xFF000000,
@@ -103,7 +109,7 @@ class NotedColorScheme with NotedColorSchemeMappable {
     onSurface: 0xFFEEEEEE,
   );
 
-  static const NotedColorScheme lightColorScheme = NotedColorScheme(
+  static const NotedColorScheme light = NotedColorScheme(
     brightness: NotedBrightness.light,
     primary: 0xFF90A578,
     onPrimary: 0xFF111111,
@@ -118,10 +124,4 @@ class NotedColorScheme with NotedColorSchemeMappable {
     surface: 0xFFFFFFFF,
     onSurface: 0xFF111111,
   );
-}
-
-@MappableEnum()
-enum NotedBrightness {
-  dark,
-  light,
 }
