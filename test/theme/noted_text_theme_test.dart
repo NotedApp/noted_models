@@ -18,5 +18,27 @@ void main() {
 
       expect(theme, parsed);
     });
+
+    test('gets from name', () {
+      expect(
+        NotedTextTheme.fromName(NotedTextThemeName.poppins),
+        NotedTextTheme.poppins,
+      );
+
+      expect(
+        NotedTextTheme.fromName(NotedTextThemeName.roboto),
+        NotedTextTheme.roboto,
+      );
+
+      expect(
+        NotedTextTheme.fromName(NotedTextThemeName.lora),
+        NotedTextTheme.lora,
+      );
+
+      expect(
+        NotedTextTheme.fromName(NotedTextThemeName.vollkorn),
+        NotedTextTheme.vollkorn,
+      );
+    });
   });
 }
