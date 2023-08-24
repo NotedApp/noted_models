@@ -18,5 +18,37 @@ void main() {
 
       expect(scheme, parsed);
     });
+
+    test('gets from name', () {
+      expect(
+        NotedColorScheme.fromName(NotedColorSchemeName.blue, NotedColorScheme.green),
+        NotedColorScheme.blue,
+      );
+
+      expect(
+        NotedColorScheme.fromName(NotedColorSchemeName.green, NotedColorScheme.blue),
+        NotedColorScheme.green,
+      );
+
+      expect(
+        NotedColorScheme.fromName(NotedColorSchemeName.dark, NotedColorScheme.blue),
+        NotedColorScheme.dark,
+      );
+
+      expect(
+        NotedColorScheme.fromName(NotedColorSchemeName.oled, NotedColorScheme.blue),
+        NotedColorScheme.oled,
+      );
+
+      expect(
+        NotedColorScheme.fromName(NotedColorSchemeName.light, NotedColorScheme.blue),
+        NotedColorScheme.light,
+      );
+
+      expect(
+        NotedColorScheme.fromName(NotedColorSchemeName.custom, NotedColorScheme.blue),
+        NotedColorScheme.blue,
+      );
+    });
   });
 }

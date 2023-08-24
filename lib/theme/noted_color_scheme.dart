@@ -8,6 +8,16 @@ enum NotedBrightness {
   light,
 }
 
+@MappableEnum()
+enum NotedColorSchemeName {
+  blue,
+  green,
+  dark,
+  oled,
+  light,
+  custom,
+}
+
 /// A model for a color scheme. The model has a [NotedBrightness] to specify its brightness, and a set of [int]s to
 /// specify its different colors.
 @MappableClass()
@@ -44,6 +54,17 @@ class NotedColorScheme with NotedColorSchemeMappable {
     required this.background,
     required this.onBackground,
   });
+
+  factory NotedColorScheme.fromName(NotedColorSchemeName name, NotedColorScheme custom) {
+    return switch (name) {
+      NotedColorSchemeName.blue => NotedColorScheme.blue,
+      NotedColorSchemeName.green => NotedColorScheme.green,
+      NotedColorSchemeName.dark => NotedColorScheme.dark,
+      NotedColorSchemeName.oled => NotedColorScheme.oled,
+      NotedColorSchemeName.light => NotedColorScheme.light,
+      NotedColorSchemeName.custom => custom,
+    };
+  }
 
   static const NotedColorScheme blue = NotedColorScheme(
     brightness: NotedBrightness.light,

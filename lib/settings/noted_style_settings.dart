@@ -28,13 +28,3 @@ class NotedStyleSettings with NotedStyleSettingsMappable {
         NotedColorSchemeName.custom => customColorScheme,
       };
 }
-
-@MappableEnum()
-enum NotedColorSchemeName {
-  blue,
-  green,
-  dark,
-  oled,
-  light,
-  custom,
-}
