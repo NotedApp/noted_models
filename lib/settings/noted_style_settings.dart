@@ -51,12 +51,6 @@ class NotedStyleSettings with NotedStyleSettingsMappable {
     this.highlightColors = _highlightColors,
   });
 
-  NotedColorScheme get colorScheme => switch (colorSchemeName) {
-        NotedColorSchemeName.blue => NotedColorScheme.blue,
-        NotedColorSchemeName.green => NotedColorScheme.green,
-        NotedColorSchemeName.dark => NotedColorScheme.dark,
-        NotedColorSchemeName.oled => NotedColorScheme.oled,
-        NotedColorSchemeName.light => NotedColorScheme.light,
-        NotedColorSchemeName.custom => customColorScheme,
-      };
+  NotedColorScheme get colorScheme => NotedColorScheme.fromName(colorSchemeName, customColorScheme);
+  NotedTextTheme get textTheme => NotedTextTheme.fromName(textThemeName);
 }

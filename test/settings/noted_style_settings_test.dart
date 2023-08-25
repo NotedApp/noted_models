@@ -56,5 +56,19 @@ void main() {
       NotedStyleSettings custom = NotedStyleSettings(colorSchemeName: NotedColorSchemeName.custom);
       expect(custom.colorScheme, NotedColorScheme.blue);
     });
+
+    test('fetches current text theme', () {
+      NotedStyleSettings poppins = NotedStyleSettings();
+      expect(poppins.textTheme, NotedTextTheme.poppins);
+
+      NotedStyleSettings roboto = NotedStyleSettings(textThemeName: NotedTextThemeName.roboto);
+      expect(roboto.textTheme, NotedTextTheme.roboto);
+
+      NotedStyleSettings lora = NotedStyleSettings(textThemeName: NotedTextThemeName.lora);
+      expect(lora.textTheme, NotedTextTheme.lora);
+
+      NotedStyleSettings vollkorn = NotedStyleSettings(textThemeName: NotedTextThemeName.vollkorn);
+      expect(vollkorn.textTheme, NotedTextTheme.vollkorn);
+    });
   });
 }
