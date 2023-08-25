@@ -6,16 +6,16 @@ void main() {
     test('creates a default set of style settings', () {
       NotedStyleSettings style = NotedStyleSettings();
 
-      expect(style.currentColorSchemeName, NotedColorSchemeName.blue);
+      expect(style.colorSchemeName, NotedColorSchemeName.blue);
       expect(style.customColorScheme, NotedColorScheme.blue);
-      expect(style.textTheme, NotedTextTheme.poppins);
+      expect(style.textThemeName, NotedTextThemeName.poppins);
     });
 
     test('parses to and from json', () {
       NotedStyleSettings style = NotedStyleSettings(
-        currentColorSchemeName: NotedColorSchemeName.green,
+        colorSchemeName: NotedColorSchemeName.green,
         customColorScheme: NotedColorScheme.dark,
-        textTheme: NotedTextTheme.roboto,
+        textThemeName: NotedTextThemeName.roboto,
       );
 
       String json = style.toJson();
@@ -26,9 +26,9 @@ void main() {
 
     test('parses to and from map', () {
       NotedStyleSettings style = NotedStyleSettings(
-        currentColorSchemeName: NotedColorSchemeName.green,
+        colorSchemeName: NotedColorSchemeName.green,
         customColorScheme: NotedColorScheme.dark,
-        textTheme: NotedTextTheme.roboto,
+        textThemeName: NotedTextThemeName.roboto,
       );
 
       Map<String, dynamic> map = style.toMap();
@@ -39,22 +39,22 @@ void main() {
 
     test('fetches current color scheme', () {
       NotedStyleSettings blue = NotedStyleSettings();
-      expect(blue.currentColorScheme, NotedColorScheme.blue);
+      expect(blue.colorScheme, NotedColorScheme.blue);
 
-      NotedStyleSettings green = NotedStyleSettings(currentColorSchemeName: NotedColorSchemeName.green);
-      expect(green.currentColorScheme, NotedColorScheme.green);
+      NotedStyleSettings green = NotedStyleSettings(colorSchemeName: NotedColorSchemeName.green);
+      expect(green.colorScheme, NotedColorScheme.green);
 
-      NotedStyleSettings dark = NotedStyleSettings(currentColorSchemeName: NotedColorSchemeName.dark);
-      expect(dark.currentColorScheme, NotedColorScheme.dark);
+      NotedStyleSettings dark = NotedStyleSettings(colorSchemeName: NotedColorSchemeName.dark);
+      expect(dark.colorScheme, NotedColorScheme.dark);
 
-      NotedStyleSettings oled = NotedStyleSettings(currentColorSchemeName: NotedColorSchemeName.oled);
-      expect(oled.currentColorScheme, NotedColorScheme.oled);
+      NotedStyleSettings oled = NotedStyleSettings(colorSchemeName: NotedColorSchemeName.oled);
+      expect(oled.colorScheme, NotedColorScheme.oled);
 
-      NotedStyleSettings light = NotedStyleSettings(currentColorSchemeName: NotedColorSchemeName.light);
-      expect(light.currentColorScheme, NotedColorScheme.light);
+      NotedStyleSettings light = NotedStyleSettings(colorSchemeName: NotedColorSchemeName.light);
+      expect(light.colorScheme, NotedColorScheme.light);
 
-      NotedStyleSettings custom = NotedStyleSettings(currentColorSchemeName: NotedColorSchemeName.custom);
-      expect(custom.currentColorScheme, NotedColorScheme.blue);
+      NotedStyleSettings custom = NotedStyleSettings(colorSchemeName: NotedColorSchemeName.custom);
+      expect(custom.colorScheme, NotedColorScheme.blue);
     });
   });
 }

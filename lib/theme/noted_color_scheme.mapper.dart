@@ -51,6 +51,68 @@ extension NotedBrightnessMapperExtension on NotedBrightness {
   }
 }
 
+class NotedColorSchemeNameMapper extends EnumMapper<NotedColorSchemeName> {
+  NotedColorSchemeNameMapper._();
+
+  static NotedColorSchemeNameMapper? _instance;
+  static NotedColorSchemeNameMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = NotedColorSchemeNameMapper._());
+    }
+    return _instance!;
+  }
+
+  static NotedColorSchemeName fromValue(dynamic value) {
+    ensureInitialized();
+    return MapperContainer.globals.fromValue(value);
+  }
+
+  @override
+  NotedColorSchemeName decode(dynamic value) {
+    switch (value) {
+      case 'blue':
+        return NotedColorSchemeName.blue;
+      case 'green':
+        return NotedColorSchemeName.green;
+      case 'dark':
+        return NotedColorSchemeName.dark;
+      case 'oled':
+        return NotedColorSchemeName.oled;
+      case 'light':
+        return NotedColorSchemeName.light;
+      case 'custom':
+        return NotedColorSchemeName.custom;
+      default:
+        throw MapperException.unknownEnumValue(value);
+    }
+  }
+
+  @override
+  dynamic encode(NotedColorSchemeName self) {
+    switch (self) {
+      case NotedColorSchemeName.blue:
+        return 'blue';
+      case NotedColorSchemeName.green:
+        return 'green';
+      case NotedColorSchemeName.dark:
+        return 'dark';
+      case NotedColorSchemeName.oled:
+        return 'oled';
+      case NotedColorSchemeName.light:
+        return 'light';
+      case NotedColorSchemeName.custom:
+        return 'custom';
+    }
+  }
+}
+
+extension NotedColorSchemeNameMapperExtension on NotedColorSchemeName {
+  String toValue() {
+    NotedColorSchemeNameMapper.ensureInitialized();
+    return MapperContainer.globals.toValue(this) as String;
+  }
+}
+
 class NotedColorSchemeMapper extends ClassMapperBase<NotedColorScheme> {
   NotedColorSchemeMapper._();
 

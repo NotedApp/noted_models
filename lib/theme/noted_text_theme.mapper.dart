@@ -5,6 +5,60 @@
 
 part of 'noted_text_theme.dart';
 
+class NotedTextThemeNameMapper extends EnumMapper<NotedTextThemeName> {
+  NotedTextThemeNameMapper._();
+
+  static NotedTextThemeNameMapper? _instance;
+  static NotedTextThemeNameMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = NotedTextThemeNameMapper._());
+    }
+    return _instance!;
+  }
+
+  static NotedTextThemeName fromValue(dynamic value) {
+    ensureInitialized();
+    return MapperContainer.globals.fromValue(value);
+  }
+
+  @override
+  NotedTextThemeName decode(dynamic value) {
+    switch (value) {
+      case 'poppins':
+        return NotedTextThemeName.poppins;
+      case 'roboto':
+        return NotedTextThemeName.roboto;
+      case 'lora':
+        return NotedTextThemeName.lora;
+      case 'vollkorn':
+        return NotedTextThemeName.vollkorn;
+      default:
+        throw MapperException.unknownEnumValue(value);
+    }
+  }
+
+  @override
+  dynamic encode(NotedTextThemeName self) {
+    switch (self) {
+      case NotedTextThemeName.poppins:
+        return 'poppins';
+      case NotedTextThemeName.roboto:
+        return 'roboto';
+      case NotedTextThemeName.lora:
+        return 'lora';
+      case NotedTextThemeName.vollkorn:
+        return 'vollkorn';
+    }
+  }
+}
+
+extension NotedTextThemeNameMapperExtension on NotedTextThemeName {
+  String toValue() {
+    NotedTextThemeNameMapper.ensureInitialized();
+    return MapperContainer.globals.toValue(this) as String;
+  }
+}
+
 class NotedTextThemeMapper extends ClassMapperBase<NotedTextTheme> {
   NotedTextThemeMapper._();
 
