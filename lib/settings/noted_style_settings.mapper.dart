@@ -42,19 +42,30 @@ class NotedStyleSettingsMapper extends ClassMapperBase<NotedStyleSettings> {
   static const Field<NotedStyleSettings, NotedTextThemeName> _f$textThemeName =
       Field('textThemeName', _$textThemeName,
           opt: true, def: NotedTextThemeName.poppins);
+  static List<int> _$textColors(NotedStyleSettings v) => v.textColors;
+  static const Field<NotedStyleSettings, List<int>> _f$textColors =
+      Field('textColors', _$textColors, opt: true, def: _textColors);
+  static List<int> _$highlightColors(NotedStyleSettings v) => v.highlightColors;
+  static const Field<NotedStyleSettings, List<int>> _f$highlightColors = Field(
+      'highlightColors', _$highlightColors,
+      opt: true, def: _highlightColors);
 
   @override
   final Map<Symbol, Field<NotedStyleSettings, dynamic>> fields = const {
     #colorSchemeName: _f$colorSchemeName,
     #customColorScheme: _f$customColorScheme,
     #textThemeName: _f$textThemeName,
+    #textColors: _f$textColors,
+    #highlightColors: _f$highlightColors,
   };
 
   static NotedStyleSettings _instantiate(DecodingData data) {
     return NotedStyleSettings(
         colorSchemeName: data.dec(_f$colorSchemeName),
         customColorScheme: data.dec(_f$customColorScheme),
-        textThemeName: data.dec(_f$textThemeName));
+        textThemeName: data.dec(_f$textThemeName),
+        textColors: data.dec(_f$textColors),
+        highlightColors: data.dec(_f$highlightColors));
   }
 
   @override
@@ -113,10 +124,14 @@ abstract class NotedStyleSettingsCopyWith<$R, $In extends NotedStyleSettings,
     $Out> implements ClassCopyWith<$R, $In, $Out> {
   NotedColorSchemeCopyWith<$R, NotedColorScheme, NotedColorScheme>
       get customColorScheme;
+  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get textColors;
+  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get highlightColors;
   $R call(
       {NotedColorSchemeName? colorSchemeName,
       NotedColorScheme? customColorScheme,
-      NotedTextThemeName? textThemeName});
+      NotedTextThemeName? textThemeName,
+      List<int>? textColors,
+      List<int>? highlightColors});
   NotedStyleSettingsCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -134,21 +149,37 @@ class _NotedStyleSettingsCopyWithImpl<$R, $Out>
       get customColorScheme => $value.customColorScheme.copyWith
           .$chain((v) => call(customColorScheme: v));
   @override
+  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get textColors =>
+      ListCopyWith($value.textColors, (v, t) => ObjectCopyWith(v, $identity, t),
+          (v) => call(textColors: v));
+  @override
+  ListCopyWith<$R, int, ObjectCopyWith<$R, int, int>> get highlightColors =>
+      ListCopyWith(
+          $value.highlightColors,
+          (v, t) => ObjectCopyWith(v, $identity, t),
+          (v) => call(highlightColors: v));
+  @override
   $R call(
           {NotedColorSchemeName? colorSchemeName,
           NotedColorScheme? customColorScheme,
-          NotedTextThemeName? textThemeName}) =>
+          NotedTextThemeName? textThemeName,
+          List<int>? textColors,
+          List<int>? highlightColors}) =>
       $apply(FieldCopyWithData({
         if (colorSchemeName != null) #colorSchemeName: colorSchemeName,
         if (customColorScheme != null) #customColorScheme: customColorScheme,
-        if (textThemeName != null) #textThemeName: textThemeName
+        if (textThemeName != null) #textThemeName: textThemeName,
+        if (textColors != null) #textColors: textColors,
+        if (highlightColors != null) #highlightColors: highlightColors
       }));
   @override
   NotedStyleSettings $make(CopyWithData data) => NotedStyleSettings(
       colorSchemeName: data.get(#colorSchemeName, or: $value.colorSchemeName),
       customColorScheme:
           data.get(#customColorScheme, or: $value.customColorScheme),
-      textThemeName: data.get(#textThemeName, or: $value.textThemeName));
+      textThemeName: data.get(#textThemeName, or: $value.textThemeName),
+      textColors: data.get(#textColors, or: $value.textColors),
+      highlightColors: data.get(#highlightColors, or: $value.highlightColors));
 
   @override
   NotedStyleSettingsCopyWith<$R2, NotedStyleSettings, $Out2> $chain<$R2, $Out2>(
