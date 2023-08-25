@@ -5,68 +5,6 @@
 
 part of 'noted_style_settings.dart';
 
-class NotedColorSchemeNameMapper extends EnumMapper<NotedColorSchemeName> {
-  NotedColorSchemeNameMapper._();
-
-  static NotedColorSchemeNameMapper? _instance;
-  static NotedColorSchemeNameMapper ensureInitialized() {
-    if (_instance == null) {
-      MapperContainer.globals.use(_instance = NotedColorSchemeNameMapper._());
-    }
-    return _instance!;
-  }
-
-  static NotedColorSchemeName fromValue(dynamic value) {
-    ensureInitialized();
-    return MapperContainer.globals.fromValue(value);
-  }
-
-  @override
-  NotedColorSchemeName decode(dynamic value) {
-    switch (value) {
-      case 'blue':
-        return NotedColorSchemeName.blue;
-      case 'green':
-        return NotedColorSchemeName.green;
-      case 'dark':
-        return NotedColorSchemeName.dark;
-      case 'oled':
-        return NotedColorSchemeName.oled;
-      case 'light':
-        return NotedColorSchemeName.light;
-      case 'custom':
-        return NotedColorSchemeName.custom;
-      default:
-        throw MapperException.unknownEnumValue(value);
-    }
-  }
-
-  @override
-  dynamic encode(NotedColorSchemeName self) {
-    switch (self) {
-      case NotedColorSchemeName.blue:
-        return 'blue';
-      case NotedColorSchemeName.green:
-        return 'green';
-      case NotedColorSchemeName.dark:
-        return 'dark';
-      case NotedColorSchemeName.oled:
-        return 'oled';
-      case NotedColorSchemeName.light:
-        return 'light';
-      case NotedColorSchemeName.custom:
-        return 'custom';
-    }
-  }
-}
-
-extension NotedColorSchemeNameMapperExtension on NotedColorSchemeName {
-  String toValue() {
-    NotedColorSchemeNameMapper.ensureInitialized();
-    return MapperContainer.globals.toValue(this) as String;
-  }
-}
-
 class NotedStyleSettingsMapper extends ClassMapperBase<NotedStyleSettings> {
   NotedStyleSettingsMapper._();
 
@@ -76,7 +14,7 @@ class NotedStyleSettingsMapper extends ClassMapperBase<NotedStyleSettings> {
       MapperContainer.globals.use(_instance = NotedStyleSettingsMapper._());
       NotedColorSchemeNameMapper.ensureInitialized();
       NotedColorSchemeMapper.ensureInitialized();
-      NotedTextThemeMapper.ensureInitialized();
+      NotedTextThemeNameMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -89,33 +27,34 @@ class NotedStyleSettingsMapper extends ClassMapperBase<NotedStyleSettings> {
   @override
   final String id = 'NotedStyleSettings';
 
-  static NotedColorSchemeName _$currentColorSchemeName(NotedStyleSettings v) =>
-      v.currentColorSchemeName;
+  static NotedColorSchemeName _$colorSchemeName(NotedStyleSettings v) =>
+      v.colorSchemeName;
   static const Field<NotedStyleSettings, NotedColorSchemeName>
-      _f$currentColorSchemeName = Field(
-          'currentColorSchemeName', _$currentColorSchemeName,
+      _f$colorSchemeName = Field('colorSchemeName', _$colorSchemeName,
           opt: true, def: NotedColorSchemeName.blue);
   static NotedColorScheme _$customColorScheme(NotedStyleSettings v) =>
       v.customColorScheme;
   static const Field<NotedStyleSettings, NotedColorScheme>
       _f$customColorScheme = Field('customColorScheme', _$customColorScheme,
           opt: true, def: NotedColorScheme.blue);
-  static NotedTextTheme _$textTheme(NotedStyleSettings v) => v.textTheme;
-  static const Field<NotedStyleSettings, NotedTextTheme> _f$textTheme =
-      Field('textTheme', _$textTheme, opt: true, def: NotedTextTheme.poppins);
+  static NotedTextThemeName _$textThemeName(NotedStyleSettings v) =>
+      v.textThemeName;
+  static const Field<NotedStyleSettings, NotedTextThemeName> _f$textThemeName =
+      Field('textThemeName', _$textThemeName,
+          opt: true, def: NotedTextThemeName.poppins);
 
   @override
   final Map<Symbol, Field<NotedStyleSettings, dynamic>> fields = const {
-    #currentColorSchemeName: _f$currentColorSchemeName,
+    #colorSchemeName: _f$colorSchemeName,
     #customColorScheme: _f$customColorScheme,
-    #textTheme: _f$textTheme,
+    #textThemeName: _f$textThemeName,
   };
 
   static NotedStyleSettings _instantiate(DecodingData data) {
     return NotedStyleSettings(
-        currentColorSchemeName: data.dec(_f$currentColorSchemeName),
+        colorSchemeName: data.dec(_f$colorSchemeName),
         customColorScheme: data.dec(_f$customColorScheme),
-        textTheme: data.dec(_f$textTheme));
+        textThemeName: data.dec(_f$textThemeName));
   }
 
   @override
@@ -174,11 +113,10 @@ abstract class NotedStyleSettingsCopyWith<$R, $In extends NotedStyleSettings,
     $Out> implements ClassCopyWith<$R, $In, $Out> {
   NotedColorSchemeCopyWith<$R, NotedColorScheme, NotedColorScheme>
       get customColorScheme;
-  NotedTextThemeCopyWith<$R, NotedTextTheme, NotedTextTheme> get textTheme;
   $R call(
-      {NotedColorSchemeName? currentColorSchemeName,
+      {NotedColorSchemeName? colorSchemeName,
       NotedColorScheme? customColorScheme,
-      NotedTextTheme? textTheme});
+      NotedTextThemeName? textThemeName});
   NotedStyleSettingsCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -196,26 +134,21 @@ class _NotedStyleSettingsCopyWithImpl<$R, $Out>
       get customColorScheme => $value.customColorScheme.copyWith
           .$chain((v) => call(customColorScheme: v));
   @override
-  NotedTextThemeCopyWith<$R, NotedTextTheme, NotedTextTheme> get textTheme =>
-      $value.textTheme.copyWith.$chain((v) => call(textTheme: v));
-  @override
   $R call(
-          {NotedColorSchemeName? currentColorSchemeName,
+          {NotedColorSchemeName? colorSchemeName,
           NotedColorScheme? customColorScheme,
-          NotedTextTheme? textTheme}) =>
+          NotedTextThemeName? textThemeName}) =>
       $apply(FieldCopyWithData({
-        if (currentColorSchemeName != null)
-          #currentColorSchemeName: currentColorSchemeName,
+        if (colorSchemeName != null) #colorSchemeName: colorSchemeName,
         if (customColorScheme != null) #customColorScheme: customColorScheme,
-        if (textTheme != null) #textTheme: textTheme
+        if (textThemeName != null) #textThemeName: textThemeName
       }));
   @override
   NotedStyleSettings $make(CopyWithData data) => NotedStyleSettings(
-      currentColorSchemeName:
-          data.get(#currentColorSchemeName, or: $value.currentColorSchemeName),
+      colorSchemeName: data.get(#colorSchemeName, or: $value.colorSchemeName),
       customColorScheme:
           data.get(#customColorScheme, or: $value.customColorScheme),
-      textTheme: data.get(#textTheme, or: $value.textTheme));
+      textThemeName: data.get(#textThemeName, or: $value.textThemeName));
 
   @override
   NotedStyleSettingsCopyWith<$R2, NotedStyleSettings, $Out2> $chain<$R2, $Out2>(

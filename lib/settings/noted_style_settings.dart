@@ -6,20 +6,20 @@ part 'noted_style_settings.mapper.dart';
 /// A set of settings for a user's application style.
 @MappableClass()
 class NotedStyleSettings with NotedStyleSettingsMappable {
-  final NotedColorSchemeName currentColorSchemeName;
+  final NotedColorSchemeName colorSchemeName;
   final NotedColorScheme customColorScheme;
-  final NotedTextTheme textTheme;
+  final NotedTextThemeName textThemeName;
 
   static final fromMap = NotedStyleSettingsMapper.fromMap;
   static final fromJson = NotedStyleSettingsMapper.fromJson;
 
   const NotedStyleSettings({
-    this.currentColorSchemeName = NotedColorSchemeName.blue,
+    this.colorSchemeName = NotedColorSchemeName.blue,
     this.customColorScheme = NotedColorScheme.blue,
-    this.textTheme = NotedTextTheme.poppins,
+    this.textThemeName = NotedTextThemeName.poppins,
   });
 
-  NotedColorScheme get currentColorScheme => switch (currentColorSchemeName) {
+  NotedColorScheme get colorScheme => switch (colorSchemeName) {
         NotedColorSchemeName.blue => NotedColorScheme.blue,
         NotedColorSchemeName.green => NotedColorScheme.green,
         NotedColorSchemeName.dark => NotedColorScheme.dark,
