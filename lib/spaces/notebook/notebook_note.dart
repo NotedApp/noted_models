@@ -24,6 +24,6 @@ class NotebookNote extends NotedNote with NotebookNoteMappable {
       : id = '',
         title = '',
         document = [
-          {'insert': ''},
+          {'insert': '\n'},
         ];
 }
