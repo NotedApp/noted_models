@@ -20,8 +20,10 @@ class NotebookNote extends NotedNote with NotebookNoteMappable {
     required this.document,
   });
 
-  NotebookNote.empty({
-    required this.id,
-  })  : title = '',
-        document = [];
+  NotebookNote.emptyQuill()
+      : id = '',
+        title = '',
+        document = [
+          {'insert': ''},
+        ];
 }
