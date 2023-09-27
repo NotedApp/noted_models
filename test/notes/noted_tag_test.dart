@@ -5,10 +5,20 @@ void main() {
   group('NotedTag', () {
     test('creates a noted tag', () {
       NotedTag test = NotedTag(id: 'test', name: 'test-name', color: 0xFFFFFF);
+      NotedTag empty = NotedTag.empty();
 
       expect(test.id, 'test');
       expect(test.name, 'test-name');
       expect(test.color, 0xFFFFFF);
+
+      expect(empty.id, '-1');
+      expect(empty.name, 'empty');
+      expect(empty.color, 0x000000);
+
+      expect(test.isEmpty, false);
+      expect(empty.isEmpty, true);
+      expect(test.isNotEmpty, true);
+      expect(empty.isNotEmpty, false);
     });
 
     test('parses to and from json', () {

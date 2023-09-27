@@ -8,6 +8,7 @@ void main() {
 
       expect(note.id, '');
       expect(note.title, '');
+      expect(note.tags.length, 0);
       expect(note.document.length, 1);
     });
 
