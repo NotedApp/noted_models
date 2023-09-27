@@ -17,4 +17,12 @@ class NotedTag with NotedTagMappable {
     required this.name,
     required this.color,
   });
+
+  const NotedTag.empty()
+      : id = '-1',
+        name = 'empty',
+        color = 0x000000;
+
+  bool get isEmpty => this == NotedTag.empty();
+  bool get isNotEmpty => this != NotedTag.empty();
 }

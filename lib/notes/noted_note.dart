@@ -7,7 +7,7 @@ part 'noted_note.mapper.dart';
 sealed class NotedNote with NotedNoteMappable {
   final String id;
   final String title;
-  final Set<NotedTag> tags;
+  final Set<String> tags;
 
   const NotedNote({
     required this.id,
@@ -26,7 +26,7 @@ class NotebookNote extends NotedNote with NotebookNoteMappable {
   const NotebookNote({
     required String id,
     required String title,
-    Set<NotedTag> tags = const {},
+    Set<String> tags = const {},
     required this.document,
   }) : super(id: id, title: title, tags: tags);
 
