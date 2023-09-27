@@ -13,6 +13,7 @@ class NotedNoteMapper extends ClassMapperBase<NotedNote> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = NotedNoteMapper._());
       NotebookNoteMapper.ensureInitialized();
+      NotedTagMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -29,11 +30,14 @@ class NotedNoteMapper extends ClassMapperBase<NotedNote> {
   static const Field<NotedNote, String> _f$id = Field('id', _$id);
   static String _$title(NotedNote v) => v.title;
   static const Field<NotedNote, String> _f$title = Field('title', _$title);
+  static Set<NotedTag> _$tags(NotedNote v) => v.tags;
+  static const Field<NotedNote, Set<NotedTag>> _f$tags = Field('tags', _$tags);
 
   @override
   final Map<Symbol, Field<NotedNote, dynamic>> fields = const {
     #id: _f$id,
     #title: _f$title,
+    #tags: _f$tags,
   };
 
   static NotedNote _instantiate(DecodingData data) {
@@ -61,7 +65,7 @@ mixin NotedNoteMappable {
 
 abstract class NotedNoteCopyWith<$R, $In extends NotedNote, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({String? id, String? title});
+  $R call({String? id, String? title, Set<NotedTag>? tags});
   NotedNoteCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -73,6 +77,7 @@ class NotebookNoteMapper extends SubClassMapperBase<NotebookNote> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = NotebookNoteMapper._());
       NotedNoteMapper.ensureInitialized().addSubMapper(_instance!);
+      NotedTagMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -89,6 +94,9 @@ class NotebookNoteMapper extends SubClassMapperBase<NotebookNote> {
   static const Field<NotebookNote, String> _f$id = Field('id', _$id);
   static String _$title(NotebookNote v) => v.title;
   static const Field<NotebookNote, String> _f$title = Field('title', _$title);
+  static Set<NotedTag> _$tags(NotebookNote v) => v.tags;
+  static const Field<NotebookNote, Set<NotedTag>> _f$tags =
+      Field('tags', _$tags, opt: true, def: const {});
   static List<dynamic> _$document(NotebookNote v) => v.document;
   static const Field<NotebookNote, List<dynamic>> _f$document =
       Field('document', _$document);
@@ -97,6 +105,7 @@ class NotebookNoteMapper extends SubClassMapperBase<NotebookNote> {
   final Map<Symbol, Field<NotebookNote, dynamic>> fields = const {
     #id: _f$id,
     #title: _f$title,
+    #tags: _f$tags,
     #document: _f$document,
   };
 
@@ -111,6 +120,7 @@ class NotebookNoteMapper extends SubClassMapperBase<NotebookNote> {
     return NotebookNote(
         id: data.dec(_f$id),
         title: data.dec(_f$title),
+        tags: data.dec(_f$tags),
         document: data.dec(_f$document));
   }
 
@@ -165,7 +175,11 @@ abstract class NotebookNoteCopyWith<$R, $In extends NotebookNote, $Out>
     implements NotedNoteCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, dynamic, ObjectCopyWith<$R, dynamic, dynamic>> get document;
   @override
-  $R call({String? id, String? title, List<dynamic>? document});
+  $R call(
+      {String? id,
+      String? title,
+      Set<NotedTag>? tags,
+      List<dynamic>? document});
   NotebookNoteCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -182,16 +196,22 @@ class _NotebookNoteCopyWithImpl<$R, $Out>
       get document => ListCopyWith($value.document,
           (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(document: v));
   @override
-  $R call({String? id, String? title, List<dynamic>? document}) =>
+  $R call(
+          {String? id,
+          String? title,
+          Set<NotedTag>? tags,
+          List<dynamic>? document}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (title != null) #title: title,
+        if (tags != null) #tags: tags,
         if (document != null) #document: document
       }));
   @override
   NotebookNote $make(CopyWithData data) => NotebookNote(
       id: data.get(#id, or: $value.id),
       title: data.get(#title, or: $value.title),
+      tags: data.get(#tags, or: $value.tags),
       document: data.get(#document, or: $value.document));
 
   @override

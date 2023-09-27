@@ -1,5 +1,5 @@
 import 'package:dart_mappable/dart_mappable.dart';
-import 'package:noted_models/rich_text/noted_document.dart';
+import 'package:noted_models/noted_models.dart';
 
 part 'noted_note.mapper.dart';
 
@@ -7,10 +7,12 @@ part 'noted_note.mapper.dart';
 sealed class NotedNote with NotedNoteMappable {
   final String id;
   final String title;
+  final Set<NotedTag> tags;
 
   const NotedNote({
     required this.id,
     required this.title,
+    required this.tags,
   });
 }
 
@@ -24,12 +26,13 @@ class NotebookNote extends NotedNote with NotebookNoteMappable {
   const NotebookNote({
     required String id,
     required String title,
+    Set<NotedTag> tags = const {},
     required this.document,
-  }) : super(id: id, title: title);
+  }) : super(id: id, title: title, tags: tags);
 
   NotebookNote.emptyQuill()
       : document = [
           {'insert': '\n'},
         ],
-        super(id: '', title: '');
+        super(id: '', title: '', tags: const {});
 }
