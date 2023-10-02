@@ -4,40 +4,40 @@ import 'package:test/test.dart';
 void main() {
   group('NotedTextTheme', () {
     test('parses to and from json', () {
-      NotedTextTheme theme = NotedTextTheme.poppins;
+      TextThemeModel theme = TextThemeModel.poppins;
       String json = theme.toJson();
-      NotedTextTheme parsed = NotedTextTheme.fromJson(json);
+      TextThemeModel parsed = TextThemeModel.fromJson(json);
 
       expect(theme, parsed);
     });
 
     test('parses to and from map', () {
-      NotedTextTheme theme = NotedTextTheme.lora;
+      TextThemeModel theme = TextThemeModel.lora;
       Map<String, dynamic> map = theme.toMap();
-      NotedTextTheme parsed = NotedTextTheme.fromMap(map);
+      TextThemeModel parsed = TextThemeModel.fromMap(map);
 
       expect(theme, parsed);
     });
 
     test('gets from name', () {
       expect(
-        NotedTextTheme.fromName(NotedTextThemeName.poppins),
-        NotedTextTheme.poppins,
+        TextThemeModel.fromName(TextThemeModelName.poppins),
+        TextThemeModel.poppins,
       );
 
       expect(
-        NotedTextTheme.fromName(NotedTextThemeName.roboto),
-        NotedTextTheme.roboto,
+        TextThemeModel.fromName(TextThemeModelName.roboto),
+        TextThemeModel.roboto,
       );
 
       expect(
-        NotedTextTheme.fromName(NotedTextThemeName.lora),
-        NotedTextTheme.lora,
+        TextThemeModel.fromName(TextThemeModelName.lora),
+        TextThemeModel.lora,
       );
 
       expect(
-        NotedTextTheme.fromName(NotedTextThemeName.vollkorn),
-        NotedTextTheme.vollkorn,
+        TextThemeModel.fromName(TextThemeModelName.vollkorn),
+        TextThemeModel.vollkorn,
       );
     });
   });

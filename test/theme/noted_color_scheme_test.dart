@@ -4,50 +4,50 @@ import 'package:test/test.dart';
 void main() {
   group('NotedColorScheme', () {
     test('parses to and from json', () {
-      NotedColorScheme scheme = NotedColorScheme.blue;
+      ColorSchemeModel scheme = ColorSchemeModel.blue;
       String json = scheme.toJson();
-      NotedColorScheme parsed = NotedColorScheme.fromJson(json);
+      ColorSchemeModel parsed = ColorSchemeModel.fromJson(json);
 
       expect(scheme, parsed);
     });
 
     test('parses to and from map', () {
-      NotedColorScheme scheme = NotedColorScheme.green;
+      ColorSchemeModel scheme = ColorSchemeModel.green;
       Map<String, dynamic> map = scheme.toMap();
-      NotedColorScheme parsed = NotedColorScheme.fromMap(map);
+      ColorSchemeModel parsed = ColorSchemeModel.fromMap(map);
 
       expect(scheme, parsed);
     });
 
     test('gets from name', () {
       expect(
-        NotedColorScheme.fromName(NotedColorSchemeName.blue, NotedColorScheme.green),
-        NotedColorScheme.blue,
+        ColorSchemeModel.fromName(ColorSchemeModelName.blue, ColorSchemeModel.green),
+        ColorSchemeModel.blue,
       );
 
       expect(
-        NotedColorScheme.fromName(NotedColorSchemeName.green, NotedColorScheme.blue),
-        NotedColorScheme.green,
+        ColorSchemeModel.fromName(ColorSchemeModelName.green, ColorSchemeModel.blue),
+        ColorSchemeModel.green,
       );
 
       expect(
-        NotedColorScheme.fromName(NotedColorSchemeName.dark, NotedColorScheme.blue),
-        NotedColorScheme.dark,
+        ColorSchemeModel.fromName(ColorSchemeModelName.dark, ColorSchemeModel.blue),
+        ColorSchemeModel.dark,
       );
 
       expect(
-        NotedColorScheme.fromName(NotedColorSchemeName.oled, NotedColorScheme.blue),
-        NotedColorScheme.oled,
+        ColorSchemeModel.fromName(ColorSchemeModelName.oled, ColorSchemeModel.blue),
+        ColorSchemeModel.oled,
       );
 
       expect(
-        NotedColorScheme.fromName(NotedColorSchemeName.light, NotedColorScheme.blue),
-        NotedColorScheme.light,
+        ColorSchemeModel.fromName(ColorSchemeModelName.light, ColorSchemeModel.blue),
+        ColorSchemeModel.light,
       );
 
       expect(
-        NotedColorScheme.fromName(NotedColorSchemeName.custom, NotedColorScheme.blue),
-        NotedColorScheme.blue,
+        ColorSchemeModel.fromName(ColorSchemeModelName.custom, ColorSchemeModel.blue),
+        ColorSchemeModel.blue,
       );
     });
   });

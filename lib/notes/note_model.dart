@@ -1,15 +1,15 @@
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:noted_models/noted_models.dart';
 
-part 'noted_note.mapper.dart';
+part 'note_model.mapper.dart';
 
 @MappableClass(discriminatorKey: 'plugin')
-sealed class NotedNote with NotedNoteMappable {
+sealed class NoteModel with NoteModelMappable {
   final String id;
   final String title;
   final Set<String> tags;
 
-  const NotedNote({
+  const NoteModel({
     required this.id,
     required this.title,
     required this.tags,
@@ -17,20 +17,20 @@ sealed class NotedNote with NotedNoteMappable {
 }
 
 @MappableClass(discriminatorValue: 'notebook')
-class NotebookNote extends NotedNote with NotebookNoteMappable {
-  final NotedDocument document;
+class NotebookNoteModel extends NoteModel with NotebookNoteModelMappable {
+  final DocumentModel document;
 
-  static final fromMap = NotebookNoteMapper.fromMap;
-  static final fromJson = NotebookNoteMapper.fromJson;
+  static final fromMap = NotebookNoteModelMapper.fromMap;
+  static final fromJson = NotebookNoteModelMapper.fromJson;
 
-  const NotebookNote({
+  const NotebookNoteModel({
     required String id,
     required String title,
     Set<String> tags = const {},
     required this.document,
   }) : super(id: id, title: title, tags: tags);
 
-  NotebookNote.emptyQuill()
+  NotebookNoteModel.emptyQuill()
       : document = [
           {'insert': '\n'},
         ],

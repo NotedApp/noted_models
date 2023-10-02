@@ -1,2 +1,2 @@
-export 'noted_color_scheme.dart';
-export 'noted_text_theme.dart';
+export 'color_scheme_model.dart';
+export 'text_theme_model.dart';

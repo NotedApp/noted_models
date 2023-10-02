@@ -6,16 +6,16 @@ void main() {
     test('creates a default set of style settings', () {
       NotedStyleSettings style = NotedStyleSettings();
 
-      expect(style.colorSchemeName, NotedColorSchemeName.blue);
-      expect(style.customColorScheme, NotedColorScheme.blue);
-      expect(style.textThemeName, NotedTextThemeName.poppins);
+      expect(style.colorSchemeName, ColorSchemeModelName.blue);
+      expect(style.customColorScheme, ColorSchemeModel.blue);
+      expect(style.textThemeName, TextThemeModelName.poppins);
     });
 
     test('parses to and from json', () {
       NotedStyleSettings style = NotedStyleSettings(
-        colorSchemeName: NotedColorSchemeName.green,
-        customColorScheme: NotedColorScheme.dark,
-        textThemeName: NotedTextThemeName.roboto,
+        colorSchemeName: ColorSchemeModelName.green,
+        customColorScheme: ColorSchemeModel.dark,
+        textThemeName: TextThemeModelName.roboto,
       );
 
       String json = style.toJson();
@@ -26,9 +26,9 @@ void main() {
 
     test('parses to and from map', () {
       NotedStyleSettings style = NotedStyleSettings(
-        colorSchemeName: NotedColorSchemeName.green,
-        customColorScheme: NotedColorScheme.dark,
-        textThemeName: NotedTextThemeName.roboto,
+        colorSchemeName: ColorSchemeModelName.green,
+        customColorScheme: ColorSchemeModel.dark,
+        textThemeName: TextThemeModelName.roboto,
       );
 
       Map<String, dynamic> map = style.toMap();
@@ -39,36 +39,36 @@ void main() {
 
     test('fetches current color scheme', () {
       NotedStyleSettings blue = NotedStyleSettings();
-      expect(blue.colorScheme, NotedColorScheme.blue);
+      expect(blue.colorScheme, ColorSchemeModel.blue);
 
-      NotedStyleSettings green = NotedStyleSettings(colorSchemeName: NotedColorSchemeName.green);
-      expect(green.colorScheme, NotedColorScheme.green);
+      NotedStyleSettings green = NotedStyleSettings(colorSchemeName: ColorSchemeModelName.green);
+      expect(green.colorScheme, ColorSchemeModel.green);
 
-      NotedStyleSettings dark = NotedStyleSettings(colorSchemeName: NotedColorSchemeName.dark);
-      expect(dark.colorScheme, NotedColorScheme.dark);
+      NotedStyleSettings dark = NotedStyleSettings(colorSchemeName: ColorSchemeModelName.dark);
+      expect(dark.colorScheme, ColorSchemeModel.dark);
 
-      NotedStyleSettings oled = NotedStyleSettings(colorSchemeName: NotedColorSchemeName.oled);
-      expect(oled.colorScheme, NotedColorScheme.oled);
+      NotedStyleSettings oled = NotedStyleSettings(colorSchemeName: ColorSchemeModelName.oled);
+      expect(oled.colorScheme, ColorSchemeModel.oled);
 
-      NotedStyleSettings light = NotedStyleSettings(colorSchemeName: NotedColorSchemeName.light);
-      expect(light.colorScheme, NotedColorScheme.light);
+      NotedStyleSettings light = NotedStyleSettings(colorSchemeName: ColorSchemeModelName.light);
+      expect(light.colorScheme, ColorSchemeModel.light);
 
-      NotedStyleSettings custom = NotedStyleSettings(colorSchemeName: NotedColorSchemeName.custom);
-      expect(custom.colorScheme, NotedColorScheme.blue);
+      NotedStyleSettings custom = NotedStyleSettings(colorSchemeName: ColorSchemeModelName.custom);
+      expect(custom.colorScheme, ColorSchemeModel.blue);
     });
 
     test('fetches current text theme', () {
       NotedStyleSettings poppins = NotedStyleSettings();
-      expect(poppins.textTheme, NotedTextTheme.poppins);
+      expect(poppins.textTheme, TextThemeModel.poppins);
 
-      NotedStyleSettings roboto = NotedStyleSettings(textThemeName: NotedTextThemeName.roboto);
-      expect(roboto.textTheme, NotedTextTheme.roboto);
+      NotedStyleSettings roboto = NotedStyleSettings(textThemeName: TextThemeModelName.roboto);
+      expect(roboto.textTheme, TextThemeModel.roboto);
 
-      NotedStyleSettings lora = NotedStyleSettings(textThemeName: NotedTextThemeName.lora);
-      expect(lora.textTheme, NotedTextTheme.lora);
+      NotedStyleSettings lora = NotedStyleSettings(textThemeName: TextThemeModelName.lora);
+      expect(lora.textTheme, TextThemeModel.lora);
 
-      NotedStyleSettings vollkorn = NotedStyleSettings(textThemeName: NotedTextThemeName.vollkorn);
-      expect(vollkorn.textTheme, NotedTextTheme.vollkorn);
+      NotedStyleSettings vollkorn = NotedStyleSettings(textThemeName: TextThemeModelName.vollkorn);
+      expect(vollkorn.textTheme, TextThemeModel.vollkorn);
     });
   });
 }

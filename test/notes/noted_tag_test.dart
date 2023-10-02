@@ -4,8 +4,8 @@ import 'package:test/test.dart';
 void main() {
   group('NotedTag', () {
     test('creates a noted tag', () {
-      NotedTag test = NotedTag(id: 'test', name: 'test-name', color: 0xFFFFFF);
-      NotedTag empty = NotedTag.empty();
+      TagModel test = TagModel(id: 'test', name: 'test-name', color: 0xFFFFFF);
+      TagModel empty = TagModel.empty();
 
       expect(test.id, 'test');
       expect(test.name, 'test-name');
@@ -22,17 +22,17 @@ void main() {
     });
 
     test('parses to and from json', () {
-      NotedTag tag = NotedTag(id: 'test', name: 'test-name', color: 0xFFFFFF);
+      TagModel tag = TagModel(id: 'test', name: 'test-name', color: 0xFFFFFF);
       String json = tag.toJson();
-      NotedTag parsed = NotedTag.fromJson(json);
+      TagModel parsed = TagModel.fromJson(json);
 
       expect(tag, parsed);
     });
 
     test('parses to and from map', () {
-      NotedTag tag = NotedTag(id: 'test', name: 'test-name', color: 0xFFFFFF);
+      TagModel tag = TagModel(id: 'test', name: 'test-name', color: 0xFFFFFF);
       Map<String, dynamic> map = tag.toMap();
-      NotedTag parsed = NotedTag.fromMap(map);
+      TagModel parsed = TagModel.fromMap(map);
 
       expect(tag, parsed);
     });

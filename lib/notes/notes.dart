@@ -1,2 +1,2 @@
-export 'noted_note.dart';
-export 'noted_tag.dart';
+export 'note_model.dart';
+export 'tag_model.dart';

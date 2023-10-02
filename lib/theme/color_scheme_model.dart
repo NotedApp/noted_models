@@ -1,15 +1,15 @@
 import 'package:dart_mappable/dart_mappable.dart';
 
-part 'noted_color_scheme.mapper.dart';
+part 'color_scheme_model.mapper.dart';
 
 @MappableEnum()
-enum NotedBrightness {
+enum Brightness {
   dark,
   light,
 }
 
 @MappableEnum()
-enum NotedColorSchemeName {
+enum ColorSchemeModelName {
   blue,
   green,
   dark,
@@ -18,11 +18,9 @@ enum NotedColorSchemeName {
   custom,
 }
 
-/// A model for a color scheme. The model has a [NotedBrightness] to specify its brightness, and a set of [int]s to
-/// specify its different colors.
 @MappableClass()
-class NotedColorScheme with NotedColorSchemeMappable {
-  final NotedBrightness brightness;
+class ColorSchemeModel with ColorSchemeModelMappable {
+  final Brightness brightness;
   final int primary;
   final int onPrimary;
   final int secondary;
@@ -36,10 +34,10 @@ class NotedColorScheme with NotedColorSchemeMappable {
   final int background;
   final int onBackground;
 
-  static final fromMap = NotedColorSchemeMapper.fromMap;
-  static final fromJson = NotedColorSchemeMapper.fromJson;
+  static final fromMap = ColorSchemeModelMapper.fromMap;
+  static final fromJson = ColorSchemeModelMapper.fromJson;
 
-  const NotedColorScheme({
+  const ColorSchemeModel({
     required this.brightness,
     required this.primary,
     required this.onPrimary,
@@ -55,19 +53,19 @@ class NotedColorScheme with NotedColorSchemeMappable {
     required this.onBackground,
   });
 
-  factory NotedColorScheme.fromName(NotedColorSchemeName name, NotedColorScheme custom) {
+  factory ColorSchemeModel.fromName(ColorSchemeModelName name, ColorSchemeModel custom) {
     return switch (name) {
-      NotedColorSchemeName.blue => NotedColorScheme.blue,
-      NotedColorSchemeName.green => NotedColorScheme.green,
-      NotedColorSchemeName.dark => NotedColorScheme.dark,
-      NotedColorSchemeName.oled => NotedColorScheme.oled,
-      NotedColorSchemeName.light => NotedColorScheme.light,
-      NotedColorSchemeName.custom => custom,
+      ColorSchemeModelName.blue => ColorSchemeModel.blue,
+      ColorSchemeModelName.green => ColorSchemeModel.green,
+      ColorSchemeModelName.dark => ColorSchemeModel.dark,
+      ColorSchemeModelName.oled => ColorSchemeModel.oled,
+      ColorSchemeModelName.light => ColorSchemeModel.light,
+      ColorSchemeModelName.custom => custom,
     };
   }
 
-  static const NotedColorScheme blue = NotedColorScheme(
-    brightness: NotedBrightness.light,
+  static const ColorSchemeModel blue = ColorSchemeModel(
+    brightness: Brightness.light,
     primary: 0xFF8DA5A5,
     onPrimary: 0xFF111111,
     secondary: 0xFFAFC0C0,
@@ -82,8 +80,8 @@ class NotedColorScheme with NotedColorSchemeMappable {
     onSurface: 0xFF111111,
   );
 
-  static const NotedColorScheme green = NotedColorScheme(
-    brightness: NotedBrightness.light,
+  static const ColorSchemeModel green = ColorSchemeModel(
+    brightness: Brightness.light,
     primary: 0xFF90A578,
     onPrimary: 0xFF111111,
     secondary: 0xFFAEBE9D,
@@ -98,8 +96,8 @@ class NotedColorScheme with NotedColorSchemeMappable {
     onSurface: 0xFF111111,
   );
 
-  static const NotedColorScheme dark = NotedColorScheme(
-    brightness: NotedBrightness.dark,
+  static const ColorSchemeModel dark = ColorSchemeModel(
+    brightness: Brightness.dark,
     primary: 0xFF789395,
     onPrimary: 0xFF111111,
     secondary: 0xFF495883,
@@ -114,8 +112,8 @@ class NotedColorScheme with NotedColorSchemeMappable {
     onSurface: 0xFFEEEEEE,
   );
 
-  static const NotedColorScheme oled = NotedColorScheme(
-    brightness: NotedBrightness.dark,
+  static const ColorSchemeModel oled = ColorSchemeModel(
+    brightness: Brightness.dark,
     primary: 0xFF789395,
     onPrimary: 0xFF000000,
     secondary: 0xFF495883,
@@ -130,8 +128,8 @@ class NotedColorScheme with NotedColorSchemeMappable {
     onSurface: 0xFFEEEEEE,
   );
 
-  static const NotedColorScheme light = NotedColorScheme(
-    brightness: NotedBrightness.light,
+  static const ColorSchemeModel light = ColorSchemeModel(
+    brightness: Brightness.light,
     primary: 0xFF90A578,
     onPrimary: 0xFF111111,
     secondary: 0xFFAEBE9D,

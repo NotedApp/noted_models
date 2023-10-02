@@ -1,3 +1,3 @@
-export 'noted_settings.dart';
-export 'noted_style_settings.dart';
-export 'noted_tag_settings.dart';
+export 'settings_model.dart';
+export 'style_settings_model.dart';
+export 'tag_settings_model.dart';
