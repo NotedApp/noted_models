@@ -2,8 +2,8 @@ import 'package:noted_models/noted_models.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('NotedTag', () {
-    test('creates a noted tag', () {
+  group('Tag Model', () {
+    test('creates a tag', () {
       TagModel test = TagModel(id: 'test', name: 'test-name', color: 0xFFFFFF);
       TagModel empty = TagModel.empty();
 

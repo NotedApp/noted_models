@@ -2,11 +2,11 @@ import 'package:noted_models/noted_models.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('NotedSettings', () {
+  group('SettingsModel', () {
     test('creates a default set of settings', () {
       SettingsModel settings = SettingsModel();
 
-      expect(settings.style, NotedStyleSettings());
+      expect(settings.style, StyleSettingsModel());
     });
 
     test('parses to and from json', () {

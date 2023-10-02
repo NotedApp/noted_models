@@ -2,9 +2,9 @@ import 'package:noted_models/noted_models.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('NotedStyleSettings', () {
+  group('StyleSettingsModel', () {
     test('creates a default set of style settings', () {
-      NotedStyleSettings style = NotedStyleSettings();
+      StyleSettingsModel style = StyleSettingsModel();
 
       expect(style.colorSchemeName, ColorSchemeModelName.blue);
       expect(style.customColorScheme, ColorSchemeModel.blue);
@@ -12,62 +12,62 @@ void main() {
     });
 
     test('parses to and from json', () {
-      NotedStyleSettings style = NotedStyleSettings(
+      StyleSettingsModel style = StyleSettingsModel(
         colorSchemeName: ColorSchemeModelName.green,
         customColorScheme: ColorSchemeModel.dark,
         textThemeName: TextThemeModelName.roboto,
       );
 
       String json = style.toJson();
-      NotedStyleSettings parsed = NotedStyleSettings.fromJson(json);
+      StyleSettingsModel parsed = StyleSettingsModel.fromJson(json);
 
       expect(style, parsed);
     });
 
     test('parses to and from map', () {
-      NotedStyleSettings style = NotedStyleSettings(
+      StyleSettingsModel style = StyleSettingsModel(
         colorSchemeName: ColorSchemeModelName.green,
         customColorScheme: ColorSchemeModel.dark,
         textThemeName: TextThemeModelName.roboto,
       );
 
       Map<String, dynamic> map = style.toMap();
-      NotedStyleSettings parsed = NotedStyleSettings.fromMap(map);
+      StyleSettingsModel parsed = StyleSettingsModel.fromMap(map);
 
       expect(style, parsed);
     });
 
     test('fetches current color scheme', () {
-      NotedStyleSettings blue = NotedStyleSettings();
+      StyleSettingsModel blue = StyleSettingsModel();
       expect(blue.colorScheme, ColorSchemeModel.blue);
 
-      NotedStyleSettings green = NotedStyleSettings(colorSchemeName: ColorSchemeModelName.green);
+      StyleSettingsModel green = StyleSettingsModel(colorSchemeName: ColorSchemeModelName.green);
       expect(green.colorScheme, ColorSchemeModel.green);
 
-      NotedStyleSettings dark = NotedStyleSettings(colorSchemeName: ColorSchemeModelName.dark);
+      StyleSettingsModel dark = StyleSettingsModel(colorSchemeName: ColorSchemeModelName.dark);
       expect(dark.colorScheme, ColorSchemeModel.dark);
 
-      NotedStyleSettings oled = NotedStyleSettings(colorSchemeName: ColorSchemeModelName.oled);
+      StyleSettingsModel oled = StyleSettingsModel(colorSchemeName: ColorSchemeModelName.oled);
       expect(oled.colorScheme, ColorSchemeModel.oled);
 
-      NotedStyleSettings light = NotedStyleSettings(colorSchemeName: ColorSchemeModelName.light);
+      StyleSettingsModel light = StyleSettingsModel(colorSchemeName: ColorSchemeModelName.light);
       expect(light.colorScheme, ColorSchemeModel.light);
 
-      NotedStyleSettings custom = NotedStyleSettings(colorSchemeName: ColorSchemeModelName.custom);
+      StyleSettingsModel custom = StyleSettingsModel(colorSchemeName: ColorSchemeModelName.custom);
       expect(custom.colorScheme, ColorSchemeModel.blue);
     });
 
     test('fetches current text theme', () {
-      NotedStyleSettings poppins = NotedStyleSettings();
+      StyleSettingsModel poppins = StyleSettingsModel();
       expect(poppins.textTheme, TextThemeModel.poppins);
 
-      NotedStyleSettings roboto = NotedStyleSettings(textThemeName: TextThemeModelName.roboto);
+      StyleSettingsModel roboto = StyleSettingsModel(textThemeName: TextThemeModelName.roboto);
       expect(roboto.textTheme, TextThemeModel.roboto);
 
-      NotedStyleSettings lora = NotedStyleSettings(textThemeName: TextThemeModelName.lora);
+      StyleSettingsModel lora = StyleSettingsModel(textThemeName: TextThemeModelName.lora);
       expect(lora.textTheme, TextThemeModel.lora);
 
-      NotedStyleSettings vollkorn = NotedStyleSettings(textThemeName: TextThemeModelName.vollkorn);
+      StyleSettingsModel vollkorn = StyleSettingsModel(textThemeName: TextThemeModelName.vollkorn);
       expect(vollkorn.textTheme, TextThemeModel.vollkorn);
     });
   });

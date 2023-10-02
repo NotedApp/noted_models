@@ -2,7 +2,7 @@ import 'package:noted_models/noted_models.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('NotedColorScheme', () {
+  group('ColorSchemeModel', () {
     test('parses to and from json', () {
       ColorSchemeModel scheme = ColorSchemeModel.blue;
       String json = scheme.toJson();

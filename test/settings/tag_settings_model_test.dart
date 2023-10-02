@@ -5,7 +5,7 @@ void main() {
   const TagModel tag0 = TagModel(id: '0', name: 'tag 0', color: 0xFFFFFF);
   const TagModel tag1 = TagModel(id: '1', name: 'tag 1', color: 0x000000);
 
-  group('NotedTagSettings', () {
+  group('TagSettingsModel', () {
     test('creates and gets set of tag settings', () {
       TagSettingsModel tags = TagSettingsModel(tags: {tag0, tag1});
 

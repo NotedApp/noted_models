@@ -2,7 +2,7 @@ import 'package:noted_models/noted_models.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('NotedTextTheme', () {
+  group('TextThemeModel', () {
     test('parses to and from json', () {
       TextThemeModel theme = TextThemeModel.poppins;
       String json = theme.toJson();

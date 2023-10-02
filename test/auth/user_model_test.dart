@@ -2,7 +2,7 @@ import 'package:noted_models/noted_models.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('NotedUser', () {
+  group('UserModel', () {
     test('creates an compares empty user', () {
       UserModel empty = UserModel.empty();
       UserModel user = UserModel(id: 'test-id', name: 'test-name', email: 'test-email');

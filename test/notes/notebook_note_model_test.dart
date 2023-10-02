@@ -2,7 +2,7 @@ import 'package:noted_models/noted_models.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('NotebookNote', () {
+  group('NotebookNoteModel', () {
     test('creates an empty note', () {
       NotebookNoteModel note = NotebookNoteModel.emptyQuill();
 
