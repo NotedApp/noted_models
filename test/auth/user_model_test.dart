@@ -2,10 +2,10 @@ import 'package:noted_models/noted_models.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('NotedUser', () {
+  group('UserModel', () {
     test('creates an compares empty user', () {
-      NotedUser empty = NotedUser.empty();
-      NotedUser user = NotedUser(id: 'test-id', name: 'test-name', email: 'test-email');
+      UserModel empty = UserModel.empty();
+      UserModel user = UserModel(id: 'test-id', name: 'test-name', email: 'test-email');
 
       expect(empty.id, '');
       expect(empty.name, null);
@@ -19,17 +19,17 @@ void main() {
     });
 
     test('parses to and from json', () {
-      NotedUser user = NotedUser(id: 'test-id', name: 'test-name', email: 'test-email');
+      UserModel user = UserModel(id: 'test-id', name: 'test-name', email: 'test-email');
       String json = user.toJson();
-      NotedUser parsed = NotedUser.fromJson(json);
+      UserModel parsed = UserModel.fromJson(json);
 
       expect(user, parsed);
     });
 
     test('parses to and from map', () {
-      NotedUser user = NotedUser(id: 'test-id', name: 'test-name', email: 'test-email');
+      UserModel user = UserModel(id: 'test-id', name: 'test-name', email: 'test-email');
       Map<String, dynamic> map = user.toMap();
-      NotedUser parsed = NotedUser.fromMap(map);
+      UserModel parsed = UserModel.fromMap(map);
 
       expect(user, parsed);
     });
