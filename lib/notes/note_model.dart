@@ -9,6 +9,9 @@ sealed class NoteModel with NoteModelMappable {
   final String title;
   final Set<String> tags;
 
+  static final fromMap = NoteModelMapper.fromMap;
+  static final fromJson = NoteModelMapper.fromJson;
+
   const NoteModel({
     required this.id,
     required this.title,
