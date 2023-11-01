@@ -1,7 +1,8 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element
+// ignore_for_file: unused_element, unnecessary_cast
+// ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter
 
 part of 'settings_model.dart';
 
@@ -16,11 +17,6 @@ class SettingsModelMapper extends ClassMapperBase<SettingsModel> {
       TagSettingsModelMapper.ensureInitialized();
     }
     return _instance!;
-  }
-
-  static T _guard<T>(T Function(MapperContainer) fn) {
-    ensureInitialized();
-    return fn(MapperContainer.globals);
   }
 
   @override
@@ -47,21 +43,23 @@ class SettingsModelMapper extends ClassMapperBase<SettingsModel> {
   final Function instantiate = _instantiate;
 
   static SettingsModel fromMap(Map<String, dynamic> map) {
-    return _guard((c) => c.fromMap<SettingsModel>(map));
+    return ensureInitialized().decodeMap<SettingsModel>(map);
   }
 
   static SettingsModel fromJson(String json) {
-    return _guard((c) => c.fromJson<SettingsModel>(json));
+    return ensureInitialized().decodeJson<SettingsModel>(json);
   }
 }
 
 mixin SettingsModelMappable {
   String toJson() {
-    return SettingsModelMapper._guard((c) => c.toJson(this as SettingsModel));
+    return SettingsModelMapper.ensureInitialized()
+        .encodeJson<SettingsModel>(this as SettingsModel);
   }
 
   Map<String, dynamic> toMap() {
-    return SettingsModelMapper._guard((c) => c.toMap(this as SettingsModel));
+    return SettingsModelMapper.ensureInitialized()
+        .encodeMap<SettingsModel>(this as SettingsModel);
   }
 
   SettingsModelCopyWith<SettingsModel, SettingsModel, SettingsModel>
@@ -69,19 +67,22 @@ mixin SettingsModelMappable {
           this as SettingsModel, $identity, $identity);
   @override
   String toString() {
-    return SettingsModelMapper._guard((c) => c.asString(this));
+    return SettingsModelMapper.ensureInitialized()
+        .stringifyValue(this as SettingsModel);
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (runtimeType == other.runtimeType &&
-            SettingsModelMapper._guard((c) => c.isEqual(this, other)));
+            SettingsModelMapper.ensureInitialized()
+                .isValueEqual(this as SettingsModel, other));
   }
 
   @override
   int get hashCode {
-    return SettingsModelMapper._guard((c) => c.hash(this));
+    return SettingsModelMapper.ensureInitialized()
+        .hashValue(this as SettingsModel);
   }
 }
 

@@ -1,7 +1,8 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element
+// ignore_for_file: unused_element, unnecessary_cast
+// ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter
 
 part of 'user_model.dart';
 
@@ -14,11 +15,6 @@ class UserModelMapper extends ClassMapperBase<UserModel> {
       MapperContainer.globals.use(_instance = UserModelMapper._());
     }
     return _instance!;
-  }
-
-  static T _guard<T>(T Function(MapperContainer) fn) {
-    ensureInitialized();
-    return fn(MapperContainer.globals);
   }
 
   @override
@@ -51,40 +47,44 @@ class UserModelMapper extends ClassMapperBase<UserModel> {
   final Function instantiate = _instantiate;
 
   static UserModel fromMap(Map<String, dynamic> map) {
-    return _guard((c) => c.fromMap<UserModel>(map));
+    return ensureInitialized().decodeMap<UserModel>(map);
   }
 
   static UserModel fromJson(String json) {
-    return _guard((c) => c.fromJson<UserModel>(json));
+    return ensureInitialized().decodeJson<UserModel>(json);
   }
 }
 
 mixin UserModelMappable {
   String toJson() {
-    return UserModelMapper._guard((c) => c.toJson(this as UserModel));
+    return UserModelMapper.ensureInitialized()
+        .encodeJson<UserModel>(this as UserModel);
   }
 
   Map<String, dynamic> toMap() {
-    return UserModelMapper._guard((c) => c.toMap(this as UserModel));
+    return UserModelMapper.ensureInitialized()
+        .encodeMap<UserModel>(this as UserModel);
   }
 
   UserModelCopyWith<UserModel, UserModel, UserModel> get copyWith =>
       _UserModelCopyWithImpl(this as UserModel, $identity, $identity);
   @override
   String toString() {
-    return UserModelMapper._guard((c) => c.asString(this));
+    return UserModelMapper.ensureInitialized()
+        .stringifyValue(this as UserModel);
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (runtimeType == other.runtimeType &&
-            UserModelMapper._guard((c) => c.isEqual(this, other)));
+            UserModelMapper.ensureInitialized()
+                .isValueEqual(this as UserModel, other));
   }
 
   @override
   int get hashCode {
-    return UserModelMapper._guard((c) => c.hash(this));
+    return UserModelMapper.ensureInitialized().hashValue(this as UserModel);
   }
 }
 

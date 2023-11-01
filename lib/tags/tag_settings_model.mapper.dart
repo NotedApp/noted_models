@@ -1,7 +1,8 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element
+// ignore_for_file: unused_element, unnecessary_cast
+// ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter
 
 part of 'tag_settings_model.dart';
 
@@ -15,11 +16,6 @@ class TagSettingsModelMapper extends ClassMapperBase<TagSettingsModel> {
       TagModelMapper.ensureInitialized();
     }
     return _instance!;
-  }
-
-  static T _guard<T>(T Function(MapperContainer) fn) {
-    ensureInitialized();
-    return fn(MapperContainer.globals);
   }
 
   @override
@@ -42,23 +38,23 @@ class TagSettingsModelMapper extends ClassMapperBase<TagSettingsModel> {
   final Function instantiate = _instantiate;
 
   static TagSettingsModel fromMap(Map<String, dynamic> map) {
-    return _guard((c) => c.fromMap<TagSettingsModel>(map));
+    return ensureInitialized().decodeMap<TagSettingsModel>(map);
   }
 
   static TagSettingsModel fromJson(String json) {
-    return _guard((c) => c.fromJson<TagSettingsModel>(json));
+    return ensureInitialized().decodeJson<TagSettingsModel>(json);
   }
 }
 
 mixin TagSettingsModelMappable {
   String toJson() {
-    return TagSettingsModelMapper._guard(
-        (c) => c.toJson(this as TagSettingsModel));
+    return TagSettingsModelMapper.ensureInitialized()
+        .encodeJson<TagSettingsModel>(this as TagSettingsModel);
   }
 
   Map<String, dynamic> toMap() {
-    return TagSettingsModelMapper._guard(
-        (c) => c.toMap(this as TagSettingsModel));
+    return TagSettingsModelMapper.ensureInitialized()
+        .encodeMap<TagSettingsModel>(this as TagSettingsModel);
   }
 
   TagSettingsModelCopyWith<TagSettingsModel, TagSettingsModel, TagSettingsModel>
@@ -66,19 +62,22 @@ mixin TagSettingsModelMappable {
           this as TagSettingsModel, $identity, $identity);
   @override
   String toString() {
-    return TagSettingsModelMapper._guard((c) => c.asString(this));
+    return TagSettingsModelMapper.ensureInitialized()
+        .stringifyValue(this as TagSettingsModel);
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (runtimeType == other.runtimeType &&
-            TagSettingsModelMapper._guard((c) => c.isEqual(this, other)));
+            TagSettingsModelMapper.ensureInitialized()
+                .isValueEqual(this as TagSettingsModel, other));
   }
 
   @override
   int get hashCode {
-    return TagSettingsModelMapper._guard((c) => c.hash(this));
+    return TagSettingsModelMapper.ensureInitialized()
+        .hashValue(this as TagSettingsModel);
   }
 }
 

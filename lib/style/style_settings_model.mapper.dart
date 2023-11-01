@@ -1,9 +1,10 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element
+// ignore_for_file: unused_element, unnecessary_cast
+// ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter
 
-part of '../style/style_settings_model.dart';
+part of 'style_settings_model.dart';
 
 class StyleSettingsModelMapper extends ClassMapperBase<StyleSettingsModel> {
   StyleSettingsModelMapper._();
@@ -17,11 +18,6 @@ class StyleSettingsModelMapper extends ClassMapperBase<StyleSettingsModel> {
       TextThemeModelNameMapper.ensureInitialized();
     }
     return _instance!;
-  }
-
-  static T _guard<T>(T Function(MapperContainer) fn) {
-    ensureInitialized();
-    return fn(MapperContainer.globals);
   }
 
   @override
@@ -72,23 +68,23 @@ class StyleSettingsModelMapper extends ClassMapperBase<StyleSettingsModel> {
   final Function instantiate = _instantiate;
 
   static StyleSettingsModel fromMap(Map<String, dynamic> map) {
-    return _guard((c) => c.fromMap<StyleSettingsModel>(map));
+    return ensureInitialized().decodeMap<StyleSettingsModel>(map);
   }
 
   static StyleSettingsModel fromJson(String json) {
-    return _guard((c) => c.fromJson<StyleSettingsModel>(json));
+    return ensureInitialized().decodeJson<StyleSettingsModel>(json);
   }
 }
 
 mixin StyleSettingsModelMappable {
   String toJson() {
-    return StyleSettingsModelMapper._guard(
-        (c) => c.toJson(this as StyleSettingsModel));
+    return StyleSettingsModelMapper.ensureInitialized()
+        .encodeJson<StyleSettingsModel>(this as StyleSettingsModel);
   }
 
   Map<String, dynamic> toMap() {
-    return StyleSettingsModelMapper._guard(
-        (c) => c.toMap(this as StyleSettingsModel));
+    return StyleSettingsModelMapper.ensureInitialized()
+        .encodeMap<StyleSettingsModel>(this as StyleSettingsModel);
   }
 
   StyleSettingsModelCopyWith<StyleSettingsModel, StyleSettingsModel,
@@ -97,19 +93,22 @@ mixin StyleSettingsModelMappable {
           this as StyleSettingsModel, $identity, $identity);
   @override
   String toString() {
-    return StyleSettingsModelMapper._guard((c) => c.asString(this));
+    return StyleSettingsModelMapper.ensureInitialized()
+        .stringifyValue(this as StyleSettingsModel);
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (runtimeType == other.runtimeType &&
-            StyleSettingsModelMapper._guard((c) => c.isEqual(this, other)));
+            StyleSettingsModelMapper.ensureInitialized()
+                .isValueEqual(this as StyleSettingsModel, other));
   }
 
   @override
   int get hashCode {
-    return StyleSettingsModelMapper._guard((c) => c.hash(this));
+    return StyleSettingsModelMapper.ensureInitialized()
+        .hashValue(this as StyleSettingsModel);
   }
 }
 
