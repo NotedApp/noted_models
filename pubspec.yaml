@@ -6,11 +6,11 @@ environment:
   sdk: '>=3.0.1 <4.0.0'
 
 dependencies:
-  dart_mappable: ^3.1.1
+  dart_mappable: ^4.0.1
 
 dev_dependencies:
   build_runner: ^2.4.5
-  dart_mappable_builder: ^3.1.1
+  dart_mappable_builder: ^4.0.1
   noted_lints:
     git:
       url: https://github.com/NotedApp/noted_lints.git

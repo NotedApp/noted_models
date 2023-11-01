@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element
 
-part of 'style_settings_model.dart';
+part of '../style/style_settings_model.dart';
 
 class StyleSettingsModelMapper extends ClassMapperBase<StyleSettingsModel> {
   StyleSettingsModelMapper._();
