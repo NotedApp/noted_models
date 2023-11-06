@@ -1,7 +1,8 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element
+// ignore_for_file: unused_element, unnecessary_cast
+// ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter
 
 part of 'color_scheme_model.dart';
 
@@ -47,7 +48,7 @@ class BrightnessMapper extends EnumMapper<Brightness> {
 extension BrightnessMapperExtension on Brightness {
   String toValue() {
     BrightnessMapper.ensureInitialized();
-    return MapperContainer.globals.toValue(this) as String;
+    return MapperContainer.globals.toValue<Brightness>(this) as String;
   }
 }
 
@@ -109,7 +110,8 @@ class ColorSchemeModelNameMapper extends EnumMapper<ColorSchemeModelName> {
 extension ColorSchemeModelNameMapperExtension on ColorSchemeModelName {
   String toValue() {
     ColorSchemeModelNameMapper.ensureInitialized();
-    return MapperContainer.globals.toValue(this) as String;
+    return MapperContainer.globals.toValue<ColorSchemeModelName>(this)
+        as String;
   }
 }
 
@@ -123,11 +125,6 @@ class ColorSchemeModelMapper extends ClassMapperBase<ColorSchemeModel> {
       BrightnessMapper.ensureInitialized();
     }
     return _instance!;
-  }
-
-  static T _guard<T>(T Function(MapperContainer) fn) {
-    ensureInitialized();
-    return fn(MapperContainer.globals);
   }
 
   @override
@@ -210,23 +207,23 @@ class ColorSchemeModelMapper extends ClassMapperBase<ColorSchemeModel> {
   final Function instantiate = _instantiate;
 
   static ColorSchemeModel fromMap(Map<String, dynamic> map) {
-    return _guard((c) => c.fromMap<ColorSchemeModel>(map));
+    return ensureInitialized().decodeMap<ColorSchemeModel>(map);
   }
 
   static ColorSchemeModel fromJson(String json) {
-    return _guard((c) => c.fromJson<ColorSchemeModel>(json));
+    return ensureInitialized().decodeJson<ColorSchemeModel>(json);
   }
 }
 
 mixin ColorSchemeModelMappable {
   String toJson() {
-    return ColorSchemeModelMapper._guard(
-        (c) => c.toJson(this as ColorSchemeModel));
+    return ColorSchemeModelMapper.ensureInitialized()
+        .encodeJson<ColorSchemeModel>(this as ColorSchemeModel);
   }
 
   Map<String, dynamic> toMap() {
-    return ColorSchemeModelMapper._guard(
-        (c) => c.toMap(this as ColorSchemeModel));
+    return ColorSchemeModelMapper.ensureInitialized()
+        .encodeMap<ColorSchemeModel>(this as ColorSchemeModel);
   }
 
   ColorSchemeModelCopyWith<ColorSchemeModel, ColorSchemeModel, ColorSchemeModel>
@@ -234,19 +231,22 @@ mixin ColorSchemeModelMappable {
           this as ColorSchemeModel, $identity, $identity);
   @override
   String toString() {
-    return ColorSchemeModelMapper._guard((c) => c.asString(this));
+    return ColorSchemeModelMapper.ensureInitialized()
+        .stringifyValue(this as ColorSchemeModel);
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (runtimeType == other.runtimeType &&
-            ColorSchemeModelMapper._guard((c) => c.isEqual(this, other)));
+            ColorSchemeModelMapper.ensureInitialized()
+                .isValueEqual(this as ColorSchemeModel, other));
   }
 
   @override
   int get hashCode {
-    return ColorSchemeModelMapper._guard((c) => c.hash(this));
+    return ColorSchemeModelMapper.ensureInitialized()
+        .hashValue(this as ColorSchemeModel);
   }
 }
 

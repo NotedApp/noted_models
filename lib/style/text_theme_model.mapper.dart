@@ -1,7 +1,8 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element
+// ignore_for_file: unused_element, unnecessary_cast
+// ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter
 
 part of 'text_theme_model.dart';
 
@@ -55,7 +56,7 @@ class TextThemeModelNameMapper extends EnumMapper<TextThemeModelName> {
 extension TextThemeModelNameMapperExtension on TextThemeModelName {
   String toValue() {
     TextThemeModelNameMapper.ensureInitialized();
-    return MapperContainer.globals.toValue(this) as String;
+    return MapperContainer.globals.toValue<TextThemeModelName>(this) as String;
   }
 }
 
@@ -68,11 +69,6 @@ class TextThemeModelMapper extends ClassMapperBase<TextThemeModel> {
       MapperContainer.globals.use(_instance = TextThemeModelMapper._());
     }
     return _instance!;
-  }
-
-  static T _guard<T>(T Function(MapperContainer) fn) {
-    ensureInitialized();
-    return fn(MapperContainer.globals);
   }
 
   @override
@@ -95,21 +91,23 @@ class TextThemeModelMapper extends ClassMapperBase<TextThemeModel> {
   final Function instantiate = _instantiate;
 
   static TextThemeModel fromMap(Map<String, dynamic> map) {
-    return _guard((c) => c.fromMap<TextThemeModel>(map));
+    return ensureInitialized().decodeMap<TextThemeModel>(map);
   }
 
   static TextThemeModel fromJson(String json) {
-    return _guard((c) => c.fromJson<TextThemeModel>(json));
+    return ensureInitialized().decodeJson<TextThemeModel>(json);
   }
 }
 
 mixin TextThemeModelMappable {
   String toJson() {
-    return TextThemeModelMapper._guard((c) => c.toJson(this as TextThemeModel));
+    return TextThemeModelMapper.ensureInitialized()
+        .encodeJson<TextThemeModel>(this as TextThemeModel);
   }
 
   Map<String, dynamic> toMap() {
-    return TextThemeModelMapper._guard((c) => c.toMap(this as TextThemeModel));
+    return TextThemeModelMapper.ensureInitialized()
+        .encodeMap<TextThemeModel>(this as TextThemeModel);
   }
 
   TextThemeModelCopyWith<TextThemeModel, TextThemeModel, TextThemeModel>
@@ -117,19 +115,22 @@ mixin TextThemeModelMappable {
           this as TextThemeModel, $identity, $identity);
   @override
   String toString() {
-    return TextThemeModelMapper._guard((c) => c.asString(this));
+    return TextThemeModelMapper.ensureInitialized()
+        .stringifyValue(this as TextThemeModel);
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (runtimeType == other.runtimeType &&
-            TextThemeModelMapper._guard((c) => c.isEqual(this, other)));
+            TextThemeModelMapper.ensureInitialized()
+                .isValueEqual(this as TextThemeModel, other));
   }
 
   @override
   int get hashCode {
-    return TextThemeModelMapper._guard((c) => c.hash(this));
+    return TextThemeModelMapper.ensureInitialized()
+        .hashValue(this as TextThemeModel);
   }
 }
 

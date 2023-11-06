@@ -7,6 +7,8 @@ void main() {
       SettingsModel settings = SettingsModel();
 
       expect(settings.style, StyleSettingsModel());
+      expect(settings.tags, TagSettingsModel());
+      expect(settings.plugins, PluginSettingsModel());
     });
 
     test('parses to and from json', () {

@@ -1,7 +1,8 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element
+// ignore_for_file: unused_element, unnecessary_cast
+// ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter
 
 part of 'tag_model.dart';
 
@@ -14,11 +15,6 @@ class TagModelMapper extends ClassMapperBase<TagModel> {
       MapperContainer.globals.use(_instance = TagModelMapper._());
     }
     return _instance!;
-  }
-
-  static T _guard<T>(T Function(MapperContainer) fn) {
-    ensureInitialized();
-    return fn(MapperContainer.globals);
   }
 
   @override
@@ -49,40 +45,43 @@ class TagModelMapper extends ClassMapperBase<TagModel> {
   final Function instantiate = _instantiate;
 
   static TagModel fromMap(Map<String, dynamic> map) {
-    return _guard((c) => c.fromMap<TagModel>(map));
+    return ensureInitialized().decodeMap<TagModel>(map);
   }
 
   static TagModel fromJson(String json) {
-    return _guard((c) => c.fromJson<TagModel>(json));
+    return ensureInitialized().decodeJson<TagModel>(json);
   }
 }
 
 mixin TagModelMappable {
   String toJson() {
-    return TagModelMapper._guard((c) => c.toJson(this as TagModel));
+    return TagModelMapper.ensureInitialized()
+        .encodeJson<TagModel>(this as TagModel);
   }
 
   Map<String, dynamic> toMap() {
-    return TagModelMapper._guard((c) => c.toMap(this as TagModel));
+    return TagModelMapper.ensureInitialized()
+        .encodeMap<TagModel>(this as TagModel);
   }
 
   TagModelCopyWith<TagModel, TagModel, TagModel> get copyWith =>
       _TagModelCopyWithImpl(this as TagModel, $identity, $identity);
   @override
   String toString() {
-    return TagModelMapper._guard((c) => c.asString(this));
+    return TagModelMapper.ensureInitialized().stringifyValue(this as TagModel);
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (runtimeType == other.runtimeType &&
-            TagModelMapper._guard((c) => c.isEqual(this, other)));
+            TagModelMapper.ensureInitialized()
+                .isValueEqual(this as TagModel, other));
   }
 
   @override
   int get hashCode {
-    return TagModelMapper._guard((c) => c.hash(this));
+    return TagModelMapper.ensureInitialized().hashValue(this as TagModel);
   }
 }
 

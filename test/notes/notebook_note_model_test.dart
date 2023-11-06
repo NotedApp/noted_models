@@ -4,12 +4,14 @@ import 'package:test/test.dart';
 void main() {
   group('NotebookNoteModel', () {
     test('creates an empty note', () {
-      NotebookNoteModel note = NotebookNoteModel.emptyQuill();
+      NotebookNoteModel note = NotebookNoteModel.empty();
 
       expect(note.id, '');
       expect(note.title, '');
-      expect(note.tags.length, 0);
+      expect(note.tagIds.length, 0);
       expect(note.document.length, 1);
+
+      expect(note.plugin, NotedPlugin.notebook);
     });
 
     test('parses to and from json', () {

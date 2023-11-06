@@ -2,9 +2,11 @@ import 'package:dart_mappable/dart_mappable.dart';
 
 part 'tag_model.mapper.dart';
 
+typedef TagId = String;
+
 @MappableClass()
 class TagModel with TagModelMappable {
-  final String id;
+  final TagId id;
   final String name;
   final int color;
 
