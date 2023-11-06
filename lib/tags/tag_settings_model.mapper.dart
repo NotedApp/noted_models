@@ -21,17 +21,22 @@ class TagSettingsModelMapper extends ClassMapperBase<TagSettingsModel> {
   @override
   final String id = 'TagSettingsModel';
 
+  static bool _$showTags(TagSettingsModel v) => v.showTags;
+  static const Field<TagSettingsModel, bool> _f$showTags =
+      Field('showTags', _$showTags, opt: true, def: true);
   static Set<TagModel> _$tags(TagSettingsModel v) => v.tags;
   static const Field<TagSettingsModel, Set<TagModel>> _f$tags =
       Field('tags', _$tags, opt: true, def: const {});
 
   @override
   final Map<Symbol, Field<TagSettingsModel, dynamic>> fields = const {
+    #showTags: _f$showTags,
     #tags: _f$tags,
   };
 
   static TagSettingsModel _instantiate(DecodingData data) {
-    return TagSettingsModel(tags: data.dec(_f$tags));
+    return TagSettingsModel(
+        showTags: data.dec(_f$showTags), tags: data.dec(_f$tags));
   }
 
   @override
@@ -90,7 +95,7 @@ extension TagSettingsModelValueCopy<$R, $Out>
 
 abstract class TagSettingsModelCopyWith<$R, $In extends TagSettingsModel, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({Set<TagModel>? tags});
+  $R call({bool? showTags, Set<TagModel>? tags});
   TagSettingsModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -104,11 +109,14 @@ class _TagSettingsModelCopyWithImpl<$R, $Out>
   late final ClassMapperBase<TagSettingsModel> $mapper =
       TagSettingsModelMapper.ensureInitialized();
   @override
-  $R call({Set<TagModel>? tags}) =>
-      $apply(FieldCopyWithData({if (tags != null) #tags: tags}));
+  $R call({bool? showTags, Set<TagModel>? tags}) => $apply(FieldCopyWithData({
+        if (showTags != null) #showTags: showTags,
+        if (tags != null) #tags: tags
+      }));
   @override
-  TagSettingsModel $make(CopyWithData data) =>
-      TagSettingsModel(tags: data.get(#tags, or: $value.tags));
+  TagSettingsModel $make(CopyWithData data) => TagSettingsModel(
+      showTags: data.get(#showTags, or: $value.showTags),
+      tags: data.get(#tags, or: $value.tags));
 
   @override
   TagSettingsModelCopyWith<$R2, TagSettingsModel, $Out2> $chain<$R2, $Out2>(

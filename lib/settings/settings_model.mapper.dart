@@ -15,6 +15,7 @@ class SettingsModelMapper extends ClassMapperBase<SettingsModel> {
       MapperContainer.globals.use(_instance = SettingsModelMapper._());
       StyleSettingsModelMapper.ensureInitialized();
       TagSettingsModelMapper.ensureInitialized();
+      PluginSettingsModelMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -25,18 +26,25 @@ class SettingsModelMapper extends ClassMapperBase<SettingsModel> {
   static StyleSettingsModel _$style(SettingsModel v) => v.style;
   static const Field<SettingsModel, StyleSettingsModel> _f$style =
       Field('style', _$style, opt: true, def: const StyleSettingsModel());
-  static TagSettingsModel _$tag(SettingsModel v) => v.tag;
-  static const Field<SettingsModel, TagSettingsModel> _f$tag =
-      Field('tag', _$tag, opt: true, def: const TagSettingsModel());
+  static TagSettingsModel _$tags(SettingsModel v) => v.tags;
+  static const Field<SettingsModel, TagSettingsModel> _f$tags =
+      Field('tags', _$tags, opt: true, def: const TagSettingsModel());
+  static PluginSettingsModel _$plugins(SettingsModel v) => v.plugins;
+  static const Field<SettingsModel, PluginSettingsModel> _f$plugins =
+      Field('plugins', _$plugins, opt: true, def: const PluginSettingsModel());
 
   @override
   final Map<Symbol, Field<SettingsModel, dynamic>> fields = const {
     #style: _f$style,
-    #tag: _f$tag,
+    #tags: _f$tags,
+    #plugins: _f$plugins,
   };
 
   static SettingsModel _instantiate(DecodingData data) {
-    return SettingsModel(style: data.dec(_f$style), tag: data.dec(_f$tag));
+    return SettingsModel(
+        style: data.dec(_f$style),
+        tags: data.dec(_f$tags),
+        plugins: data.dec(_f$plugins));
   }
 
   @override
@@ -96,8 +104,13 @@ abstract class SettingsModelCopyWith<$R, $In extends SettingsModel, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   StyleSettingsModelCopyWith<$R, StyleSettingsModel, StyleSettingsModel>
       get style;
-  TagSettingsModelCopyWith<$R, TagSettingsModel, TagSettingsModel> get tag;
-  $R call({StyleSettingsModel? style, TagSettingsModel? tag});
+  TagSettingsModelCopyWith<$R, TagSettingsModel, TagSettingsModel> get tags;
+  PluginSettingsModelCopyWith<$R, PluginSettingsModel, PluginSettingsModel>
+      get plugins;
+  $R call(
+      {StyleSettingsModel? style,
+      TagSettingsModel? tags,
+      PluginSettingsModel? plugins});
   SettingsModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -113,16 +126,26 @@ class _SettingsModelCopyWithImpl<$R, $Out>
   StyleSettingsModelCopyWith<$R, StyleSettingsModel, StyleSettingsModel>
       get style => $value.style.copyWith.$chain((v) => call(style: v));
   @override
-  TagSettingsModelCopyWith<$R, TagSettingsModel, TagSettingsModel> get tag =>
-      $value.tag.copyWith.$chain((v) => call(tag: v));
+  TagSettingsModelCopyWith<$R, TagSettingsModel, TagSettingsModel> get tags =>
+      $value.tags.copyWith.$chain((v) => call(tags: v));
   @override
-  $R call({StyleSettingsModel? style, TagSettingsModel? tag}) =>
-      $apply(FieldCopyWithData(
-          {if (style != null) #style: style, if (tag != null) #tag: tag}));
+  PluginSettingsModelCopyWith<$R, PluginSettingsModel, PluginSettingsModel>
+      get plugins => $value.plugins.copyWith.$chain((v) => call(plugins: v));
+  @override
+  $R call(
+          {StyleSettingsModel? style,
+          TagSettingsModel? tags,
+          PluginSettingsModel? plugins}) =>
+      $apply(FieldCopyWithData({
+        if (style != null) #style: style,
+        if (tags != null) #tags: tags,
+        if (plugins != null) #plugins: plugins
+      }));
   @override
   SettingsModel $make(CopyWithData data) => SettingsModel(
       style: data.get(#style, or: $value.style),
-      tag: data.get(#tag, or: $value.tag));
+      tags: data.get(#tags, or: $value.tags),
+      plugins: data.get(#plugins, or: $value.plugins));
 
   @override
   SettingsModelCopyWith<$R2, SettingsModel, $Out2> $chain<$R2, $Out2>(

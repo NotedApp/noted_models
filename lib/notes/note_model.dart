@@ -9,7 +9,9 @@ part 'cookbook_note_model.dart';
 sealed class NoteModel with NoteModelMappable {
   final String id;
   final String title;
-  final Set<String> tagIds;
+  final Set<TagId> tagIds;
+
+  NotedPlugin get plugin;
 
   static final fromMap = NoteModelMapper.fromMap;
   static final fromJson = NoteModelMapper.fromJson;

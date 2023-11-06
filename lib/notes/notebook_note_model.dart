@@ -4,6 +4,9 @@ part of 'note_model.dart';
 class NotebookNoteModel extends NoteModel with NotebookNoteModelMappable {
   final DocumentModel document;
 
+  @override
+  NotedPlugin get plugin => NotedPlugin.notebook;
+
   static final fromMap = NotebookNoteModelMapper.fromMap;
   static final fromJson = NotebookNoteModelMapper.fromJson;
 

@@ -221,6 +221,64 @@ class _NotebookNoteModelCopyWithImpl<$R, $Out>
       _NotebookNoteModelCopyWithImpl($value, $cast, t);
 }
 
+class RecipeTypeMapper extends EnumMapper<RecipeType> {
+  RecipeTypeMapper._();
+
+  static RecipeTypeMapper? _instance;
+  static RecipeTypeMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = RecipeTypeMapper._());
+    }
+    return _instance!;
+  }
+
+  static RecipeType fromValue(dynamic value) {
+    ensureInitialized();
+    return MapperContainer.globals.fromValue(value);
+  }
+
+  @override
+  RecipeType decode(dynamic value) {
+    switch (value) {
+      case 'breakfast':
+        return RecipeType.breakfast;
+      case 'lunch':
+        return RecipeType.lunch;
+      case 'dinner':
+        return RecipeType.dinner;
+      case 'snack':
+        return RecipeType.snack;
+      case 'drink':
+        return RecipeType.drink;
+      default:
+        throw MapperException.unknownEnumValue(value);
+    }
+  }
+
+  @override
+  dynamic encode(RecipeType self) {
+    switch (self) {
+      case RecipeType.breakfast:
+        return 'breakfast';
+      case RecipeType.lunch:
+        return 'lunch';
+      case RecipeType.dinner:
+        return 'dinner';
+      case RecipeType.snack:
+        return 'snack';
+      case RecipeType.drink:
+        return 'drink';
+    }
+  }
+}
+
+extension RecipeTypeMapperExtension on RecipeType {
+  String toValue() {
+    RecipeTypeMapper.ensureInitialized();
+    return MapperContainer.globals.toValue<RecipeType>(this) as String;
+  }
+}
+
 class CookbookNoteModelMapper extends SubClassMapperBase<CookbookNoteModel> {
   CookbookNoteModelMapper._();
 
@@ -246,6 +304,21 @@ class CookbookNoteModelMapper extends SubClassMapperBase<CookbookNoteModel> {
       Field('tagIds', _$tagIds, opt: true, def: const {});
   static String _$url(CookbookNoteModel v) => v.url;
   static const Field<CookbookNoteModel, String> _f$url = Field('url', _$url);
+  static String _$prepTime(CookbookNoteModel v) => v.prepTime;
+  static const Field<CookbookNoteModel, String> _f$prepTime =
+      Field('prepTime', _$prepTime);
+  static String _$cookTime(CookbookNoteModel v) => v.cookTime;
+  static const Field<CookbookNoteModel, String> _f$cookTime =
+      Field('cookTime', _$cookTime);
+  static int _$difficulty(CookbookNoteModel v) => v.difficulty;
+  static const Field<CookbookNoteModel, int> _f$difficulty =
+      Field('difficulty', _$difficulty);
+  static Set<String> _$types(CookbookNoteModel v) => v.types;
+  static const Field<CookbookNoteModel, Set<String>> _f$types =
+      Field('types', _$types, opt: true, def: const {});
+  static Set<String> _$cuisines(CookbookNoteModel v) => v.cuisines;
+  static const Field<CookbookNoteModel, Set<String>> _f$cuisines =
+      Field('cuisines', _$cuisines, opt: true, def: const {});
   static List<dynamic> _$document(CookbookNoteModel v) => v.document;
   static const Field<CookbookNoteModel, List<dynamic>> _f$document =
       Field('document', _$document);
@@ -256,6 +329,11 @@ class CookbookNoteModelMapper extends SubClassMapperBase<CookbookNoteModel> {
     #title: _f$title,
     #tagIds: _f$tagIds,
     #url: _f$url,
+    #prepTime: _f$prepTime,
+    #cookTime: _f$cookTime,
+    #difficulty: _f$difficulty,
+    #types: _f$types,
+    #cuisines: _f$cuisines,
     #document: _f$document,
   };
 
@@ -272,6 +350,11 @@ class CookbookNoteModelMapper extends SubClassMapperBase<CookbookNoteModel> {
         title: data.dec(_f$title),
         tagIds: data.dec(_f$tagIds),
         url: data.dec(_f$url),
+        prepTime: data.dec(_f$prepTime),
+        cookTime: data.dec(_f$cookTime),
+        difficulty: data.dec(_f$difficulty),
+        types: data.dec(_f$types),
+        cuisines: data.dec(_f$cuisines),
         document: data.dec(_f$document));
   }
 
@@ -339,6 +422,11 @@ abstract class CookbookNoteModelCopyWith<$R, $In extends CookbookNoteModel,
       String? title,
       Set<String>? tagIds,
       String? url,
+      String? prepTime,
+      String? cookTime,
+      int? difficulty,
+      Set<String>? types,
+      Set<String>? cuisines,
       List<dynamic>? document});
   CookbookNoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
@@ -362,12 +450,22 @@ class _CookbookNoteModelCopyWithImpl<$R, $Out>
           String? title,
           Set<String>? tagIds,
           String? url,
+          String? prepTime,
+          String? cookTime,
+          int? difficulty,
+          Set<String>? types,
+          Set<String>? cuisines,
           List<dynamic>? document}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (title != null) #title: title,
         if (tagIds != null) #tagIds: tagIds,
         if (url != null) #url: url,
+        if (prepTime != null) #prepTime: prepTime,
+        if (cookTime != null) #cookTime: cookTime,
+        if (difficulty != null) #difficulty: difficulty,
+        if (types != null) #types: types,
+        if (cuisines != null) #cuisines: cuisines,
         if (document != null) #document: document
       }));
   @override
@@ -376,6 +474,11 @@ class _CookbookNoteModelCopyWithImpl<$R, $Out>
       title: data.get(#title, or: $value.title),
       tagIds: data.get(#tagIds, or: $value.tagIds),
       url: data.get(#url, or: $value.url),
+      prepTime: data.get(#prepTime, or: $value.prepTime),
+      cookTime: data.get(#cookTime, or: $value.cookTime),
+      difficulty: data.get(#difficulty, or: $value.difficulty),
+      types: data.get(#types, or: $value.types),
+      cuisines: data.get(#cuisines, or: $value.cuisines),
       document: data.get(#document, or: $value.document));
 
   @override
