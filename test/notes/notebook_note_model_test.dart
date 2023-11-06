@@ -10,6 +10,8 @@ void main() {
       expect(note.title, '');
       expect(note.tagIds.length, 0);
       expect(note.document.length, 1);
+
+      expect(note.plugin, NotedPlugin.notebook);
     });
 
     test('parses to and from json', () {

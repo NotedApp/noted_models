@@ -8,7 +8,7 @@ class PluginSettingsModel with PluginSettingsModelMappable {
   final CookbookSettingsModel cookbook;
 
   static final fromMap = PluginSettingsModelMapper.fromMap;
-  static final fromJson = SettingsModelMapper.fromJson;
+  static final fromJson = PluginSettingsModelMapper.fromJson;
 
   const PluginSettingsModel({
     this.cookbook = const CookbookSettingsModel(),
