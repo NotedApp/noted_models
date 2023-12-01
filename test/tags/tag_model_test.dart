@@ -4,8 +4,8 @@ import 'package:test/test.dart';
 void main() {
   group('Tag Model', () {
     test('creates a tag', () {
-      TagModel test = TagModel(id: 'test', name: 'test-name', color: 0xFFFFFF);
-      TagModel empty = TagModel.empty();
+      TagModel test = const TagModel(id: 'test', name: 'test-name', color: 0xFFFFFF);
+      TagModel empty = const TagModel.empty();
 
       expect(test.id, 'test');
       expect(test.name, 'test-name');
@@ -22,7 +22,7 @@ void main() {
     });
 
     test('parses to and from json', () {
-      TagModel tag = TagModel(id: 'test', name: 'test-name', color: 0xFFFFFF);
+      TagModel tag = const TagModel(id: 'test', name: 'test-name', color: 0xFFFFFF);
       String json = tag.toJson();
       TagModel parsed = TagModel.fromJson(json);
 
@@ -30,7 +30,7 @@ void main() {
     });
 
     test('parses to and from map', () {
-      TagModel tag = TagModel(id: 'test', name: 'test-name', color: 0xFFFFFF);
+      TagModel tag = const TagModel(id: 'test', name: 'test-name', color: 0xFFFFFF);
       Map<String, dynamic> map = tag.toMap();
       TagModel parsed = TagModel.fromMap(map);
 

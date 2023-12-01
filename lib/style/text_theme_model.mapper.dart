@@ -75,8 +75,7 @@ class TextThemeModelMapper extends ClassMapperBase<TextThemeModel> {
   final String id = 'TextThemeModel';
 
   static String _$fontFamily(TextThemeModel v) => v.fontFamily;
-  static const Field<TextThemeModel, String> _f$fontFamily =
-      Field('fontFamily', _$fontFamily);
+  static const Field<TextThemeModel, String> _f$fontFamily = Field('fontFamily', _$fontFamily);
 
   @override
   final Map<Symbol, Field<TextThemeModel, dynamic>> fields = const {
@@ -101,69 +100,55 @@ class TextThemeModelMapper extends ClassMapperBase<TextThemeModel> {
 
 mixin TextThemeModelMappable {
   String toJson() {
-    return TextThemeModelMapper.ensureInitialized()
-        .encodeJson<TextThemeModel>(this as TextThemeModel);
+    return TextThemeModelMapper.ensureInitialized().encodeJson<TextThemeModel>(this as TextThemeModel);
   }
 
   Map<String, dynamic> toMap() {
-    return TextThemeModelMapper.ensureInitialized()
-        .encodeMap<TextThemeModel>(this as TextThemeModel);
+    return TextThemeModelMapper.ensureInitialized().encodeMap<TextThemeModel>(this as TextThemeModel);
   }
 
-  TextThemeModelCopyWith<TextThemeModel, TextThemeModel, TextThemeModel>
-      get copyWith => _TextThemeModelCopyWithImpl(
-          this as TextThemeModel, $identity, $identity);
+  TextThemeModelCopyWith<TextThemeModel, TextThemeModel, TextThemeModel> get copyWith =>
+      _TextThemeModelCopyWithImpl(this as TextThemeModel, $identity, $identity);
   @override
   String toString() {
-    return TextThemeModelMapper.ensureInitialized()
-        .stringifyValue(this as TextThemeModel);
+    return TextThemeModelMapper.ensureInitialized().stringifyValue(this as TextThemeModel);
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (runtimeType == other.runtimeType &&
-            TextThemeModelMapper.ensureInitialized()
-                .isValueEqual(this as TextThemeModel, other));
+            TextThemeModelMapper.ensureInitialized().isValueEqual(this as TextThemeModel, other));
   }
 
   @override
   int get hashCode {
-    return TextThemeModelMapper.ensureInitialized()
-        .hashValue(this as TextThemeModel);
+    return TextThemeModelMapper.ensureInitialized().hashValue(this as TextThemeModel);
   }
 }
 
-extension TextThemeModelValueCopy<$R, $Out>
-    on ObjectCopyWith<$R, TextThemeModel, $Out> {
+extension TextThemeModelValueCopy<$R, $Out> on ObjectCopyWith<$R, TextThemeModel, $Out> {
   TextThemeModelCopyWith<$R, TextThemeModel, $Out> get $asTextThemeModel =>
       $base.as((v, t, t2) => _TextThemeModelCopyWithImpl(v, t, t2));
 }
 
-abstract class TextThemeModelCopyWith<$R, $In extends TextThemeModel, $Out>
-    implements ClassCopyWith<$R, $In, $Out> {
+abstract class TextThemeModelCopyWith<$R, $In extends TextThemeModel, $Out> implements ClassCopyWith<$R, $In, $Out> {
   $R call({String? fontFamily});
-  TextThemeModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-      Then<$Out2, $R2> t);
+  TextThemeModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
-class _TextThemeModelCopyWithImpl<$R, $Out>
-    extends ClassCopyWithBase<$R, TextThemeModel, $Out>
+class _TextThemeModelCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, TextThemeModel, $Out>
     implements TextThemeModelCopyWith<$R, TextThemeModel, $Out> {
   _TextThemeModelCopyWithImpl(super.value, super.then, super.then2);
 
   @override
-  late final ClassMapperBase<TextThemeModel> $mapper =
-      TextThemeModelMapper.ensureInitialized();
+  late final ClassMapperBase<TextThemeModel> $mapper = TextThemeModelMapper.ensureInitialized();
   @override
-  $R call({String? fontFamily}) => $apply(
-      FieldCopyWithData({if (fontFamily != null) #fontFamily: fontFamily}));
+  $R call({String? fontFamily}) => $apply(FieldCopyWithData({if (fontFamily != null) #fontFamily: fontFamily}));
   @override
-  TextThemeModel $make(CopyWithData data) =>
-      TextThemeModel(fontFamily: data.get(#fontFamily, or: $value.fontFamily));
+  TextThemeModel $make(CopyWithData data) => TextThemeModel(fontFamily: data.get(#fontFamily, or: $value.fontFamily));
 
   @override
-  TextThemeModelCopyWith<$R2, TextThemeModel, $Out2> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
+  TextThemeModelCopyWith<$R2, TextThemeModel, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
       _TextThemeModelCopyWithImpl($value, $cast, t);
 }

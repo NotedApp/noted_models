@@ -35,10 +35,7 @@ class TagModelMapper extends ClassMapperBase<TagModel> {
   };
 
   static TagModel _instantiate(DecodingData data) {
-    return TagModel(
-        id: data.dec(_f$id),
-        name: data.dec(_f$name),
-        color: data.dec(_f$color));
+    return TagModel(id: data.dec(_f$id), name: data.dec(_f$name), color: data.dec(_f$color));
   }
 
   @override
@@ -55,13 +52,11 @@ class TagModelMapper extends ClassMapperBase<TagModel> {
 
 mixin TagModelMappable {
   String toJson() {
-    return TagModelMapper.ensureInitialized()
-        .encodeJson<TagModel>(this as TagModel);
+    return TagModelMapper.ensureInitialized().encodeJson<TagModel>(this as TagModel);
   }
 
   Map<String, dynamic> toMap() {
-    return TagModelMapper.ensureInitialized()
-        .encodeMap<TagModel>(this as TagModel);
+    return TagModelMapper.ensureInitialized().encodeMap<TagModel>(this as TagModel);
   }
 
   TagModelCopyWith<TagModel, TagModel, TagModel> get copyWith =>
@@ -74,9 +69,7 @@ mixin TagModelMappable {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (runtimeType == other.runtimeType &&
-            TagModelMapper.ensureInitialized()
-                .isValueEqual(this as TagModel, other));
+        (runtimeType == other.runtimeType && TagModelMapper.ensureInitialized().isValueEqual(this as TagModel, other));
   }
 
   @override
@@ -86,30 +79,23 @@ mixin TagModelMappable {
 }
 
 extension TagModelValueCopy<$R, $Out> on ObjectCopyWith<$R, TagModel, $Out> {
-  TagModelCopyWith<$R, TagModel, $Out> get $asTagModel =>
-      $base.as((v, t, t2) => _TagModelCopyWithImpl(v, t, t2));
+  TagModelCopyWith<$R, TagModel, $Out> get $asTagModel => $base.as((v, t, t2) => _TagModelCopyWithImpl(v, t, t2));
 }
 
-abstract class TagModelCopyWith<$R, $In extends TagModel, $Out>
-    implements ClassCopyWith<$R, $In, $Out> {
+abstract class TagModelCopyWith<$R, $In extends TagModel, $Out> implements ClassCopyWith<$R, $In, $Out> {
   $R call({String? id, String? name, int? color});
   TagModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
-class _TagModelCopyWithImpl<$R, $Out>
-    extends ClassCopyWithBase<$R, TagModel, $Out>
+class _TagModelCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, TagModel, $Out>
     implements TagModelCopyWith<$R, TagModel, $Out> {
   _TagModelCopyWithImpl(super.value, super.then, super.then2);
 
   @override
-  late final ClassMapperBase<TagModel> $mapper =
-      TagModelMapper.ensureInitialized();
+  late final ClassMapperBase<TagModel> $mapper = TagModelMapper.ensureInitialized();
   @override
-  $R call({String? id, String? name, int? color}) => $apply(FieldCopyWithData({
-        if (id != null) #id: id,
-        if (name != null) #name: name,
-        if (color != null) #color: color
-      }));
+  $R call({String? id, String? name, int? color}) => $apply(
+      FieldCopyWithData({if (id != null) #id: id, if (name != null) #name: name, if (color != null) #color: color}));
   @override
   TagModel $make(CopyWithData data) => TagModel(
       id: data.get(#id, or: $value.id),
@@ -117,7 +103,6 @@ class _TagModelCopyWithImpl<$R, $Out>
       color: data.get(#color, or: $value.color));
 
   @override
-  TagModelCopyWith<$R2, TagModel, $Out2> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
+  TagModelCopyWith<$R2, TagModel, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
       _TagModelCopyWithImpl($value, $cast, t);
 }

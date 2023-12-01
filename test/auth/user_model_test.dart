@@ -4,8 +4,8 @@ import 'package:test/test.dart';
 void main() {
   group('UserModel', () {
     test('creates an compares empty user', () {
-      UserModel empty = UserModel.empty();
-      UserModel user = UserModel(id: 'test-id', name: 'test-name', email: 'test-email');
+      UserModel empty = const UserModel.empty();
+      UserModel user = const UserModel(id: 'test-id', name: 'test-name', email: 'test-email');
 
       expect(empty.id, '');
       expect(empty.name, null);
@@ -19,7 +19,7 @@ void main() {
     });
 
     test('parses to and from json', () {
-      UserModel user = UserModel(id: 'test-id', name: 'test-name', email: 'test-email');
+      UserModel user = const UserModel(id: 'test-id', name: 'test-name', email: 'test-email');
       String json = user.toJson();
       UserModel parsed = UserModel.fromJson(json);
 
@@ -27,7 +27,7 @@ void main() {
     });
 
     test('parses to and from map', () {
-      UserModel user = UserModel(id: 'test-id', name: 'test-name', email: 'test-email');
+      UserModel user = const UserModel(id: 'test-id', name: 'test-name', email: 'test-email');
       Map<String, dynamic> map = user.toMap();
       UserModel parsed = UserModel.fromMap(map);
 

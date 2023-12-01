@@ -4,13 +4,13 @@ import 'package:test/test.dart';
 void main() {
   group('PluginSettingsModel', () {
     test('creates a default set of settings', () {
-      PluginSettingsModel settings = PluginSettingsModel();
+      PluginSettingsModel settings = const PluginSettingsModel();
 
-      expect(settings.cookbook, CookbookSettingsModel());
+      expect(settings.cookbook, const CookbookSettingsModel());
     });
 
     test('parses to and from json', () {
-      PluginSettingsModel settings = PluginSettingsModel();
+      PluginSettingsModel settings = const PluginSettingsModel();
       String json = settings.toJson();
       PluginSettingsModel parsed = PluginSettingsModel.fromJson(json);
 
@@ -18,7 +18,7 @@ void main() {
     });
 
     test('parses to and from map', () {
-      PluginSettingsModel settings = PluginSettingsModel();
+      PluginSettingsModel settings = const PluginSettingsModel();
       Map<String, dynamic> map = settings.toMap();
       PluginSettingsModel parsed = PluginSettingsModel.fromMap(map);
 

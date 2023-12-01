@@ -10,8 +10,8 @@ class TagModel with TagModelMappable {
   final String name;
   final int color;
 
-  static final fromMap = TagModelMapper.fromMap;
-  static final fromJson = TagModelMapper.fromJson;
+  static const fromMap = TagModelMapper.fromMap;
+  static const fromJson = TagModelMapper.fromJson;
 
   const TagModel({
     required this.id,
@@ -24,6 +24,6 @@ class TagModel with TagModelMappable {
         name = 'empty',
         color = 0x000000;
 
-  bool get isEmpty => this == TagModel.empty();
-  bool get isNotEmpty => this != TagModel.empty();
+  bool get isEmpty => this == const TagModel.empty();
+  bool get isNotEmpty => this != const TagModel.empty();
 }

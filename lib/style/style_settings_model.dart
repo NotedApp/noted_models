@@ -39,8 +39,8 @@ class StyleSettingsModel with StyleSettingsModelMappable {
   final List<int> textColors;
   final List<int> highlightColors;
 
-  static final fromMap = StyleSettingsModelMapper.fromMap;
-  static final fromJson = StyleSettingsModelMapper.fromJson;
+  static const fromMap = StyleSettingsModelMapper.fromMap;
+  static const fromJson = StyleSettingsModelMapper.fromJson;
 
   const StyleSettingsModel({
     this.colorSchemeName = ColorSchemeModelName.blue,

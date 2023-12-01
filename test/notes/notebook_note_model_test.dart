@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 void main() {
   group('NotebookNoteModel', () {
     test('creates an empty note', () {
-      NotebookNoteModel note = NotebookNoteModel.empty();
+      NotebookNoteModel note = const NotebookNoteModel.empty();
 
       expect(note.id, '');
       expect(note.title, '');
@@ -15,7 +15,7 @@ void main() {
     });
 
     test('parses to and from json', () {
-      NotebookNoteModel note = NotebookNoteModel(id: 'test-id', title: 'test-title', document: []);
+      NotebookNoteModel note = const NotebookNoteModel(id: 'test-id', title: 'test-title', document: []);
       String json = note.toJson();
       NotebookNoteModel parsed = NotebookNoteModel.fromJson(json);
 
@@ -23,7 +23,7 @@ void main() {
     });
 
     test('parses to and from map', () {
-      NotebookNoteModel note = NotebookNoteModel(id: 'test-id', title: 'test-title', document: []);
+      NotebookNoteModel note = const NotebookNoteModel(id: 'test-id', title: 'test-title', document: []);
       Map<String, dynamic> map = note.toMap();
       NotebookNoteModel parsed = NotebookNoteModel.fromMap(map);
 

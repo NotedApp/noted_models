@@ -8,20 +8,20 @@ class UserModel with UserModelMappable {
   final String? name;
   final String? email;
 
-  static final fromMap = UserModelMapper.fromMap;
-  static final fromJson = UserModelMapper.fromJson;
+  static const fromMap = UserModelMapper.fromMap;
+  static const fromJson = UserModelMapper.fromJson;
 
   const UserModel({
     required this.id,
-    this.name = null,
-    this.email = null,
+    this.name,
+    this.email,
   });
 
   const UserModel.empty()
-      : this.id = '',
+      : id = '',
         name = null,
         email = null;
 
-  bool get isEmpty => this == UserModel.empty();
-  bool get isNotEmpty => this != UserModel.empty();
+  bool get isEmpty => this == const UserModel.empty();
+  bool get isNotEmpty => this != const UserModel.empty();
 }
