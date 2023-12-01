@@ -22,11 +22,9 @@ class TagSettingsModelMapper extends ClassMapperBase<TagSettingsModel> {
   final String id = 'TagSettingsModel';
 
   static bool _$showTags(TagSettingsModel v) => v.showTags;
-  static const Field<TagSettingsModel, bool> _f$showTags =
-      Field('showTags', _$showTags, opt: true, def: true);
+  static const Field<TagSettingsModel, bool> _f$showTags = Field('showTags', _$showTags, opt: true, def: true);
   static Set<TagModel> _$tags(TagSettingsModel v) => v.tags;
-  static const Field<TagSettingsModel, Set<TagModel>> _f$tags =
-      Field('tags', _$tags, opt: true, def: const {});
+  static const Field<TagSettingsModel, Set<TagModel>> _f$tags = Field('tags', _$tags, opt: true, def: const {});
 
   @override
   final Map<Symbol, Field<TagSettingsModel, dynamic>> fields = const {
@@ -35,8 +33,7 @@ class TagSettingsModelMapper extends ClassMapperBase<TagSettingsModel> {
   };
 
   static TagSettingsModel _instantiate(DecodingData data) {
-    return TagSettingsModel(
-        showTags: data.dec(_f$showTags), tags: data.dec(_f$tags));
+    return TagSettingsModel(showTags: data.dec(_f$showTags), tags: data.dec(_f$tags));
   }
 
   @override
@@ -53,73 +50,58 @@ class TagSettingsModelMapper extends ClassMapperBase<TagSettingsModel> {
 
 mixin TagSettingsModelMappable {
   String toJson() {
-    return TagSettingsModelMapper.ensureInitialized()
-        .encodeJson<TagSettingsModel>(this as TagSettingsModel);
+    return TagSettingsModelMapper.ensureInitialized().encodeJson<TagSettingsModel>(this as TagSettingsModel);
   }
 
   Map<String, dynamic> toMap() {
-    return TagSettingsModelMapper.ensureInitialized()
-        .encodeMap<TagSettingsModel>(this as TagSettingsModel);
+    return TagSettingsModelMapper.ensureInitialized().encodeMap<TagSettingsModel>(this as TagSettingsModel);
   }
 
-  TagSettingsModelCopyWith<TagSettingsModel, TagSettingsModel, TagSettingsModel>
-      get copyWith => _TagSettingsModelCopyWithImpl(
-          this as TagSettingsModel, $identity, $identity);
+  TagSettingsModelCopyWith<TagSettingsModel, TagSettingsModel, TagSettingsModel> get copyWith =>
+      _TagSettingsModelCopyWithImpl(this as TagSettingsModel, $identity, $identity);
   @override
   String toString() {
-    return TagSettingsModelMapper.ensureInitialized()
-        .stringifyValue(this as TagSettingsModel);
+    return TagSettingsModelMapper.ensureInitialized().stringifyValue(this as TagSettingsModel);
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (runtimeType == other.runtimeType &&
-            TagSettingsModelMapper.ensureInitialized()
-                .isValueEqual(this as TagSettingsModel, other));
+            TagSettingsModelMapper.ensureInitialized().isValueEqual(this as TagSettingsModel, other));
   }
 
   @override
   int get hashCode {
-    return TagSettingsModelMapper.ensureInitialized()
-        .hashValue(this as TagSettingsModel);
+    return TagSettingsModelMapper.ensureInitialized().hashValue(this as TagSettingsModel);
   }
 }
 
-extension TagSettingsModelValueCopy<$R, $Out>
-    on ObjectCopyWith<$R, TagSettingsModel, $Out> {
-  TagSettingsModelCopyWith<$R, TagSettingsModel, $Out>
-      get $asTagSettingsModel =>
-          $base.as((v, t, t2) => _TagSettingsModelCopyWithImpl(v, t, t2));
+extension TagSettingsModelValueCopy<$R, $Out> on ObjectCopyWith<$R, TagSettingsModel, $Out> {
+  TagSettingsModelCopyWith<$R, TagSettingsModel, $Out> get $asTagSettingsModel =>
+      $base.as((v, t, t2) => _TagSettingsModelCopyWithImpl(v, t, t2));
 }
 
 abstract class TagSettingsModelCopyWith<$R, $In extends TagSettingsModel, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   $R call({bool? showTags, Set<TagModel>? tags});
-  TagSettingsModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-      Then<$Out2, $R2> t);
+  TagSettingsModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
-class _TagSettingsModelCopyWithImpl<$R, $Out>
-    extends ClassCopyWithBase<$R, TagSettingsModel, $Out>
+class _TagSettingsModelCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, TagSettingsModel, $Out>
     implements TagSettingsModelCopyWith<$R, TagSettingsModel, $Out> {
   _TagSettingsModelCopyWithImpl(super.value, super.then, super.then2);
 
   @override
-  late final ClassMapperBase<TagSettingsModel> $mapper =
-      TagSettingsModelMapper.ensureInitialized();
+  late final ClassMapperBase<TagSettingsModel> $mapper = TagSettingsModelMapper.ensureInitialized();
   @override
-  $R call({bool? showTags, Set<TagModel>? tags}) => $apply(FieldCopyWithData({
-        if (showTags != null) #showTags: showTags,
-        if (tags != null) #tags: tags
-      }));
+  $R call({bool? showTags, Set<TagModel>? tags}) =>
+      $apply(FieldCopyWithData({if (showTags != null) #showTags: showTags, if (tags != null) #tags: tags}));
   @override
-  TagSettingsModel $make(CopyWithData data) => TagSettingsModel(
-      showTags: data.get(#showTags, or: $value.showTags),
-      tags: data.get(#tags, or: $value.tags));
+  TagSettingsModel $make(CopyWithData data) =>
+      TagSettingsModel(showTags: data.get(#showTags, or: $value.showTags), tags: data.get(#tags, or: $value.tags));
 
   @override
-  TagSettingsModelCopyWith<$R2, TagSettingsModel, $Out2> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
+  TagSettingsModelCopyWith<$R2, TagSettingsModel, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
       _TagSettingsModelCopyWithImpl($value, $cast, t);
 }
