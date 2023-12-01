@@ -19,5 +19,5 @@ class NotebookNoteModel extends NoteModel with NotebookNoteModelMappable {
 
   const NotebookNoteModel.empty()
       : document = DocumentUtil.emptyDocument,
-        super(id: '', title: '', tagIds: const {});
+        super(id: '', title: '', tagIds: const {}); // coverage:ignore-line
 }

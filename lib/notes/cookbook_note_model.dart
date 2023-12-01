@@ -37,7 +37,7 @@ class CookbookNoteModel extends NoteModel with CookbookNoteModelMappable {
         types = const {},
         cuisines = const {},
         document = DocumentUtil.emptyDocument,
-        super(id: '', title: '', tagIds: const {});
+        super(id: '', title: '', tagIds: const {}); // coverage:ignore-line
 }
 
 @MappableEnum()
