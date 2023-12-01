@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 void main() {
   group('StyleSettingsModel', () {
     test('creates a default set of style settings', () {
-      StyleSettingsModel style = StyleSettingsModel();
+      StyleSettingsModel style = const StyleSettingsModel();
 
       expect(style.colorSchemeName, ColorSchemeModelName.blue);
       expect(style.customColorScheme, ColorSchemeModel.blue);
@@ -12,7 +12,7 @@ void main() {
     });
 
     test('parses to and from json', () {
-      StyleSettingsModel style = StyleSettingsModel(
+      StyleSettingsModel style = const StyleSettingsModel(
         colorSchemeName: ColorSchemeModelName.green,
         customColorScheme: ColorSchemeModel.dark,
         textThemeName: TextThemeModelName.roboto,
@@ -25,7 +25,7 @@ void main() {
     });
 
     test('parses to and from map', () {
-      StyleSettingsModel style = StyleSettingsModel(
+      StyleSettingsModel style = const StyleSettingsModel(
         colorSchemeName: ColorSchemeModelName.green,
         customColorScheme: ColorSchemeModel.dark,
         textThemeName: TextThemeModelName.roboto,
@@ -38,36 +38,36 @@ void main() {
     });
 
     test('fetches current color scheme', () {
-      StyleSettingsModel blue = StyleSettingsModel();
+      StyleSettingsModel blue = const StyleSettingsModel();
       expect(blue.colorScheme, ColorSchemeModel.blue);
 
-      StyleSettingsModel green = StyleSettingsModel(colorSchemeName: ColorSchemeModelName.green);
+      StyleSettingsModel green = const StyleSettingsModel(colorSchemeName: ColorSchemeModelName.green);
       expect(green.colorScheme, ColorSchemeModel.green);
 
-      StyleSettingsModel dark = StyleSettingsModel(colorSchemeName: ColorSchemeModelName.dark);
+      StyleSettingsModel dark = const StyleSettingsModel(colorSchemeName: ColorSchemeModelName.dark);
       expect(dark.colorScheme, ColorSchemeModel.dark);
 
-      StyleSettingsModel oled = StyleSettingsModel(colorSchemeName: ColorSchemeModelName.oled);
+      StyleSettingsModel oled = const StyleSettingsModel(colorSchemeName: ColorSchemeModelName.oled);
       expect(oled.colorScheme, ColorSchemeModel.oled);
 
-      StyleSettingsModel light = StyleSettingsModel(colorSchemeName: ColorSchemeModelName.light);
+      StyleSettingsModel light = const StyleSettingsModel(colorSchemeName: ColorSchemeModelName.light);
       expect(light.colorScheme, ColorSchemeModel.light);
 
-      StyleSettingsModel custom = StyleSettingsModel(colorSchemeName: ColorSchemeModelName.custom);
+      StyleSettingsModel custom = const StyleSettingsModel(colorSchemeName: ColorSchemeModelName.custom);
       expect(custom.colorScheme, ColorSchemeModel.blue);
     });
 
     test('fetches current text theme', () {
-      StyleSettingsModel poppins = StyleSettingsModel();
+      StyleSettingsModel poppins = const StyleSettingsModel();
       expect(poppins.textTheme, TextThemeModel.poppins);
 
-      StyleSettingsModel roboto = StyleSettingsModel(textThemeName: TextThemeModelName.roboto);
+      StyleSettingsModel roboto = const StyleSettingsModel(textThemeName: TextThemeModelName.roboto);
       expect(roboto.textTheme, TextThemeModel.roboto);
 
-      StyleSettingsModel lora = StyleSettingsModel(textThemeName: TextThemeModelName.lora);
+      StyleSettingsModel lora = const StyleSettingsModel(textThemeName: TextThemeModelName.lora);
       expect(lora.textTheme, TextThemeModel.lora);
 
-      StyleSettingsModel vollkorn = StyleSettingsModel(textThemeName: TextThemeModelName.vollkorn);
+      StyleSettingsModel vollkorn = const StyleSettingsModel(textThemeName: TextThemeModelName.vollkorn);
       expect(vollkorn.textTheme, TextThemeModel.vollkorn);
     });
   });

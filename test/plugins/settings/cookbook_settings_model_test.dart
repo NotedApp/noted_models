@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 void main() {
   group('CookbookSettingsModel', () {
     test('creates a default set of settings', () {
-      CookbookSettingsModel settings = CookbookSettingsModel();
+      CookbookSettingsModel settings = const CookbookSettingsModel();
 
       expect(settings.showUrl, true);
       expect(settings.showPrepTime, true);
@@ -17,7 +17,7 @@ void main() {
     });
 
     test('parses to and from json', () {
-      CookbookSettingsModel settings = CookbookSettingsModel();
+      CookbookSettingsModel settings = const CookbookSettingsModel();
       String json = settings.toJson();
       CookbookSettingsModel parsed = CookbookSettingsModel.fromJson(json);
 
@@ -25,7 +25,7 @@ void main() {
     });
 
     test('parses to and from map', () {
-      CookbookSettingsModel settings = CookbookSettingsModel();
+      CookbookSettingsModel settings = const CookbookSettingsModel();
       Map<String, dynamic> map = settings.toMap();
       CookbookSettingsModel parsed = CookbookSettingsModel.fromMap(map);
 

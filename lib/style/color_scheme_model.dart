@@ -34,8 +34,8 @@ class ColorSchemeModel with ColorSchemeModelMappable {
   final int background;
   final int onBackground;
 
-  static final fromMap = ColorSchemeModelMapper.fromMap;
-  static final fromJson = ColorSchemeModelMapper.fromJson;
+  static const fromMap = ColorSchemeModelMapper.fromMap;
+  static const fromJson = ColorSchemeModelMapper.fromJson;
 
   const ColorSchemeModel({
     required this.brightness,

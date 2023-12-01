@@ -13,8 +13,8 @@ sealed class NoteModel with NoteModelMappable {
 
   NotedPlugin get plugin;
 
-  static final fromMap = NoteModelMapper.fromMap;
-  static final fromJson = NoteModelMapper.fromJson;
+  static const fromMap = NoteModelMapper.fromMap;
+  static const fromJson = NoteModelMapper.fromJson;
 
   const NoteModel({
     required this.id,

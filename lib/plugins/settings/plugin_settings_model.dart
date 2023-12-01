@@ -7,8 +7,8 @@ part 'plugin_settings_model.mapper.dart';
 class PluginSettingsModel with PluginSettingsModelMappable {
   final CookbookSettingsModel cookbook;
 
-  static final fromMap = PluginSettingsModelMapper.fromMap;
-  static final fromJson = PluginSettingsModelMapper.fromJson;
+  static const fromMap = PluginSettingsModelMapper.fromMap;
+  static const fromJson = PluginSettingsModelMapper.fromJson;
 
   const PluginSettingsModel({
     this.cookbook = const CookbookSettingsModel(),

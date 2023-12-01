@@ -7,8 +7,8 @@ class NotebookNoteModel extends NoteModel with NotebookNoteModelMappable {
   @override
   NotedPlugin get plugin => NotedPlugin.notebook;
 
-  static final fromMap = NotebookNoteModelMapper.fromMap;
-  static final fromJson = NotebookNoteModelMapper.fromJson;
+  static const fromMap = NotebookNoteModelMapper.fromMap;
+  static const fromJson = NotebookNoteModelMapper.fromJson;
 
   const NotebookNoteModel({
     required super.id,

@@ -8,8 +8,8 @@ class TagSettingsModel with TagSettingsModelMappable {
   final bool showTags;
   final Set<TagModel> tags;
 
-  static final fromMap = TagSettingsModelMapper.fromMap;
-  static final fromJson = TagSettingsModelMapper.fromJson;
+  static const fromMap = TagSettingsModelMapper.fromMap;
+  static const fromJson = TagSettingsModelMapper.fromJson;
 
   const TagSettingsModel({this.showTags = true, this.tags = const {}});
 

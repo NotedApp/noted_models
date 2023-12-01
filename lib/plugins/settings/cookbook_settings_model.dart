@@ -14,8 +14,8 @@ class CookbookSettingsModel with CookbookSettingsModelMappable {
   final Set<TagModel> typeTags;
   final Set<TagModel> cuisineTags;
 
-  static final fromMap = CookbookSettingsModelMapper.fromMap;
-  static final fromJson = CookbookSettingsModelMapper.fromJson;
+  static const fromMap = CookbookSettingsModelMapper.fromMap;
+  static const fromJson = CookbookSettingsModelMapper.fromJson;
 
   const CookbookSettingsModel({
     this.showUrl = true,

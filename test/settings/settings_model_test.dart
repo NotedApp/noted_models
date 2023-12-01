@@ -4,15 +4,15 @@ import 'package:test/test.dart';
 void main() {
   group('SettingsModel', () {
     test('creates a default set of settings', () {
-      SettingsModel settings = SettingsModel();
+      SettingsModel settings = const SettingsModel();
 
-      expect(settings.style, StyleSettingsModel());
-      expect(settings.tags, TagSettingsModel());
-      expect(settings.plugins, PluginSettingsModel());
+      expect(settings.style, const StyleSettingsModel());
+      expect(settings.tags, const TagSettingsModel());
+      expect(settings.plugins, const PluginSettingsModel());
     });
 
     test('parses to and from json', () {
-      SettingsModel settings = SettingsModel();
+      SettingsModel settings = const SettingsModel();
       String json = settings.toJson();
       SettingsModel parsed = SettingsModel.fromJson(json);
 
@@ -20,7 +20,7 @@ void main() {
     });
 
     test('parses to and from map', () {
-      SettingsModel settings = SettingsModel();
+      SettingsModel settings = const SettingsModel();
       Map<String, dynamic> map = settings.toMap();
       SettingsModel parsed = SettingsModel.fromMap(map);
 

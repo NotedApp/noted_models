@@ -13,8 +13,8 @@ class CookbookNoteModel extends NoteModel with CookbookNoteModelMappable {
   @override
   NotedPlugin get plugin => NotedPlugin.cookbook;
 
-  static final fromMap = CookbookNoteModelMapper.fromMap;
-  static final fromJson = CookbookNoteModelMapper.fromJson;
+  static const fromMap = CookbookNoteModelMapper.fromMap;
+  static const fromJson = CookbookNoteModelMapper.fromJson;
 
   const CookbookNoteModel({
     required super.id,

@@ -9,8 +9,8 @@ class SettingsModel with SettingsModelMappable {
   final TagSettingsModel tags;
   final PluginSettingsModel plugins;
 
-  static final fromMap = SettingsModelMapper.fromMap;
-  static final fromJson = SettingsModelMapper.fromJson;
+  static const fromMap = SettingsModelMapper.fromMap;
+  static const fromJson = SettingsModelMapper.fromJson;
 
   const SettingsModel({
     this.style = const StyleSettingsModel(),

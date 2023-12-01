@@ -14,8 +14,8 @@ enum TextThemeModelName {
 class TextThemeModel with TextThemeModelMappable {
   final String fontFamily;
 
-  static final fromMap = TextThemeModelMapper.fromMap;
-  static final fromJson = TextThemeModelMapper.fromJson;
+  static const fromMap = TextThemeModelMapper.fromMap;
+  static const fromJson = TextThemeModelMapper.fromJson;
 
   const TextThemeModel({
     required this.fontFamily,
