@@ -10,15 +10,17 @@ sealed class NoteModel with NoteModelMappable {
   final String id;
   final String title;
   final Set<TagId> tagIds;
+  final DateTime lastUpdatedUtc;
 
   NotedPlugin get plugin;
 
   static const fromMap = NoteModelMapper.fromMap;
   static const fromJson = NoteModelMapper.fromJson;
 
-  const NoteModel({
+  NoteModel({
     required this.id,
     required this.title,
     required this.tagIds,
-  });
+    DateTime? lastUpdatedUtc,
+  }) : lastUpdatedUtc = lastUpdatedUtc ?? DateTime.now().toUtc();
 }
