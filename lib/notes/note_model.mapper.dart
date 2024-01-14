@@ -27,17 +27,23 @@ class NoteModelMapper extends ClassMapperBase<NoteModel> {
   static String _$title(NoteModel v) => v.title;
   static const Field<NoteModel, String> _f$title = Field('title', _$title);
   static Set<String> _$tagIds(NoteModel v) => v.tagIds;
-  static const Field<NoteModel, Set<String>> _f$tagIds = Field('tagIds', _$tagIds);
+  static const Field<NoteModel, Set<String>> _f$tagIds =
+      Field('tagIds', _$tagIds);
+  static DateTime _$lastUpdatedUtc(NoteModel v) => v.lastUpdatedUtc;
+  static const Field<NoteModel, DateTime> _f$lastUpdatedUtc =
+      Field('lastUpdatedUtc', _$lastUpdatedUtc, opt: true);
 
   @override
-  final Map<Symbol, Field<NoteModel, dynamic>> fields = const {
+  final MappableFields<NoteModel> fields = const {
     #id: _f$id,
     #title: _f$title,
     #tagIds: _f$tagIds,
+    #lastUpdatedUtc: _f$lastUpdatedUtc,
   };
 
   static NoteModel _instantiate(DecodingData data) {
-    throw MapperException.missingSubclass('NoteModel', 'plugin', '${data.value['plugin']}');
+    throw MapperException.missingSubclass(
+        'NoteModel', 'plugin', '${data.value['plugin']}');
   }
 
   @override
@@ -58,8 +64,13 @@ mixin NoteModelMappable {
   NoteModelCopyWith<NoteModel, NoteModel, NoteModel> get copyWith;
 }
 
-abstract class NoteModelCopyWith<$R, $In extends NoteModel, $Out> implements ClassCopyWith<$R, $In, $Out> {
-  $R call({String? id, String? title, Set<String>? tagIds});
+abstract class NoteModelCopyWith<$R, $In extends NoteModel, $Out>
+    implements ClassCopyWith<$R, $In, $Out> {
+  $R call(
+      {String? id,
+      String? title,
+      Set<String>? tagIds,
+      DateTime? lastUpdatedUtc});
   NoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -81,18 +92,25 @@ class NotebookNoteModelMapper extends SubClassMapperBase<NotebookNoteModel> {
   static String _$id(NotebookNoteModel v) => v.id;
   static const Field<NotebookNoteModel, String> _f$id = Field('id', _$id);
   static String _$title(NotebookNoteModel v) => v.title;
-  static const Field<NotebookNoteModel, String> _f$title = Field('title', _$title);
+  static const Field<NotebookNoteModel, String> _f$title =
+      Field('title', _$title);
   static Set<String> _$tagIds(NotebookNoteModel v) => v.tagIds;
-  static const Field<NotebookNoteModel, Set<String>> _f$tagIds = Field('tagIds', _$tagIds, opt: true, def: const {});
+  static const Field<NotebookNoteModel, Set<String>> _f$tagIds =
+      Field('tagIds', _$tagIds, opt: true, def: const {});
   static List<dynamic> _$document(NotebookNoteModel v) => v.document;
-  static const Field<NotebookNoteModel, List<dynamic>> _f$document = Field('document', _$document);
+  static const Field<NotebookNoteModel, List<dynamic>> _f$document =
+      Field('document', _$document);
+  static DateTime _$lastUpdatedUtc(NotebookNoteModel v) => v.lastUpdatedUtc;
+  static const Field<NotebookNoteModel, DateTime> _f$lastUpdatedUtc =
+      Field('lastUpdatedUtc', _$lastUpdatedUtc, opt: true);
 
   @override
-  final Map<Symbol, Field<NotebookNoteModel, dynamic>> fields = const {
+  final MappableFields<NotebookNoteModel> fields = const {
     #id: _f$id,
     #title: _f$title,
     #tagIds: _f$tagIds,
     #document: _f$document,
+    #lastUpdatedUtc: _f$lastUpdatedUtc,
   };
 
   @override
@@ -104,7 +122,11 @@ class NotebookNoteModelMapper extends SubClassMapperBase<NotebookNoteModel> {
 
   static NotebookNoteModel _instantiate(DecodingData data) {
     return NotebookNoteModel(
-        id: data.dec(_f$id), title: data.dec(_f$title), tagIds: data.dec(_f$tagIds), document: data.dec(_f$document));
+        id: data.dec(_f$id),
+        title: data.dec(_f$title),
+        tagIds: data.dec(_f$tagIds),
+        document: data.dec(_f$document),
+        lastUpdatedUtc: data.dec(_f$lastUpdatedUtc));
   }
 
   @override
@@ -121,71 +143,98 @@ class NotebookNoteModelMapper extends SubClassMapperBase<NotebookNoteModel> {
 
 mixin NotebookNoteModelMappable {
   String toJson() {
-    return NotebookNoteModelMapper.ensureInitialized().encodeJson<NotebookNoteModel>(this as NotebookNoteModel);
+    return NotebookNoteModelMapper.ensureInitialized()
+        .encodeJson<NotebookNoteModel>(this as NotebookNoteModel);
   }
 
   Map<String, dynamic> toMap() {
-    return NotebookNoteModelMapper.ensureInitialized().encodeMap<NotebookNoteModel>(this as NotebookNoteModel);
+    return NotebookNoteModelMapper.ensureInitialized()
+        .encodeMap<NotebookNoteModel>(this as NotebookNoteModel);
   }
 
-  NotebookNoteModelCopyWith<NotebookNoteModel, NotebookNoteModel, NotebookNoteModel> get copyWith =>
-      _NotebookNoteModelCopyWithImpl(this as NotebookNoteModel, $identity, $identity);
+  NotebookNoteModelCopyWith<NotebookNoteModel, NotebookNoteModel,
+          NotebookNoteModel>
+      get copyWith => _NotebookNoteModelCopyWithImpl(
+          this as NotebookNoteModel, $identity, $identity);
   @override
   String toString() {
-    return NotebookNoteModelMapper.ensureInitialized().stringifyValue(this as NotebookNoteModel);
+    return NotebookNoteModelMapper.ensureInitialized()
+        .stringifyValue(this as NotebookNoteModel);
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (runtimeType == other.runtimeType &&
-            NotebookNoteModelMapper.ensureInitialized().isValueEqual(this as NotebookNoteModel, other));
+            NotebookNoteModelMapper.ensureInitialized()
+                .isValueEqual(this as NotebookNoteModel, other));
   }
 
   @override
   int get hashCode {
-    return NotebookNoteModelMapper.ensureInitialized().hashValue(this as NotebookNoteModel);
+    return NotebookNoteModelMapper.ensureInitialized()
+        .hashValue(this as NotebookNoteModel);
   }
 }
 
-extension NotebookNoteModelValueCopy<$R, $Out> on ObjectCopyWith<$R, NotebookNoteModel, $Out> {
-  NotebookNoteModelCopyWith<$R, NotebookNoteModel, $Out> get $asNotebookNoteModel =>
-      $base.as((v, t, t2) => _NotebookNoteModelCopyWithImpl(v, t, t2));
+extension NotebookNoteModelValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, NotebookNoteModel, $Out> {
+  NotebookNoteModelCopyWith<$R, NotebookNoteModel, $Out>
+      get $asNotebookNoteModel =>
+          $base.as((v, t, t2) => _NotebookNoteModelCopyWithImpl(v, t, t2));
 }
 
-abstract class NotebookNoteModelCopyWith<$R, $In extends NotebookNoteModel, $Out>
-    implements NoteModelCopyWith<$R, $In, $Out> {
+abstract class NotebookNoteModelCopyWith<$R, $In extends NotebookNoteModel,
+    $Out> implements NoteModelCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, dynamic, ObjectCopyWith<$R, dynamic, dynamic>> get document;
   @override
-  $R call({String? id, String? title, Set<String>? tagIds, List<dynamic>? document});
-  NotebookNoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
+  $R call(
+      {String? id,
+      String? title,
+      Set<String>? tagIds,
+      List<dynamic>? document,
+      DateTime? lastUpdatedUtc});
+  NotebookNoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
+      Then<$Out2, $R2> t);
 }
 
-class _NotebookNoteModelCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, NotebookNoteModel, $Out>
+class _NotebookNoteModelCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, NotebookNoteModel, $Out>
     implements NotebookNoteModelCopyWith<$R, NotebookNoteModel, $Out> {
   _NotebookNoteModelCopyWithImpl(super.value, super.then, super.then2);
 
   @override
-  late final ClassMapperBase<NotebookNoteModel> $mapper = NotebookNoteModelMapper.ensureInitialized();
+  late final ClassMapperBase<NotebookNoteModel> $mapper =
+      NotebookNoteModelMapper.ensureInitialized();
   @override
-  ListCopyWith<$R, dynamic, ObjectCopyWith<$R, dynamic, dynamic>> get document =>
-      ListCopyWith($value.document, (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(document: v));
+  ListCopyWith<$R, dynamic, ObjectCopyWith<$R, dynamic, dynamic>>
+      get document => ListCopyWith($value.document,
+          (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(document: v));
   @override
-  $R call({String? id, String? title, Set<String>? tagIds, List<dynamic>? document}) => $apply(FieldCopyWithData({
+  $R call(
+          {String? id,
+          String? title,
+          Set<String>? tagIds,
+          List<dynamic>? document,
+          Object? lastUpdatedUtc = $none}) =>
+      $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (title != null) #title: title,
         if (tagIds != null) #tagIds: tagIds,
-        if (document != null) #document: document
+        if (document != null) #document: document,
+        if (lastUpdatedUtc != $none) #lastUpdatedUtc: lastUpdatedUtc
       }));
   @override
   NotebookNoteModel $make(CopyWithData data) => NotebookNoteModel(
       id: data.get(#id, or: $value.id),
       title: data.get(#title, or: $value.title),
       tagIds: data.get(#tagIds, or: $value.tagIds),
-      document: data.get(#document, or: $value.document));
+      document: data.get(#document, or: $value.document),
+      lastUpdatedUtc: data.get(#lastUpdatedUtc, or: $value.lastUpdatedUtc));
 
   @override
-  NotebookNoteModelCopyWith<$R2, NotebookNoteModel, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+  NotebookNoteModelCopyWith<$R2, NotebookNoteModel, $Out2> $chain<$R2, $Out2>(
+          Then<$Out2, $R2> t) =>
       _NotebookNoteModelCopyWithImpl($value, $cast, t);
 }
 
@@ -265,27 +314,37 @@ class CookbookNoteModelMapper extends SubClassMapperBase<CookbookNoteModel> {
   static String _$id(CookbookNoteModel v) => v.id;
   static const Field<CookbookNoteModel, String> _f$id = Field('id', _$id);
   static String _$title(CookbookNoteModel v) => v.title;
-  static const Field<CookbookNoteModel, String> _f$title = Field('title', _$title);
+  static const Field<CookbookNoteModel, String> _f$title =
+      Field('title', _$title);
   static Set<String> _$tagIds(CookbookNoteModel v) => v.tagIds;
-  static const Field<CookbookNoteModel, Set<String>> _f$tagIds = Field('tagIds', _$tagIds, opt: true, def: const {});
+  static const Field<CookbookNoteModel, Set<String>> _f$tagIds =
+      Field('tagIds', _$tagIds, opt: true, def: const {});
   static String _$url(CookbookNoteModel v) => v.url;
   static const Field<CookbookNoteModel, String> _f$url = Field('url', _$url);
   static String _$prepTime(CookbookNoteModel v) => v.prepTime;
-  static const Field<CookbookNoteModel, String> _f$prepTime = Field('prepTime', _$prepTime);
+  static const Field<CookbookNoteModel, String> _f$prepTime =
+      Field('prepTime', _$prepTime);
   static String _$cookTime(CookbookNoteModel v) => v.cookTime;
-  static const Field<CookbookNoteModel, String> _f$cookTime = Field('cookTime', _$cookTime);
+  static const Field<CookbookNoteModel, String> _f$cookTime =
+      Field('cookTime', _$cookTime);
   static int _$difficulty(CookbookNoteModel v) => v.difficulty;
-  static const Field<CookbookNoteModel, int> _f$difficulty = Field('difficulty', _$difficulty);
+  static const Field<CookbookNoteModel, int> _f$difficulty =
+      Field('difficulty', _$difficulty);
   static Set<String> _$types(CookbookNoteModel v) => v.types;
-  static const Field<CookbookNoteModel, Set<String>> _f$types = Field('types', _$types, opt: true, def: const {});
+  static const Field<CookbookNoteModel, Set<String>> _f$types =
+      Field('types', _$types, opt: true, def: const {});
   static Set<String> _$cuisines(CookbookNoteModel v) => v.cuisines;
   static const Field<CookbookNoteModel, Set<String>> _f$cuisines =
       Field('cuisines', _$cuisines, opt: true, def: const {});
   static List<dynamic> _$document(CookbookNoteModel v) => v.document;
-  static const Field<CookbookNoteModel, List<dynamic>> _f$document = Field('document', _$document);
+  static const Field<CookbookNoteModel, List<dynamic>> _f$document =
+      Field('document', _$document);
+  static DateTime _$lastUpdatedUtc(CookbookNoteModel v) => v.lastUpdatedUtc;
+  static const Field<CookbookNoteModel, DateTime> _f$lastUpdatedUtc =
+      Field('lastUpdatedUtc', _$lastUpdatedUtc, opt: true);
 
   @override
-  final Map<Symbol, Field<CookbookNoteModel, dynamic>> fields = const {
+  final MappableFields<CookbookNoteModel> fields = const {
     #id: _f$id,
     #title: _f$title,
     #tagIds: _f$tagIds,
@@ -296,6 +355,7 @@ class CookbookNoteModelMapper extends SubClassMapperBase<CookbookNoteModel> {
     #types: _f$types,
     #cuisines: _f$cuisines,
     #document: _f$document,
+    #lastUpdatedUtc: _f$lastUpdatedUtc,
   };
 
   @override
@@ -316,7 +376,8 @@ class CookbookNoteModelMapper extends SubClassMapperBase<CookbookNoteModel> {
         difficulty: data.dec(_f$difficulty),
         types: data.dec(_f$types),
         cuisines: data.dec(_f$cuisines),
-        document: data.dec(_f$document));
+        document: data.dec(_f$document),
+        lastUpdatedUtc: data.dec(_f$lastUpdatedUtc));
   }
 
   @override
@@ -333,40 +394,49 @@ class CookbookNoteModelMapper extends SubClassMapperBase<CookbookNoteModel> {
 
 mixin CookbookNoteModelMappable {
   String toJson() {
-    return CookbookNoteModelMapper.ensureInitialized().encodeJson<CookbookNoteModel>(this as CookbookNoteModel);
+    return CookbookNoteModelMapper.ensureInitialized()
+        .encodeJson<CookbookNoteModel>(this as CookbookNoteModel);
   }
 
   Map<String, dynamic> toMap() {
-    return CookbookNoteModelMapper.ensureInitialized().encodeMap<CookbookNoteModel>(this as CookbookNoteModel);
+    return CookbookNoteModelMapper.ensureInitialized()
+        .encodeMap<CookbookNoteModel>(this as CookbookNoteModel);
   }
 
-  CookbookNoteModelCopyWith<CookbookNoteModel, CookbookNoteModel, CookbookNoteModel> get copyWith =>
-      _CookbookNoteModelCopyWithImpl(this as CookbookNoteModel, $identity, $identity);
+  CookbookNoteModelCopyWith<CookbookNoteModel, CookbookNoteModel,
+          CookbookNoteModel>
+      get copyWith => _CookbookNoteModelCopyWithImpl(
+          this as CookbookNoteModel, $identity, $identity);
   @override
   String toString() {
-    return CookbookNoteModelMapper.ensureInitialized().stringifyValue(this as CookbookNoteModel);
+    return CookbookNoteModelMapper.ensureInitialized()
+        .stringifyValue(this as CookbookNoteModel);
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (runtimeType == other.runtimeType &&
-            CookbookNoteModelMapper.ensureInitialized().isValueEqual(this as CookbookNoteModel, other));
+            CookbookNoteModelMapper.ensureInitialized()
+                .isValueEqual(this as CookbookNoteModel, other));
   }
 
   @override
   int get hashCode {
-    return CookbookNoteModelMapper.ensureInitialized().hashValue(this as CookbookNoteModel);
+    return CookbookNoteModelMapper.ensureInitialized()
+        .hashValue(this as CookbookNoteModel);
   }
 }
 
-extension CookbookNoteModelValueCopy<$R, $Out> on ObjectCopyWith<$R, CookbookNoteModel, $Out> {
-  CookbookNoteModelCopyWith<$R, CookbookNoteModel, $Out> get $asCookbookNoteModel =>
-      $base.as((v, t, t2) => _CookbookNoteModelCopyWithImpl(v, t, t2));
+extension CookbookNoteModelValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, CookbookNoteModel, $Out> {
+  CookbookNoteModelCopyWith<$R, CookbookNoteModel, $Out>
+      get $asCookbookNoteModel =>
+          $base.as((v, t, t2) => _CookbookNoteModelCopyWithImpl(v, t, t2));
 }
 
-abstract class CookbookNoteModelCopyWith<$R, $In extends CookbookNoteModel, $Out>
-    implements NoteModelCopyWith<$R, $In, $Out> {
+abstract class CookbookNoteModelCopyWith<$R, $In extends CookbookNoteModel,
+    $Out> implements NoteModelCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, dynamic, ObjectCopyWith<$R, dynamic, dynamic>> get document;
   @override
   $R call(
@@ -379,19 +449,24 @@ abstract class CookbookNoteModelCopyWith<$R, $In extends CookbookNoteModel, $Out
       int? difficulty,
       Set<String>? types,
       Set<String>? cuisines,
-      List<dynamic>? document});
-  CookbookNoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
+      List<dynamic>? document,
+      DateTime? lastUpdatedUtc});
+  CookbookNoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
+      Then<$Out2, $R2> t);
 }
 
-class _CookbookNoteModelCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, CookbookNoteModel, $Out>
+class _CookbookNoteModelCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, CookbookNoteModel, $Out>
     implements CookbookNoteModelCopyWith<$R, CookbookNoteModel, $Out> {
   _CookbookNoteModelCopyWithImpl(super.value, super.then, super.then2);
 
   @override
-  late final ClassMapperBase<CookbookNoteModel> $mapper = CookbookNoteModelMapper.ensureInitialized();
+  late final ClassMapperBase<CookbookNoteModel> $mapper =
+      CookbookNoteModelMapper.ensureInitialized();
   @override
-  ListCopyWith<$R, dynamic, ObjectCopyWith<$R, dynamic, dynamic>> get document =>
-      ListCopyWith($value.document, (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(document: v));
+  ListCopyWith<$R, dynamic, ObjectCopyWith<$R, dynamic, dynamic>>
+      get document => ListCopyWith($value.document,
+          (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(document: v));
   @override
   $R call(
           {String? id,
@@ -403,7 +478,8 @@ class _CookbookNoteModelCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Coo
           int? difficulty,
           Set<String>? types,
           Set<String>? cuisines,
-          List<dynamic>? document}) =>
+          List<dynamic>? document,
+          Object? lastUpdatedUtc = $none}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (title != null) #title: title,
@@ -414,7 +490,8 @@ class _CookbookNoteModelCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Coo
         if (difficulty != null) #difficulty: difficulty,
         if (types != null) #types: types,
         if (cuisines != null) #cuisines: cuisines,
-        if (document != null) #document: document
+        if (document != null) #document: document,
+        if (lastUpdatedUtc != $none) #lastUpdatedUtc: lastUpdatedUtc
       }));
   @override
   CookbookNoteModel $make(CopyWithData data) => CookbookNoteModel(
@@ -427,9 +504,11 @@ class _CookbookNoteModelCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Coo
       difficulty: data.get(#difficulty, or: $value.difficulty),
       types: data.get(#types, or: $value.types),
       cuisines: data.get(#cuisines, or: $value.cuisines),
-      document: data.get(#document, or: $value.document));
+      document: data.get(#document, or: $value.document),
+      lastUpdatedUtc: data.get(#lastUpdatedUtc, or: $value.lastUpdatedUtc));
 
   @override
-  CookbookNoteModelCopyWith<$R2, CookbookNoteModel, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+  CookbookNoteModelCopyWith<$R2, CookbookNoteModel, $Out2> $chain<$R2, $Out2>(
+          Then<$Out2, $R2> t) =>
       _CookbookNoteModelCopyWithImpl($value, $cast, t);
 }

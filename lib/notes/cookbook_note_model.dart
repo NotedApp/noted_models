@@ -16,7 +16,7 @@ class CookbookNoteModel extends NoteModel with CookbookNoteModelMappable {
   static const fromMap = CookbookNoteModelMapper.fromMap;
   static const fromJson = CookbookNoteModelMapper.fromJson;
 
-  const CookbookNoteModel({
+  CookbookNoteModel({
     required super.id,
     required super.title,
     super.tagIds = const {},
@@ -27,9 +27,10 @@ class CookbookNoteModel extends NoteModel with CookbookNoteModelMappable {
     this.types = const {},
     this.cuisines = const {},
     required this.document,
+    super.lastUpdatedUtc,
   });
 
-  const CookbookNoteModel.empty()
+  CookbookNoteModel.empty()
       : url = '',
         prepTime = '',
         cookTime = '',
@@ -37,7 +38,7 @@ class CookbookNoteModel extends NoteModel with CookbookNoteModelMappable {
         types = const {},
         cuisines = const {},
         document = DocumentUtil.emptyDocument,
-        super(id: '', title: '', tagIds: const {}); // coverage:ignore-line
+        super(id: '', title: '', tagIds: const {}, lastUpdatedUtc: DateTime.now().toUtc()); // coverage:ignore-line
 }
 
 @MappableEnum()

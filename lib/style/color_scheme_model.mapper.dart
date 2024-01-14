@@ -110,7 +110,8 @@ class ColorSchemeModelNameMapper extends EnumMapper<ColorSchemeModelName> {
 extension ColorSchemeModelNameMapperExtension on ColorSchemeModelName {
   String toValue() {
     ColorSchemeModelNameMapper.ensureInitialized();
-    return MapperContainer.globals.toValue<ColorSchemeModelName>(this) as String;
+    return MapperContainer.globals.toValue<ColorSchemeModelName>(this)
+        as String;
   }
 }
 
@@ -130,34 +131,46 @@ class ColorSchemeModelMapper extends ClassMapperBase<ColorSchemeModel> {
   final String id = 'ColorSchemeModel';
 
   static Brightness _$brightness(ColorSchemeModel v) => v.brightness;
-  static const Field<ColorSchemeModel, Brightness> _f$brightness = Field('brightness', _$brightness);
+  static const Field<ColorSchemeModel, Brightness> _f$brightness =
+      Field('brightness', _$brightness);
   static int _$primary(ColorSchemeModel v) => v.primary;
-  static const Field<ColorSchemeModel, int> _f$primary = Field('primary', _$primary);
+  static const Field<ColorSchemeModel, int> _f$primary =
+      Field('primary', _$primary);
   static int _$onPrimary(ColorSchemeModel v) => v.onPrimary;
-  static const Field<ColorSchemeModel, int> _f$onPrimary = Field('onPrimary', _$onPrimary);
+  static const Field<ColorSchemeModel, int> _f$onPrimary =
+      Field('onPrimary', _$onPrimary);
   static int _$secondary(ColorSchemeModel v) => v.secondary;
-  static const Field<ColorSchemeModel, int> _f$secondary = Field('secondary', _$secondary);
+  static const Field<ColorSchemeModel, int> _f$secondary =
+      Field('secondary', _$secondary);
   static int _$onSecondary(ColorSchemeModel v) => v.onSecondary;
-  static const Field<ColorSchemeModel, int> _f$onSecondary = Field('onSecondary', _$onSecondary);
+  static const Field<ColorSchemeModel, int> _f$onSecondary =
+      Field('onSecondary', _$onSecondary);
   static int _$tertiary(ColorSchemeModel v) => v.tertiary;
-  static const Field<ColorSchemeModel, int> _f$tertiary = Field('tertiary', _$tertiary);
+  static const Field<ColorSchemeModel, int> _f$tertiary =
+      Field('tertiary', _$tertiary);
   static int _$onTertiary(ColorSchemeModel v) => v.onTertiary;
-  static const Field<ColorSchemeModel, int> _f$onTertiary = Field('onTertiary', _$onTertiary);
+  static const Field<ColorSchemeModel, int> _f$onTertiary =
+      Field('onTertiary', _$onTertiary);
   static int _$error(ColorSchemeModel v) => v.error;
   static const Field<ColorSchemeModel, int> _f$error = Field('error', _$error);
   static int _$onError(ColorSchemeModel v) => v.onError;
-  static const Field<ColorSchemeModel, int> _f$onError = Field('onError', _$onError);
+  static const Field<ColorSchemeModel, int> _f$onError =
+      Field('onError', _$onError);
   static int _$surface(ColorSchemeModel v) => v.surface;
-  static const Field<ColorSchemeModel, int> _f$surface = Field('surface', _$surface);
+  static const Field<ColorSchemeModel, int> _f$surface =
+      Field('surface', _$surface);
   static int _$onSurface(ColorSchemeModel v) => v.onSurface;
-  static const Field<ColorSchemeModel, int> _f$onSurface = Field('onSurface', _$onSurface);
+  static const Field<ColorSchemeModel, int> _f$onSurface =
+      Field('onSurface', _$onSurface);
   static int _$background(ColorSchemeModel v) => v.background;
-  static const Field<ColorSchemeModel, int> _f$background = Field('background', _$background);
+  static const Field<ColorSchemeModel, int> _f$background =
+      Field('background', _$background);
   static int _$onBackground(ColorSchemeModel v) => v.onBackground;
-  static const Field<ColorSchemeModel, int> _f$onBackground = Field('onBackground', _$onBackground);
+  static const Field<ColorSchemeModel, int> _f$onBackground =
+      Field('onBackground', _$onBackground);
 
   @override
-  final Map<Symbol, Field<ColorSchemeModel, dynamic>> fields = const {
+  final MappableFields<ColorSchemeModel> fields = const {
     #brightness: _f$brightness,
     #primary: _f$primary,
     #onPrimary: _f$onPrimary,
@@ -204,36 +217,44 @@ class ColorSchemeModelMapper extends ClassMapperBase<ColorSchemeModel> {
 
 mixin ColorSchemeModelMappable {
   String toJson() {
-    return ColorSchemeModelMapper.ensureInitialized().encodeJson<ColorSchemeModel>(this as ColorSchemeModel);
+    return ColorSchemeModelMapper.ensureInitialized()
+        .encodeJson<ColorSchemeModel>(this as ColorSchemeModel);
   }
 
   Map<String, dynamic> toMap() {
-    return ColorSchemeModelMapper.ensureInitialized().encodeMap<ColorSchemeModel>(this as ColorSchemeModel);
+    return ColorSchemeModelMapper.ensureInitialized()
+        .encodeMap<ColorSchemeModel>(this as ColorSchemeModel);
   }
 
-  ColorSchemeModelCopyWith<ColorSchemeModel, ColorSchemeModel, ColorSchemeModel> get copyWith =>
-      _ColorSchemeModelCopyWithImpl(this as ColorSchemeModel, $identity, $identity);
+  ColorSchemeModelCopyWith<ColorSchemeModel, ColorSchemeModel, ColorSchemeModel>
+      get copyWith => _ColorSchemeModelCopyWithImpl(
+          this as ColorSchemeModel, $identity, $identity);
   @override
   String toString() {
-    return ColorSchemeModelMapper.ensureInitialized().stringifyValue(this as ColorSchemeModel);
+    return ColorSchemeModelMapper.ensureInitialized()
+        .stringifyValue(this as ColorSchemeModel);
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (runtimeType == other.runtimeType &&
-            ColorSchemeModelMapper.ensureInitialized().isValueEqual(this as ColorSchemeModel, other));
+            ColorSchemeModelMapper.ensureInitialized()
+                .isValueEqual(this as ColorSchemeModel, other));
   }
 
   @override
   int get hashCode {
-    return ColorSchemeModelMapper.ensureInitialized().hashValue(this as ColorSchemeModel);
+    return ColorSchemeModelMapper.ensureInitialized()
+        .hashValue(this as ColorSchemeModel);
   }
 }
 
-extension ColorSchemeModelValueCopy<$R, $Out> on ObjectCopyWith<$R, ColorSchemeModel, $Out> {
-  ColorSchemeModelCopyWith<$R, ColorSchemeModel, $Out> get $asColorSchemeModel =>
-      $base.as((v, t, t2) => _ColorSchemeModelCopyWithImpl(v, t, t2));
+extension ColorSchemeModelValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, ColorSchemeModel, $Out> {
+  ColorSchemeModelCopyWith<$R, ColorSchemeModel, $Out>
+      get $asColorSchemeModel =>
+          $base.as((v, t, t2) => _ColorSchemeModelCopyWithImpl(v, t, t2));
 }
 
 abstract class ColorSchemeModelCopyWith<$R, $In extends ColorSchemeModel, $Out>
@@ -252,15 +273,18 @@ abstract class ColorSchemeModelCopyWith<$R, $In extends ColorSchemeModel, $Out>
       int? onSurface,
       int? background,
       int? onBackground});
-  ColorSchemeModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
+  ColorSchemeModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
+      Then<$Out2, $R2> t);
 }
 
-class _ColorSchemeModelCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, ColorSchemeModel, $Out>
+class _ColorSchemeModelCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, ColorSchemeModel, $Out>
     implements ColorSchemeModelCopyWith<$R, ColorSchemeModel, $Out> {
   _ColorSchemeModelCopyWithImpl(super.value, super.then, super.then2);
 
   @override
-  late final ClassMapperBase<ColorSchemeModel> $mapper = ColorSchemeModelMapper.ensureInitialized();
+  late final ClassMapperBase<ColorSchemeModel> $mapper =
+      ColorSchemeModelMapper.ensureInitialized();
   @override
   $R call(
           {Brightness? brightness,
@@ -308,6 +332,7 @@ class _ColorSchemeModelCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Colo
       onBackground: data.get(#onBackground, or: $value.onBackground));
 
   @override
-  ColorSchemeModelCopyWith<$R2, ColorSchemeModel, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+  ColorSchemeModelCopyWith<$R2, ColorSchemeModel, $Out2> $chain<$R2, $Out2>(
+          Then<$Out2, $R2> t) =>
       _ColorSchemeModelCopyWithImpl($value, $cast, t);
 }

@@ -6,7 +6,8 @@
 
 part of 'cookbook_settings_model.dart';
 
-class CookbookSettingsModelMapper extends ClassMapperBase<CookbookSettingsModel> {
+class CookbookSettingsModelMapper
+    extends ClassMapperBase<CookbookSettingsModel> {
   CookbookSettingsModelMapper._();
 
   static CookbookSettingsModelMapper? _instance;
@@ -22,7 +23,8 @@ class CookbookSettingsModelMapper extends ClassMapperBase<CookbookSettingsModel>
   final String id = 'CookbookSettingsModel';
 
   static bool _$showUrl(CookbookSettingsModel v) => v.showUrl;
-  static const Field<CookbookSettingsModel, bool> _f$showUrl = Field('showUrl', _$showUrl, opt: true, def: true);
+  static const Field<CookbookSettingsModel, bool> _f$showUrl =
+      Field('showUrl', _$showUrl, opt: true, def: true);
   static bool _$showPrepTime(CookbookSettingsModel v) => v.showPrepTime;
   static const Field<CookbookSettingsModel, bool> _f$showPrepTime =
       Field('showPrepTime', _$showPrepTime, opt: true, def: true);
@@ -33,7 +35,8 @@ class CookbookSettingsModelMapper extends ClassMapperBase<CookbookSettingsModel>
   static const Field<CookbookSettingsModel, bool> _f$showDifficulty =
       Field('showDifficulty', _$showDifficulty, opt: true, def: true);
   static bool _$showTypes(CookbookSettingsModel v) => v.showTypes;
-  static const Field<CookbookSettingsModel, bool> _f$showTypes = Field('showTypes', _$showTypes, opt: true, def: true);
+  static const Field<CookbookSettingsModel, bool> _f$showTypes =
+      Field('showTypes', _$showTypes, opt: true, def: true);
   static bool _$showCuisines(CookbookSettingsModel v) => v.showCuisines;
   static const Field<CookbookSettingsModel, bool> _f$showCuisines =
       Field('showCuisines', _$showCuisines, opt: true, def: true);
@@ -45,7 +48,7 @@ class CookbookSettingsModelMapper extends ClassMapperBase<CookbookSettingsModel>
       Field('cuisineTags', _$cuisineTags, opt: true, def: const {});
 
   @override
-  final Map<Symbol, Field<CookbookSettingsModel, dynamic>> fields = const {
+  final MappableFields<CookbookSettingsModel> fields = const {
     #showUrl: _f$showUrl,
     #showPrepTime: _f$showPrepTime,
     #showCookTime: _f$showCookTime,
@@ -91,33 +94,42 @@ mixin CookbookSettingsModelMappable {
         .encodeMap<CookbookSettingsModel>(this as CookbookSettingsModel);
   }
 
-  CookbookSettingsModelCopyWith<CookbookSettingsModel, CookbookSettingsModel, CookbookSettingsModel> get copyWith =>
-      _CookbookSettingsModelCopyWithImpl(this as CookbookSettingsModel, $identity, $identity);
+  CookbookSettingsModelCopyWith<CookbookSettingsModel, CookbookSettingsModel,
+          CookbookSettingsModel>
+      get copyWith => _CookbookSettingsModelCopyWithImpl(
+          this as CookbookSettingsModel, $identity, $identity);
   @override
   String toString() {
-    return CookbookSettingsModelMapper.ensureInitialized().stringifyValue(this as CookbookSettingsModel);
+    return CookbookSettingsModelMapper.ensureInitialized()
+        .stringifyValue(this as CookbookSettingsModel);
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (runtimeType == other.runtimeType &&
-            CookbookSettingsModelMapper.ensureInitialized().isValueEqual(this as CookbookSettingsModel, other));
+            CookbookSettingsModelMapper.ensureInitialized()
+                .isValueEqual(this as CookbookSettingsModel, other));
   }
 
   @override
   int get hashCode {
-    return CookbookSettingsModelMapper.ensureInitialized().hashValue(this as CookbookSettingsModel);
+    return CookbookSettingsModelMapper.ensureInitialized()
+        .hashValue(this as CookbookSettingsModel);
   }
 }
 
-extension CookbookSettingsModelValueCopy<$R, $Out> on ObjectCopyWith<$R, CookbookSettingsModel, $Out> {
-  CookbookSettingsModelCopyWith<$R, CookbookSettingsModel, $Out> get $asCookbookSettingsModel =>
-      $base.as((v, t, t2) => _CookbookSettingsModelCopyWithImpl(v, t, t2));
+extension CookbookSettingsModelValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, CookbookSettingsModel, $Out> {
+  CookbookSettingsModelCopyWith<$R, CookbookSettingsModel, $Out>
+      get $asCookbookSettingsModel =>
+          $base.as((v, t, t2) => _CookbookSettingsModelCopyWithImpl(v, t, t2));
 }
 
-abstract class CookbookSettingsModelCopyWith<$R, $In extends CookbookSettingsModel, $Out>
-    implements ClassCopyWith<$R, $In, $Out> {
+abstract class CookbookSettingsModelCopyWith<
+    $R,
+    $In extends CookbookSettingsModel,
+    $Out> implements ClassCopyWith<$R, $In, $Out> {
   $R call(
       {bool? showUrl,
       bool? showPrepTime,
@@ -127,15 +139,18 @@ abstract class CookbookSettingsModelCopyWith<$R, $In extends CookbookSettingsMod
       bool? showCuisines,
       Set<TagModel>? typeTags,
       Set<TagModel>? cuisineTags});
-  CookbookSettingsModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
+  CookbookSettingsModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
+      Then<$Out2, $R2> t);
 }
 
-class _CookbookSettingsModelCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, CookbookSettingsModel, $Out>
+class _CookbookSettingsModelCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, CookbookSettingsModel, $Out>
     implements CookbookSettingsModelCopyWith<$R, CookbookSettingsModel, $Out> {
   _CookbookSettingsModelCopyWithImpl(super.value, super.then, super.then2);
 
   @override
-  late final ClassMapperBase<CookbookSettingsModel> $mapper = CookbookSettingsModelMapper.ensureInitialized();
+  late final ClassMapperBase<CookbookSettingsModel> $mapper =
+      CookbookSettingsModelMapper.ensureInitialized();
   @override
   $R call(
           {bool? showUrl,
@@ -168,6 +183,7 @@ class _CookbookSettingsModelCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R,
       cuisineTags: data.get(#cuisineTags, or: $value.cuisineTags));
 
   @override
-  CookbookSettingsModelCopyWith<$R2, CookbookSettingsModel, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
-      _CookbookSettingsModelCopyWithImpl($value, $cast, t);
+  CookbookSettingsModelCopyWith<$R2, CookbookSettingsModel, $Out2>
+      $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+          _CookbookSettingsModelCopyWithImpl($value, $cast, t);
 }
