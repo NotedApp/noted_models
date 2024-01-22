@@ -20,6 +20,7 @@ class CookbookNoteModel extends NoteModel with CookbookNoteModelMappable {
     required super.id,
     required super.title,
     super.tagIds = const {},
+    required super.hidden,
     required this.url,
     required this.prepTime,
     required this.cookTime,
@@ -38,7 +39,13 @@ class CookbookNoteModel extends NoteModel with CookbookNoteModelMappable {
         types = const {},
         cuisines = const {},
         document = DocumentUtil.emptyDocument,
-        super(id: '', title: '', tagIds: const {}, lastUpdatedUtc: DateTime.now().toUtc()); // coverage:ignore-line
+        super(
+          id: '',
+          title: '',
+          tagIds: const {},
+          hidden: false,
+          lastUpdatedUtc: DateTime.now().toUtc(),
+        );
 }
 
 @MappableEnum()

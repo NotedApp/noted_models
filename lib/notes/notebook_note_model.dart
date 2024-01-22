@@ -14,11 +14,12 @@ class NotebookNoteModel extends NoteModel with NotebookNoteModelMappable {
     required super.id,
     required super.title,
     super.tagIds = const {},
+    required super.hidden,
     required this.document,
     super.lastUpdatedUtc,
   });
 
   NotebookNoteModel.empty()
       : document = DocumentUtil.emptyDocument,
-        super(id: '', title: '', tagIds: const {}); // coverage:ignore-line
+        super(id: '', title: '', tagIds: const {}, hidden: false); // coverage:ignore-line
 }

@@ -9,6 +9,7 @@ void main() {
       expect(note.id, '');
       expect(note.title, '');
       expect(note.tagIds.length, 0);
+      expect(note.hidden, false);
       expect(note.url, '');
       expect(note.prepTime, '');
       expect(note.cookTime, '');
@@ -25,6 +26,7 @@ void main() {
       CookbookNoteModel note = CookbookNoteModel(
         id: 'test-id',
         title: 'test-title',
+        hidden: true,
         url: 'test-url',
         prepTime: '1 hour',
         cookTime: '30 minutes',
@@ -41,6 +43,7 @@ void main() {
       CookbookNoteModel note = CookbookNoteModel(
         id: 'test-id',
         title: 'test-title',
+        hidden: true,
         url: 'test-url',
         prepTime: '1 hour',
         cookTime: '30 minutes',

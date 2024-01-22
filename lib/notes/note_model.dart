@@ -10,6 +10,7 @@ sealed class NoteModel with NoteModelMappable {
   final String id;
   final String title;
   final Set<TagId> tagIds;
+  final bool hidden;
   final DateTime lastUpdatedUtc;
 
   NotedPlugin get plugin;
@@ -21,6 +22,7 @@ sealed class NoteModel with NoteModelMappable {
     required this.id,
     required this.title,
     required this.tagIds,
+    required this.hidden,
     DateTime? lastUpdatedUtc,
   }) : lastUpdatedUtc = lastUpdatedUtc ?? DateTime.now().toUtc();
 }
