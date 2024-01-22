@@ -9,13 +9,20 @@ void main() {
       expect(note.id, '');
       expect(note.title, '');
       expect(note.tagIds.length, 0);
+      expect(note.hidden, false);
       expect(note.document.length, 1);
 
       expect(note.plugin, NotedPlugin.notebook);
     });
 
     test('parses to and from json', () {
-      NotebookNoteModel note = NotebookNoteModel(id: 'test-id', title: 'test-title', document: []);
+      NotebookNoteModel note = NotebookNoteModel(
+        id: 'test-id',
+        title: 'test-title',
+        hidden: true,
+        document: [],
+      );
+
       String json = note.toJson();
       NotebookNoteModel parsed = NotebookNoteModel.fromJson(json);
 
@@ -23,7 +30,13 @@ void main() {
     });
 
     test('parses to and from map', () {
-      NotebookNoteModel note = NotebookNoteModel(id: 'test-id', title: 'test-title', document: []);
+      NotebookNoteModel note = NotebookNoteModel(
+        id: 'test-id',
+        title: 'test-title',
+        hidden: true,
+        document: [],
+      );
+
       Map<String, dynamic> map = note.toMap();
       NotebookNoteModel parsed = NotebookNoteModel.fromMap(map);
 

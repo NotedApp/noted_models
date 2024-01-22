@@ -29,6 +29,8 @@ class NoteModelMapper extends ClassMapperBase<NoteModel> {
   static Set<String> _$tagIds(NoteModel v) => v.tagIds;
   static const Field<NoteModel, Set<String>> _f$tagIds =
       Field('tagIds', _$tagIds);
+  static bool _$hidden(NoteModel v) => v.hidden;
+  static const Field<NoteModel, bool> _f$hidden = Field('hidden', _$hidden);
   static DateTime _$lastUpdatedUtc(NoteModel v) => v.lastUpdatedUtc;
   static const Field<NoteModel, DateTime> _f$lastUpdatedUtc =
       Field('lastUpdatedUtc', _$lastUpdatedUtc, opt: true);
@@ -38,6 +40,7 @@ class NoteModelMapper extends ClassMapperBase<NoteModel> {
     #id: _f$id,
     #title: _f$title,
     #tagIds: _f$tagIds,
+    #hidden: _f$hidden,
     #lastUpdatedUtc: _f$lastUpdatedUtc,
   };
 
@@ -70,6 +73,7 @@ abstract class NoteModelCopyWith<$R, $In extends NoteModel, $Out>
       {String? id,
       String? title,
       Set<String>? tagIds,
+      bool? hidden,
       DateTime? lastUpdatedUtc});
   NoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -97,6 +101,9 @@ class NotebookNoteModelMapper extends SubClassMapperBase<NotebookNoteModel> {
   static Set<String> _$tagIds(NotebookNoteModel v) => v.tagIds;
   static const Field<NotebookNoteModel, Set<String>> _f$tagIds =
       Field('tagIds', _$tagIds, opt: true, def: const {});
+  static bool _$hidden(NotebookNoteModel v) => v.hidden;
+  static const Field<NotebookNoteModel, bool> _f$hidden =
+      Field('hidden', _$hidden);
   static List<dynamic> _$document(NotebookNoteModel v) => v.document;
   static const Field<NotebookNoteModel, List<dynamic>> _f$document =
       Field('document', _$document);
@@ -109,6 +116,7 @@ class NotebookNoteModelMapper extends SubClassMapperBase<NotebookNoteModel> {
     #id: _f$id,
     #title: _f$title,
     #tagIds: _f$tagIds,
+    #hidden: _f$hidden,
     #document: _f$document,
     #lastUpdatedUtc: _f$lastUpdatedUtc,
   };
@@ -125,6 +133,7 @@ class NotebookNoteModelMapper extends SubClassMapperBase<NotebookNoteModel> {
         id: data.dec(_f$id),
         title: data.dec(_f$title),
         tagIds: data.dec(_f$tagIds),
+        hidden: data.dec(_f$hidden),
         document: data.dec(_f$document),
         lastUpdatedUtc: data.dec(_f$lastUpdatedUtc));
   }
@@ -192,6 +201,7 @@ abstract class NotebookNoteModelCopyWith<$R, $In extends NotebookNoteModel,
       {String? id,
       String? title,
       Set<String>? tagIds,
+      bool? hidden,
       List<dynamic>? document,
       DateTime? lastUpdatedUtc});
   NotebookNoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
@@ -215,12 +225,14 @@ class _NotebookNoteModelCopyWithImpl<$R, $Out>
           {String? id,
           String? title,
           Set<String>? tagIds,
+          bool? hidden,
           List<dynamic>? document,
           Object? lastUpdatedUtc = $none}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (title != null) #title: title,
         if (tagIds != null) #tagIds: tagIds,
+        if (hidden != null) #hidden: hidden,
         if (document != null) #document: document,
         if (lastUpdatedUtc != $none) #lastUpdatedUtc: lastUpdatedUtc
       }));
@@ -229,6 +241,7 @@ class _NotebookNoteModelCopyWithImpl<$R, $Out>
       id: data.get(#id, or: $value.id),
       title: data.get(#title, or: $value.title),
       tagIds: data.get(#tagIds, or: $value.tagIds),
+      hidden: data.get(#hidden, or: $value.hidden),
       document: data.get(#document, or: $value.document),
       lastUpdatedUtc: data.get(#lastUpdatedUtc, or: $value.lastUpdatedUtc));
 
@@ -319,6 +332,9 @@ class CookbookNoteModelMapper extends SubClassMapperBase<CookbookNoteModel> {
   static Set<String> _$tagIds(CookbookNoteModel v) => v.tagIds;
   static const Field<CookbookNoteModel, Set<String>> _f$tagIds =
       Field('tagIds', _$tagIds, opt: true, def: const {});
+  static bool _$hidden(CookbookNoteModel v) => v.hidden;
+  static const Field<CookbookNoteModel, bool> _f$hidden =
+      Field('hidden', _$hidden);
   static String _$url(CookbookNoteModel v) => v.url;
   static const Field<CookbookNoteModel, String> _f$url = Field('url', _$url);
   static String _$prepTime(CookbookNoteModel v) => v.prepTime;
@@ -348,6 +364,7 @@ class CookbookNoteModelMapper extends SubClassMapperBase<CookbookNoteModel> {
     #id: _f$id,
     #title: _f$title,
     #tagIds: _f$tagIds,
+    #hidden: _f$hidden,
     #url: _f$url,
     #prepTime: _f$prepTime,
     #cookTime: _f$cookTime,
@@ -370,6 +387,7 @@ class CookbookNoteModelMapper extends SubClassMapperBase<CookbookNoteModel> {
         id: data.dec(_f$id),
         title: data.dec(_f$title),
         tagIds: data.dec(_f$tagIds),
+        hidden: data.dec(_f$hidden),
         url: data.dec(_f$url),
         prepTime: data.dec(_f$prepTime),
         cookTime: data.dec(_f$cookTime),
@@ -443,6 +461,7 @@ abstract class CookbookNoteModelCopyWith<$R, $In extends CookbookNoteModel,
       {String? id,
       String? title,
       Set<String>? tagIds,
+      bool? hidden,
       String? url,
       String? prepTime,
       String? cookTime,
@@ -472,6 +491,7 @@ class _CookbookNoteModelCopyWithImpl<$R, $Out>
           {String? id,
           String? title,
           Set<String>? tagIds,
+          bool? hidden,
           String? url,
           String? prepTime,
           String? cookTime,
@@ -484,6 +504,7 @@ class _CookbookNoteModelCopyWithImpl<$R, $Out>
         if (id != null) #id: id,
         if (title != null) #title: title,
         if (tagIds != null) #tagIds: tagIds,
+        if (hidden != null) #hidden: hidden,
         if (url != null) #url: url,
         if (prepTime != null) #prepTime: prepTime,
         if (cookTime != null) #cookTime: cookTime,
@@ -498,6 +519,7 @@ class _CookbookNoteModelCopyWithImpl<$R, $Out>
       id: data.get(#id, or: $value.id),
       title: data.get(#title, or: $value.title),
       tagIds: data.get(#tagIds, or: $value.tagIds),
+      hidden: data.get(#hidden, or: $value.hidden),
       url: data.get(#url, or: $value.url),
       prepTime: data.get(#prepTime, or: $value.prepTime),
       cookTime: data.get(#cookTime, or: $value.cookTime),
