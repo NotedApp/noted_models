@@ -2,10 +2,11 @@ part of 'note_model.dart';
 
 @MappableClass(discriminatorValue: 'climbing')
 class ClimbingNoteModel extends NoteModel with ClimbingNoteModelMappable {
-  final DocumentModel document;
+  final String imageUrl;
   final String difficulty;
   final ClimbingNoteLocation location;
   final ClimbingNoteType type;
+  final DocumentModel document;
 
   @override
   NotedPlugin get plugin => NotedPlugin.climbing;
@@ -18,18 +19,20 @@ class ClimbingNoteModel extends NoteModel with ClimbingNoteModelMappable {
     super.title = '',
     super.tagIds = const {},
     super.hidden = false,
-    this.document = Document.empty,
+    this.imageUrl = '',
     this.difficulty = '',
     this.location = ClimbingNoteLocation.indoors,
     this.type = ClimbingNoteType.bouldering,
+    this.document = Document.empty,
     super.lastUpdatedUtc,
   });
 
   ClimbingNoteModel.empty()
-      : document = Document.empty,
+      : imageUrl = '',
         difficulty = '',
         location = ClimbingNoteLocation.indoors,
         type = ClimbingNoteType.bouldering,
+        document = Document.empty,
         super(id: '', title: '', tagIds: const {}, hidden: false);
 }
 

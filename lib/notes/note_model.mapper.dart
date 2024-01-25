@@ -217,6 +217,9 @@ class ClimbingNoteModelMapper extends SubClassMapperBase<ClimbingNoteModel> {
   static ClimbingNoteType _$type(ClimbingNoteModel v) => v.type;
   static const Field<ClimbingNoteModel, ClimbingNoteType> _f$type =
       Field('type', _$type, opt: true, def: ClimbingNoteType.bouldering);
+  static String _$imageUrl(ClimbingNoteModel v) => v.imageUrl;
+  static const Field<ClimbingNoteModel, String> _f$imageUrl =
+      Field('imageUrl', _$imageUrl, opt: true, def: '');
   static DateTime _$lastUpdatedUtc(ClimbingNoteModel v) => v.lastUpdatedUtc;
   static const Field<ClimbingNoteModel, DateTime> _f$lastUpdatedUtc =
       Field('lastUpdatedUtc', _$lastUpdatedUtc, opt: true);
@@ -231,6 +234,7 @@ class ClimbingNoteModelMapper extends SubClassMapperBase<ClimbingNoteModel> {
     #difficulty: _f$difficulty,
     #location: _f$location,
     #type: _f$type,
+    #imageUrl: _f$imageUrl,
     #lastUpdatedUtc: _f$lastUpdatedUtc,
   };
 
@@ -251,6 +255,7 @@ class ClimbingNoteModelMapper extends SubClassMapperBase<ClimbingNoteModel> {
         difficulty: data.dec(_f$difficulty),
         location: data.dec(_f$location),
         type: data.dec(_f$type),
+        imageUrl: data.dec(_f$imageUrl),
         lastUpdatedUtc: data.dec(_f$lastUpdatedUtc));
   }
 
@@ -322,6 +327,7 @@ abstract class ClimbingNoteModelCopyWith<$R, $In extends ClimbingNoteModel,
       String? difficulty,
       ClimbingNoteLocation? location,
       ClimbingNoteType? type,
+      String? imageUrl,
       DateTime? lastUpdatedUtc});
   ClimbingNoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
@@ -349,6 +355,7 @@ class _ClimbingNoteModelCopyWithImpl<$R, $Out>
           String? difficulty,
           ClimbingNoteLocation? location,
           ClimbingNoteType? type,
+          String? imageUrl,
           Object? lastUpdatedUtc = $none}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
@@ -359,6 +366,7 @@ class _ClimbingNoteModelCopyWithImpl<$R, $Out>
         if (difficulty != null) #difficulty: difficulty,
         if (location != null) #location: location,
         if (type != null) #type: type,
+        if (imageUrl != null) #imageUrl: imageUrl,
         if (lastUpdatedUtc != $none) #lastUpdatedUtc: lastUpdatedUtc
       }));
   @override
@@ -371,6 +379,7 @@ class _ClimbingNoteModelCopyWithImpl<$R, $Out>
       difficulty: data.get(#difficulty, or: $value.difficulty),
       location: data.get(#location, or: $value.location),
       type: data.get(#type, or: $value.type),
+      imageUrl: data.get(#imageUrl, or: $value.imageUrl),
       lastUpdatedUtc: data.get(#lastUpdatedUtc, or: $value.lastUpdatedUtc));
 
   @override
