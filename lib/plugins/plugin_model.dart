@@ -6,4 +6,5 @@ part 'plugin_model.mapper.dart';
 enum NotedPlugin {
   notebook,
   cookbook,
+  climbing,
 }

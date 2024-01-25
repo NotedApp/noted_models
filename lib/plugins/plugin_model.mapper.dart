@@ -29,6 +29,8 @@ class NotedPluginMapper extends EnumMapper<NotedPlugin> {
         return NotedPlugin.notebook;
       case 'cookbook':
         return NotedPlugin.cookbook;
+      case 'climbing':
+        return NotedPlugin.climbing;
       default:
         throw MapperException.unknownEnumValue(value);
     }
@@ -41,6 +43,8 @@ class NotedPluginMapper extends EnumMapper<NotedPlugin> {
         return 'notebook';
       case NotedPlugin.cookbook:
         return 'cookbook';
+      case NotedPlugin.climbing:
+        return 'climbing';
     }
   }
 }
