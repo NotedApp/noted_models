@@ -16,7 +16,7 @@ void main() {
       expect(note.difficulty, 3);
       expect(note.types, const <String>{});
       expect(note.cuisines, const <String>{});
-      expect(note.document, DocumentUtil.emptyDocument);
+      expect(note.document, Document.empty);
       expect(note.document.length, 1);
 
       expect(note.plugin, NotedPlugin.cookbook);

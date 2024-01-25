@@ -20,6 +20,6 @@ class NotebookNoteModel extends NoteModel with NotebookNoteModelMappable {
   });
 
   NotebookNoteModel.empty()
-      : document = DocumentUtil.emptyDocument,
+      : document = Document.empty,
         super(id: '', title: '', tagIds: const {}, hidden: false); // coverage:ignore-line
 }

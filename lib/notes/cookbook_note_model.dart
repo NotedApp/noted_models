@@ -38,7 +38,7 @@ class CookbookNoteModel extends NoteModel with CookbookNoteModelMappable {
         difficulty = 3,
         types = const {},
         cuisines = const {},
-        document = DocumentUtil.emptyDocument,
+        document = Document.empty,
         super(
           id: '',
           title: '',

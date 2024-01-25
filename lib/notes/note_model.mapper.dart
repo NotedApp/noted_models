@@ -13,8 +13,9 @@ class NoteModelMapper extends ClassMapperBase<NoteModel> {
   static NoteModelMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = NoteModelMapper._());
-      NotebookNoteModelMapper.ensureInitialized();
+      ClimbingNoteModelMapper.ensureInitialized();
       CookbookNoteModelMapper.ensureInitialized();
+      NotebookNoteModelMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -78,122 +79,237 @@ abstract class NoteModelCopyWith<$R, $In extends NoteModel, $Out>
   NoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
-class NotebookNoteModelMapper extends SubClassMapperBase<NotebookNoteModel> {
-  NotebookNoteModelMapper._();
+class ClimbingNoteLocationMapper extends EnumMapper<ClimbingNoteLocation> {
+  ClimbingNoteLocationMapper._();
 
-  static NotebookNoteModelMapper? _instance;
-  static NotebookNoteModelMapper ensureInitialized() {
+  static ClimbingNoteLocationMapper? _instance;
+  static ClimbingNoteLocationMapper ensureInitialized() {
     if (_instance == null) {
-      MapperContainer.globals.use(_instance = NotebookNoteModelMapper._());
+      MapperContainer.globals.use(_instance = ClimbingNoteLocationMapper._());
+    }
+    return _instance!;
+  }
+
+  static ClimbingNoteLocation fromValue(dynamic value) {
+    ensureInitialized();
+    return MapperContainer.globals.fromValue(value);
+  }
+
+  @override
+  ClimbingNoteLocation decode(dynamic value) {
+    switch (value) {
+      case 'indoors':
+        return ClimbingNoteLocation.indoors;
+      case 'outdoors':
+        return ClimbingNoteLocation.outdoors;
+      default:
+        throw MapperException.unknownEnumValue(value);
+    }
+  }
+
+  @override
+  dynamic encode(ClimbingNoteLocation self) {
+    switch (self) {
+      case ClimbingNoteLocation.indoors:
+        return 'indoors';
+      case ClimbingNoteLocation.outdoors:
+        return 'outdoors';
+    }
+  }
+}
+
+extension ClimbingNoteLocationMapperExtension on ClimbingNoteLocation {
+  String toValue() {
+    ClimbingNoteLocationMapper.ensureInitialized();
+    return MapperContainer.globals.toValue<ClimbingNoteLocation>(this)
+        as String;
+  }
+}
+
+class ClimbingNoteTypeMapper extends EnumMapper<ClimbingNoteType> {
+  ClimbingNoteTypeMapper._();
+
+  static ClimbingNoteTypeMapper? _instance;
+  static ClimbingNoteTypeMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = ClimbingNoteTypeMapper._());
+    }
+    return _instance!;
+  }
+
+  static ClimbingNoteType fromValue(dynamic value) {
+    ensureInitialized();
+    return MapperContainer.globals.fromValue(value);
+  }
+
+  @override
+  ClimbingNoteType decode(dynamic value) {
+    switch (value) {
+      case 'sport':
+        return ClimbingNoteType.sport;
+      case 'traditional':
+        return ClimbingNoteType.traditional;
+      case 'bouldering':
+        return ClimbingNoteType.bouldering;
+      default:
+        throw MapperException.unknownEnumValue(value);
+    }
+  }
+
+  @override
+  dynamic encode(ClimbingNoteType self) {
+    switch (self) {
+      case ClimbingNoteType.sport:
+        return 'sport';
+      case ClimbingNoteType.traditional:
+        return 'traditional';
+      case ClimbingNoteType.bouldering:
+        return 'bouldering';
+    }
+  }
+}
+
+extension ClimbingNoteTypeMapperExtension on ClimbingNoteType {
+  String toValue() {
+    ClimbingNoteTypeMapper.ensureInitialized();
+    return MapperContainer.globals.toValue<ClimbingNoteType>(this) as String;
+  }
+}
+
+class ClimbingNoteModelMapper extends SubClassMapperBase<ClimbingNoteModel> {
+  ClimbingNoteModelMapper._();
+
+  static ClimbingNoteModelMapper? _instance;
+  static ClimbingNoteModelMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = ClimbingNoteModelMapper._());
       NoteModelMapper.ensureInitialized().addSubMapper(_instance!);
+      ClimbingNoteLocationMapper.ensureInitialized();
+      ClimbingNoteTypeMapper.ensureInitialized();
     }
     return _instance!;
   }
 
   @override
-  final String id = 'NotebookNoteModel';
+  final String id = 'ClimbingNoteModel';
 
-  static String _$id(NotebookNoteModel v) => v.id;
-  static const Field<NotebookNoteModel, String> _f$id = Field('id', _$id);
-  static String _$title(NotebookNoteModel v) => v.title;
-  static const Field<NotebookNoteModel, String> _f$title =
-      Field('title', _$title);
-  static Set<String> _$tagIds(NotebookNoteModel v) => v.tagIds;
-  static const Field<NotebookNoteModel, Set<String>> _f$tagIds =
+  static String _$id(ClimbingNoteModel v) => v.id;
+  static const Field<ClimbingNoteModel, String> _f$id = Field('id', _$id);
+  static String _$title(ClimbingNoteModel v) => v.title;
+  static const Field<ClimbingNoteModel, String> _f$title =
+      Field('title', _$title, opt: true, def: '');
+  static Set<String> _$tagIds(ClimbingNoteModel v) => v.tagIds;
+  static const Field<ClimbingNoteModel, Set<String>> _f$tagIds =
       Field('tagIds', _$tagIds, opt: true, def: const {});
-  static bool _$hidden(NotebookNoteModel v) => v.hidden;
-  static const Field<NotebookNoteModel, bool> _f$hidden =
-      Field('hidden', _$hidden);
-  static List<dynamic> _$document(NotebookNoteModel v) => v.document;
-  static const Field<NotebookNoteModel, List<dynamic>> _f$document =
-      Field('document', _$document);
-  static DateTime _$lastUpdatedUtc(NotebookNoteModel v) => v.lastUpdatedUtc;
-  static const Field<NotebookNoteModel, DateTime> _f$lastUpdatedUtc =
+  static bool _$hidden(ClimbingNoteModel v) => v.hidden;
+  static const Field<ClimbingNoteModel, bool> _f$hidden =
+      Field('hidden', _$hidden, opt: true, def: false);
+  static List<dynamic> _$document(ClimbingNoteModel v) => v.document;
+  static const Field<ClimbingNoteModel, List<dynamic>> _f$document =
+      Field('document', _$document, opt: true, def: Document.empty);
+  static String _$difficulty(ClimbingNoteModel v) => v.difficulty;
+  static const Field<ClimbingNoteModel, String> _f$difficulty =
+      Field('difficulty', _$difficulty, opt: true, def: '');
+  static ClimbingNoteLocation _$location(ClimbingNoteModel v) => v.location;
+  static const Field<ClimbingNoteModel, ClimbingNoteLocation> _f$location =
+      Field('location', _$location,
+          opt: true, def: ClimbingNoteLocation.indoors);
+  static ClimbingNoteType _$type(ClimbingNoteModel v) => v.type;
+  static const Field<ClimbingNoteModel, ClimbingNoteType> _f$type =
+      Field('type', _$type, opt: true, def: ClimbingNoteType.bouldering);
+  static DateTime _$lastUpdatedUtc(ClimbingNoteModel v) => v.lastUpdatedUtc;
+  static const Field<ClimbingNoteModel, DateTime> _f$lastUpdatedUtc =
       Field('lastUpdatedUtc', _$lastUpdatedUtc, opt: true);
 
   @override
-  final MappableFields<NotebookNoteModel> fields = const {
+  final MappableFields<ClimbingNoteModel> fields = const {
     #id: _f$id,
     #title: _f$title,
     #tagIds: _f$tagIds,
     #hidden: _f$hidden,
     #document: _f$document,
+    #difficulty: _f$difficulty,
+    #location: _f$location,
+    #type: _f$type,
     #lastUpdatedUtc: _f$lastUpdatedUtc,
   };
 
   @override
   final String discriminatorKey = 'plugin';
   @override
-  final dynamic discriminatorValue = 'notebook';
+  final dynamic discriminatorValue = 'climbing';
   @override
   late final ClassMapperBase superMapper = NoteModelMapper.ensureInitialized();
 
-  static NotebookNoteModel _instantiate(DecodingData data) {
-    return NotebookNoteModel(
+  static ClimbingNoteModel _instantiate(DecodingData data) {
+    return ClimbingNoteModel(
         id: data.dec(_f$id),
         title: data.dec(_f$title),
         tagIds: data.dec(_f$tagIds),
         hidden: data.dec(_f$hidden),
         document: data.dec(_f$document),
+        difficulty: data.dec(_f$difficulty),
+        location: data.dec(_f$location),
+        type: data.dec(_f$type),
         lastUpdatedUtc: data.dec(_f$lastUpdatedUtc));
   }
 
   @override
   final Function instantiate = _instantiate;
 
-  static NotebookNoteModel fromMap(Map<String, dynamic> map) {
-    return ensureInitialized().decodeMap<NotebookNoteModel>(map);
+  static ClimbingNoteModel fromMap(Map<String, dynamic> map) {
+    return ensureInitialized().decodeMap<ClimbingNoteModel>(map);
   }
 
-  static NotebookNoteModel fromJson(String json) {
-    return ensureInitialized().decodeJson<NotebookNoteModel>(json);
+  static ClimbingNoteModel fromJson(String json) {
+    return ensureInitialized().decodeJson<ClimbingNoteModel>(json);
   }
 }
 
-mixin NotebookNoteModelMappable {
+mixin ClimbingNoteModelMappable {
   String toJson() {
-    return NotebookNoteModelMapper.ensureInitialized()
-        .encodeJson<NotebookNoteModel>(this as NotebookNoteModel);
+    return ClimbingNoteModelMapper.ensureInitialized()
+        .encodeJson<ClimbingNoteModel>(this as ClimbingNoteModel);
   }
 
   Map<String, dynamic> toMap() {
-    return NotebookNoteModelMapper.ensureInitialized()
-        .encodeMap<NotebookNoteModel>(this as NotebookNoteModel);
+    return ClimbingNoteModelMapper.ensureInitialized()
+        .encodeMap<ClimbingNoteModel>(this as ClimbingNoteModel);
   }
 
-  NotebookNoteModelCopyWith<NotebookNoteModel, NotebookNoteModel,
-          NotebookNoteModel>
-      get copyWith => _NotebookNoteModelCopyWithImpl(
-          this as NotebookNoteModel, $identity, $identity);
+  ClimbingNoteModelCopyWith<ClimbingNoteModel, ClimbingNoteModel,
+          ClimbingNoteModel>
+      get copyWith => _ClimbingNoteModelCopyWithImpl(
+          this as ClimbingNoteModel, $identity, $identity);
   @override
   String toString() {
-    return NotebookNoteModelMapper.ensureInitialized()
-        .stringifyValue(this as NotebookNoteModel);
+    return ClimbingNoteModelMapper.ensureInitialized()
+        .stringifyValue(this as ClimbingNoteModel);
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (runtimeType == other.runtimeType &&
-            NotebookNoteModelMapper.ensureInitialized()
-                .isValueEqual(this as NotebookNoteModel, other));
+            ClimbingNoteModelMapper.ensureInitialized()
+                .isValueEqual(this as ClimbingNoteModel, other));
   }
 
   @override
   int get hashCode {
-    return NotebookNoteModelMapper.ensureInitialized()
-        .hashValue(this as NotebookNoteModel);
+    return ClimbingNoteModelMapper.ensureInitialized()
+        .hashValue(this as ClimbingNoteModel);
   }
 }
 
-extension NotebookNoteModelValueCopy<$R, $Out>
-    on ObjectCopyWith<$R, NotebookNoteModel, $Out> {
-  NotebookNoteModelCopyWith<$R, NotebookNoteModel, $Out>
-      get $asNotebookNoteModel =>
-          $base.as((v, t, t2) => _NotebookNoteModelCopyWithImpl(v, t, t2));
+extension ClimbingNoteModelValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, ClimbingNoteModel, $Out> {
+  ClimbingNoteModelCopyWith<$R, ClimbingNoteModel, $Out>
+      get $asClimbingNoteModel =>
+          $base.as((v, t, t2) => _ClimbingNoteModelCopyWithImpl(v, t, t2));
 }
 
-abstract class NotebookNoteModelCopyWith<$R, $In extends NotebookNoteModel,
+abstract class ClimbingNoteModelCopyWith<$R, $In extends ClimbingNoteModel,
     $Out> implements NoteModelCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, dynamic, ObjectCopyWith<$R, dynamic, dynamic>> get document;
   @override
@@ -203,19 +319,22 @@ abstract class NotebookNoteModelCopyWith<$R, $In extends NotebookNoteModel,
       Set<String>? tagIds,
       bool? hidden,
       List<dynamic>? document,
+      String? difficulty,
+      ClimbingNoteLocation? location,
+      ClimbingNoteType? type,
       DateTime? lastUpdatedUtc});
-  NotebookNoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
+  ClimbingNoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
 
-class _NotebookNoteModelCopyWithImpl<$R, $Out>
-    extends ClassCopyWithBase<$R, NotebookNoteModel, $Out>
-    implements NotebookNoteModelCopyWith<$R, NotebookNoteModel, $Out> {
-  _NotebookNoteModelCopyWithImpl(super.value, super.then, super.then2);
+class _ClimbingNoteModelCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, ClimbingNoteModel, $Out>
+    implements ClimbingNoteModelCopyWith<$R, ClimbingNoteModel, $Out> {
+  _ClimbingNoteModelCopyWithImpl(super.value, super.then, super.then2);
 
   @override
-  late final ClassMapperBase<NotebookNoteModel> $mapper =
-      NotebookNoteModelMapper.ensureInitialized();
+  late final ClassMapperBase<ClimbingNoteModel> $mapper =
+      ClimbingNoteModelMapper.ensureInitialized();
   @override
   ListCopyWith<$R, dynamic, ObjectCopyWith<$R, dynamic, dynamic>>
       get document => ListCopyWith($value.document,
@@ -227,6 +346,9 @@ class _NotebookNoteModelCopyWithImpl<$R, $Out>
           Set<String>? tagIds,
           bool? hidden,
           List<dynamic>? document,
+          String? difficulty,
+          ClimbingNoteLocation? location,
+          ClimbingNoteType? type,
           Object? lastUpdatedUtc = $none}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
@@ -234,21 +356,27 @@ class _NotebookNoteModelCopyWithImpl<$R, $Out>
         if (tagIds != null) #tagIds: tagIds,
         if (hidden != null) #hidden: hidden,
         if (document != null) #document: document,
+        if (difficulty != null) #difficulty: difficulty,
+        if (location != null) #location: location,
+        if (type != null) #type: type,
         if (lastUpdatedUtc != $none) #lastUpdatedUtc: lastUpdatedUtc
       }));
   @override
-  NotebookNoteModel $make(CopyWithData data) => NotebookNoteModel(
+  ClimbingNoteModel $make(CopyWithData data) => ClimbingNoteModel(
       id: data.get(#id, or: $value.id),
       title: data.get(#title, or: $value.title),
       tagIds: data.get(#tagIds, or: $value.tagIds),
       hidden: data.get(#hidden, or: $value.hidden),
       document: data.get(#document, or: $value.document),
+      difficulty: data.get(#difficulty, or: $value.difficulty),
+      location: data.get(#location, or: $value.location),
+      type: data.get(#type, or: $value.type),
       lastUpdatedUtc: data.get(#lastUpdatedUtc, or: $value.lastUpdatedUtc));
 
   @override
-  NotebookNoteModelCopyWith<$R2, NotebookNoteModel, $Out2> $chain<$R2, $Out2>(
+  ClimbingNoteModelCopyWith<$R2, ClimbingNoteModel, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _NotebookNoteModelCopyWithImpl($value, $cast, t);
+      _ClimbingNoteModelCopyWithImpl($value, $cast, t);
 }
 
 class RecipeTypeMapper extends EnumMapper<RecipeType> {
@@ -533,4 +661,177 @@ class _CookbookNoteModelCopyWithImpl<$R, $Out>
   CookbookNoteModelCopyWith<$R2, CookbookNoteModel, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
       _CookbookNoteModelCopyWithImpl($value, $cast, t);
+}
+
+class NotebookNoteModelMapper extends SubClassMapperBase<NotebookNoteModel> {
+  NotebookNoteModelMapper._();
+
+  static NotebookNoteModelMapper? _instance;
+  static NotebookNoteModelMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = NotebookNoteModelMapper._());
+      NoteModelMapper.ensureInitialized().addSubMapper(_instance!);
+    }
+    return _instance!;
+  }
+
+  @override
+  final String id = 'NotebookNoteModel';
+
+  static String _$id(NotebookNoteModel v) => v.id;
+  static const Field<NotebookNoteModel, String> _f$id = Field('id', _$id);
+  static String _$title(NotebookNoteModel v) => v.title;
+  static const Field<NotebookNoteModel, String> _f$title =
+      Field('title', _$title);
+  static Set<String> _$tagIds(NotebookNoteModel v) => v.tagIds;
+  static const Field<NotebookNoteModel, Set<String>> _f$tagIds =
+      Field('tagIds', _$tagIds, opt: true, def: const {});
+  static bool _$hidden(NotebookNoteModel v) => v.hidden;
+  static const Field<NotebookNoteModel, bool> _f$hidden =
+      Field('hidden', _$hidden);
+  static List<dynamic> _$document(NotebookNoteModel v) => v.document;
+  static const Field<NotebookNoteModel, List<dynamic>> _f$document =
+      Field('document', _$document);
+  static DateTime _$lastUpdatedUtc(NotebookNoteModel v) => v.lastUpdatedUtc;
+  static const Field<NotebookNoteModel, DateTime> _f$lastUpdatedUtc =
+      Field('lastUpdatedUtc', _$lastUpdatedUtc, opt: true);
+
+  @override
+  final MappableFields<NotebookNoteModel> fields = const {
+    #id: _f$id,
+    #title: _f$title,
+    #tagIds: _f$tagIds,
+    #hidden: _f$hidden,
+    #document: _f$document,
+    #lastUpdatedUtc: _f$lastUpdatedUtc,
+  };
+
+  @override
+  final String discriminatorKey = 'plugin';
+  @override
+  final dynamic discriminatorValue = 'notebook';
+  @override
+  late final ClassMapperBase superMapper = NoteModelMapper.ensureInitialized();
+
+  static NotebookNoteModel _instantiate(DecodingData data) {
+    return NotebookNoteModel(
+        id: data.dec(_f$id),
+        title: data.dec(_f$title),
+        tagIds: data.dec(_f$tagIds),
+        hidden: data.dec(_f$hidden),
+        document: data.dec(_f$document),
+        lastUpdatedUtc: data.dec(_f$lastUpdatedUtc));
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+
+  static NotebookNoteModel fromMap(Map<String, dynamic> map) {
+    return ensureInitialized().decodeMap<NotebookNoteModel>(map);
+  }
+
+  static NotebookNoteModel fromJson(String json) {
+    return ensureInitialized().decodeJson<NotebookNoteModel>(json);
+  }
+}
+
+mixin NotebookNoteModelMappable {
+  String toJson() {
+    return NotebookNoteModelMapper.ensureInitialized()
+        .encodeJson<NotebookNoteModel>(this as NotebookNoteModel);
+  }
+
+  Map<String, dynamic> toMap() {
+    return NotebookNoteModelMapper.ensureInitialized()
+        .encodeMap<NotebookNoteModel>(this as NotebookNoteModel);
+  }
+
+  NotebookNoteModelCopyWith<NotebookNoteModel, NotebookNoteModel,
+          NotebookNoteModel>
+      get copyWith => _NotebookNoteModelCopyWithImpl(
+          this as NotebookNoteModel, $identity, $identity);
+  @override
+  String toString() {
+    return NotebookNoteModelMapper.ensureInitialized()
+        .stringifyValue(this as NotebookNoteModel);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (runtimeType == other.runtimeType &&
+            NotebookNoteModelMapper.ensureInitialized()
+                .isValueEqual(this as NotebookNoteModel, other));
+  }
+
+  @override
+  int get hashCode {
+    return NotebookNoteModelMapper.ensureInitialized()
+        .hashValue(this as NotebookNoteModel);
+  }
+}
+
+extension NotebookNoteModelValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, NotebookNoteModel, $Out> {
+  NotebookNoteModelCopyWith<$R, NotebookNoteModel, $Out>
+      get $asNotebookNoteModel =>
+          $base.as((v, t, t2) => _NotebookNoteModelCopyWithImpl(v, t, t2));
+}
+
+abstract class NotebookNoteModelCopyWith<$R, $In extends NotebookNoteModel,
+    $Out> implements NoteModelCopyWith<$R, $In, $Out> {
+  ListCopyWith<$R, dynamic, ObjectCopyWith<$R, dynamic, dynamic>> get document;
+  @override
+  $R call(
+      {String? id,
+      String? title,
+      Set<String>? tagIds,
+      bool? hidden,
+      List<dynamic>? document,
+      DateTime? lastUpdatedUtc});
+  NotebookNoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
+      Then<$Out2, $R2> t);
+}
+
+class _NotebookNoteModelCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, NotebookNoteModel, $Out>
+    implements NotebookNoteModelCopyWith<$R, NotebookNoteModel, $Out> {
+  _NotebookNoteModelCopyWithImpl(super.value, super.then, super.then2);
+
+  @override
+  late final ClassMapperBase<NotebookNoteModel> $mapper =
+      NotebookNoteModelMapper.ensureInitialized();
+  @override
+  ListCopyWith<$R, dynamic, ObjectCopyWith<$R, dynamic, dynamic>>
+      get document => ListCopyWith($value.document,
+          (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(document: v));
+  @override
+  $R call(
+          {String? id,
+          String? title,
+          Set<String>? tagIds,
+          bool? hidden,
+          List<dynamic>? document,
+          Object? lastUpdatedUtc = $none}) =>
+      $apply(FieldCopyWithData({
+        if (id != null) #id: id,
+        if (title != null) #title: title,
+        if (tagIds != null) #tagIds: tagIds,
+        if (hidden != null) #hidden: hidden,
+        if (document != null) #document: document,
+        if (lastUpdatedUtc != $none) #lastUpdatedUtc: lastUpdatedUtc
+      }));
+  @override
+  NotebookNoteModel $make(CopyWithData data) => NotebookNoteModel(
+      id: data.get(#id, or: $value.id),
+      title: data.get(#title, or: $value.title),
+      tagIds: data.get(#tagIds, or: $value.tagIds),
+      hidden: data.get(#hidden, or: $value.hidden),
+      document: data.get(#document, or: $value.document),
+      lastUpdatedUtc: data.get(#lastUpdatedUtc, or: $value.lastUpdatedUtc));
+
+  @override
+  NotebookNoteModelCopyWith<$R2, NotebookNoteModel, $Out2> $chain<$R2, $Out2>(
+          Then<$Out2, $R2> t) =>
+      _NotebookNoteModelCopyWithImpl($value, $cast, t);
 }
