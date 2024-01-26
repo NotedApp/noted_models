@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 void main() {
   group('CookbookNoteModel', () {
     test('creates an empty note', () {
-      CookbookNoteModel note = CookbookNoteModel.empty();
+      CookbookNoteModel note = const CookbookNoteModel.empty();
 
       expect(note.id, '');
       expect(note.title, '');
@@ -13,7 +13,7 @@ void main() {
       expect(note.url, '');
       expect(note.prepTime, '');
       expect(note.cookTime, '');
-      expect(note.difficulty, 3);
+      expect(note.difficulty, -1);
       expect(note.types, const <String>{});
       expect(note.cuisines, const <String>{});
       expect(note.document, Document.empty);
@@ -23,7 +23,7 @@ void main() {
     });
 
     test('parses to and from json', () {
-      CookbookNoteModel note = CookbookNoteModel(
+      CookbookNoteModel note = const CookbookNoteModel(
         id: 'test-id',
         title: 'test-title',
         hidden: true,
@@ -40,7 +40,7 @@ void main() {
     });
 
     test('parses to and from map', () {
-      CookbookNoteModel note = CookbookNoteModel(
+      CookbookNoteModel note = const CookbookNoteModel(
         id: 'test-id',
         title: 'test-title',
         hidden: true,

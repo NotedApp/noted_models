@@ -10,16 +10,15 @@ class NotebookNoteModel extends NoteModel with NotebookNoteModelMappable {
   static const fromMap = NotebookNoteModelMapper.fromMap;
   static const fromJson = NotebookNoteModelMapper.fromJson;
 
-  NotebookNoteModel({
-    required super.id,
-    required super.title,
+  const NotebookNoteModel({
+    super.id = '',
+    super.title = '',
     super.tagIds = const {},
-    required super.hidden,
-    required this.document,
+    super.hidden = false,
+    super.archived = false,
     super.lastUpdatedUtc,
+    this.document = Document.empty,
   });
 
-  NotebookNoteModel.empty()
-      : document = Document.empty,
-        super(id: '', title: '', tagIds: const {}, hidden: false); // coverage:ignore-line
+  const NotebookNoteModel.empty() : this();
 }
