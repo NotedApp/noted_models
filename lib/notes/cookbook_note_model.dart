@@ -16,36 +16,23 @@ class CookbookNoteModel extends NoteModel with CookbookNoteModelMappable {
   static const fromMap = CookbookNoteModelMapper.fromMap;
   static const fromJson = CookbookNoteModelMapper.fromJson;
 
-  CookbookNoteModel({
-    required super.id,
-    required super.title,
+  const CookbookNoteModel({
+    super.id = '',
+    super.title = '',
     super.tagIds = const {},
-    required super.hidden,
-    required this.url,
-    required this.prepTime,
-    required this.cookTime,
-    required this.difficulty,
+    super.hidden = false,
+    super.archived = false,
+    super.lastUpdatedUtc,
+    this.url = '',
+    this.prepTime = '',
+    this.cookTime = '',
+    this.difficulty = -1,
     this.types = const {},
     this.cuisines = const {},
-    required this.document,
-    super.lastUpdatedUtc,
+    this.document = Document.empty,
   });
 
-  CookbookNoteModel.empty()
-      : url = '',
-        prepTime = '',
-        cookTime = '',
-        difficulty = 3,
-        types = const {},
-        cuisines = const {},
-        document = Document.empty,
-        super(
-          id: '',
-          title: '',
-          tagIds: const {},
-          hidden: false,
-          lastUpdatedUtc: DateTime.now().toUtc(),
-        );
+  const CookbookNoteModel.empty() : this();
 }
 
 @MappableEnum()

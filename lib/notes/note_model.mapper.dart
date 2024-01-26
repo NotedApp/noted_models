@@ -24,15 +24,21 @@ class NoteModelMapper extends ClassMapperBase<NoteModel> {
   final String id = 'NoteModel';
 
   static String _$id(NoteModel v) => v.id;
-  static const Field<NoteModel, String> _f$id = Field('id', _$id);
+  static const Field<NoteModel, String> _f$id =
+      Field('id', _$id, opt: true, def: '');
   static String _$title(NoteModel v) => v.title;
-  static const Field<NoteModel, String> _f$title = Field('title', _$title);
+  static const Field<NoteModel, String> _f$title =
+      Field('title', _$title, opt: true, def: '');
   static Set<String> _$tagIds(NoteModel v) => v.tagIds;
   static const Field<NoteModel, Set<String>> _f$tagIds =
-      Field('tagIds', _$tagIds);
+      Field('tagIds', _$tagIds, opt: true, def: const {});
   static bool _$hidden(NoteModel v) => v.hidden;
-  static const Field<NoteModel, bool> _f$hidden = Field('hidden', _$hidden);
-  static DateTime _$lastUpdatedUtc(NoteModel v) => v.lastUpdatedUtc;
+  static const Field<NoteModel, bool> _f$hidden =
+      Field('hidden', _$hidden, opt: true, def: false);
+  static bool _$archived(NoteModel v) => v.archived;
+  static const Field<NoteModel, bool> _f$archived =
+      Field('archived', _$archived, opt: true, def: false);
+  static DateTime? _$lastUpdatedUtc(NoteModel v) => v.lastUpdatedUtc;
   static const Field<NoteModel, DateTime> _f$lastUpdatedUtc =
       Field('lastUpdatedUtc', _$lastUpdatedUtc, opt: true);
 
@@ -42,6 +48,7 @@ class NoteModelMapper extends ClassMapperBase<NoteModel> {
     #title: _f$title,
     #tagIds: _f$tagIds,
     #hidden: _f$hidden,
+    #archived: _f$archived,
     #lastUpdatedUtc: _f$lastUpdatedUtc,
   };
 
@@ -75,6 +82,7 @@ abstract class NoteModelCopyWith<$R, $In extends NoteModel, $Out>
       String? title,
       Set<String>? tagIds,
       bool? hidden,
+      bool? archived,
       DateTime? lastUpdatedUtc});
   NoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -194,7 +202,8 @@ class ClimbingNoteModelMapper extends SubClassMapperBase<ClimbingNoteModel> {
   final String id = 'ClimbingNoteModel';
 
   static String _$id(ClimbingNoteModel v) => v.id;
-  static const Field<ClimbingNoteModel, String> _f$id = Field('id', _$id);
+  static const Field<ClimbingNoteModel, String> _f$id =
+      Field('id', _$id, opt: true, def: '');
   static String _$title(ClimbingNoteModel v) => v.title;
   static const Field<ClimbingNoteModel, String> _f$title =
       Field('title', _$title, opt: true, def: '');
@@ -204,9 +213,15 @@ class ClimbingNoteModelMapper extends SubClassMapperBase<ClimbingNoteModel> {
   static bool _$hidden(ClimbingNoteModel v) => v.hidden;
   static const Field<ClimbingNoteModel, bool> _f$hidden =
       Field('hidden', _$hidden, opt: true, def: false);
-  static List<dynamic> _$document(ClimbingNoteModel v) => v.document;
-  static const Field<ClimbingNoteModel, List<dynamic>> _f$document =
-      Field('document', _$document, opt: true, def: Document.empty);
+  static bool _$archived(ClimbingNoteModel v) => v.archived;
+  static const Field<ClimbingNoteModel, bool> _f$archived =
+      Field('archived', _$archived, opt: true, def: false);
+  static DateTime? _$lastUpdatedUtc(ClimbingNoteModel v) => v.lastUpdatedUtc;
+  static const Field<ClimbingNoteModel, DateTime> _f$lastUpdatedUtc =
+      Field('lastUpdatedUtc', _$lastUpdatedUtc, opt: true);
+  static String _$imageUrl(ClimbingNoteModel v) => v.imageUrl;
+  static const Field<ClimbingNoteModel, String> _f$imageUrl =
+      Field('imageUrl', _$imageUrl, opt: true, def: '');
   static String _$difficulty(ClimbingNoteModel v) => v.difficulty;
   static const Field<ClimbingNoteModel, String> _f$difficulty =
       Field('difficulty', _$difficulty, opt: true, def: '');
@@ -217,12 +232,15 @@ class ClimbingNoteModelMapper extends SubClassMapperBase<ClimbingNoteModel> {
   static ClimbingNoteType _$type(ClimbingNoteModel v) => v.type;
   static const Field<ClimbingNoteModel, ClimbingNoteType> _f$type =
       Field('type', _$type, opt: true, def: ClimbingNoteType.bouldering);
-  static String _$imageUrl(ClimbingNoteModel v) => v.imageUrl;
-  static const Field<ClimbingNoteModel, String> _f$imageUrl =
-      Field('imageUrl', _$imageUrl, opt: true, def: '');
-  static DateTime _$lastUpdatedUtc(ClimbingNoteModel v) => v.lastUpdatedUtc;
-  static const Field<ClimbingNoteModel, DateTime> _f$lastUpdatedUtc =
-      Field('lastUpdatedUtc', _$lastUpdatedUtc, opt: true);
+  static List<DateTime> _$attemptsUtc(ClimbingNoteModel v) => v.attemptsUtc;
+  static const Field<ClimbingNoteModel, List<DateTime>> _f$attemptsUtc =
+      Field('attemptsUtc', _$attemptsUtc, opt: true, def: const []);
+  static List<DateTime> _$topsUtc(ClimbingNoteModel v) => v.topsUtc;
+  static const Field<ClimbingNoteModel, List<DateTime>> _f$topsUtc =
+      Field('topsUtc', _$topsUtc, opt: true, def: const []);
+  static List<dynamic> _$document(ClimbingNoteModel v) => v.document;
+  static const Field<ClimbingNoteModel, List<dynamic>> _f$document =
+      Field('document', _$document, opt: true, def: Document.empty);
 
   @override
   final MappableFields<ClimbingNoteModel> fields = const {
@@ -230,12 +248,15 @@ class ClimbingNoteModelMapper extends SubClassMapperBase<ClimbingNoteModel> {
     #title: _f$title,
     #tagIds: _f$tagIds,
     #hidden: _f$hidden,
-    #document: _f$document,
+    #archived: _f$archived,
+    #lastUpdatedUtc: _f$lastUpdatedUtc,
+    #imageUrl: _f$imageUrl,
     #difficulty: _f$difficulty,
     #location: _f$location,
     #type: _f$type,
-    #imageUrl: _f$imageUrl,
-    #lastUpdatedUtc: _f$lastUpdatedUtc,
+    #attemptsUtc: _f$attemptsUtc,
+    #topsUtc: _f$topsUtc,
+    #document: _f$document,
   };
 
   @override
@@ -251,12 +272,15 @@ class ClimbingNoteModelMapper extends SubClassMapperBase<ClimbingNoteModel> {
         title: data.dec(_f$title),
         tagIds: data.dec(_f$tagIds),
         hidden: data.dec(_f$hidden),
-        document: data.dec(_f$document),
+        archived: data.dec(_f$archived),
+        lastUpdatedUtc: data.dec(_f$lastUpdatedUtc),
+        imageUrl: data.dec(_f$imageUrl),
         difficulty: data.dec(_f$difficulty),
         location: data.dec(_f$location),
         type: data.dec(_f$type),
-        imageUrl: data.dec(_f$imageUrl),
-        lastUpdatedUtc: data.dec(_f$lastUpdatedUtc));
+        attemptsUtc: data.dec(_f$attemptsUtc),
+        topsUtc: data.dec(_f$topsUtc),
+        document: data.dec(_f$document));
   }
 
   @override
@@ -316,6 +340,10 @@ extension ClimbingNoteModelValueCopy<$R, $Out>
 
 abstract class ClimbingNoteModelCopyWith<$R, $In extends ClimbingNoteModel,
     $Out> implements NoteModelCopyWith<$R, $In, $Out> {
+  ListCopyWith<$R, DateTime, ObjectCopyWith<$R, DateTime, DateTime>>
+      get attemptsUtc;
+  ListCopyWith<$R, DateTime, ObjectCopyWith<$R, DateTime, DateTime>>
+      get topsUtc;
   ListCopyWith<$R, dynamic, ObjectCopyWith<$R, dynamic, dynamic>> get document;
   @override
   $R call(
@@ -323,12 +351,15 @@ abstract class ClimbingNoteModelCopyWith<$R, $In extends ClimbingNoteModel,
       String? title,
       Set<String>? tagIds,
       bool? hidden,
-      List<dynamic>? document,
+      bool? archived,
+      DateTime? lastUpdatedUtc,
+      String? imageUrl,
       String? difficulty,
       ClimbingNoteLocation? location,
       ClimbingNoteType? type,
-      String? imageUrl,
-      DateTime? lastUpdatedUtc});
+      List<DateTime>? attemptsUtc,
+      List<DateTime>? topsUtc,
+      List<dynamic>? document});
   ClimbingNoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -342,6 +373,16 @@ class _ClimbingNoteModelCopyWithImpl<$R, $Out>
   late final ClassMapperBase<ClimbingNoteModel> $mapper =
       ClimbingNoteModelMapper.ensureInitialized();
   @override
+  ListCopyWith<$R, DateTime, ObjectCopyWith<$R, DateTime, DateTime>>
+      get attemptsUtc => ListCopyWith(
+          $value.attemptsUtc,
+          (v, t) => ObjectCopyWith(v, $identity, t),
+          (v) => call(attemptsUtc: v));
+  @override
+  ListCopyWith<$R, DateTime, ObjectCopyWith<$R, DateTime, DateTime>>
+      get topsUtc => ListCopyWith($value.topsUtc,
+          (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(topsUtc: v));
+  @override
   ListCopyWith<$R, dynamic, ObjectCopyWith<$R, dynamic, dynamic>>
       get document => ListCopyWith($value.document,
           (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(document: v));
@@ -351,23 +392,29 @@ class _ClimbingNoteModelCopyWithImpl<$R, $Out>
           String? title,
           Set<String>? tagIds,
           bool? hidden,
-          List<dynamic>? document,
+          bool? archived,
+          Object? lastUpdatedUtc = $none,
+          String? imageUrl,
           String? difficulty,
           ClimbingNoteLocation? location,
           ClimbingNoteType? type,
-          String? imageUrl,
-          Object? lastUpdatedUtc = $none}) =>
+          List<DateTime>? attemptsUtc,
+          List<DateTime>? topsUtc,
+          List<dynamic>? document}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (title != null) #title: title,
         if (tagIds != null) #tagIds: tagIds,
         if (hidden != null) #hidden: hidden,
-        if (document != null) #document: document,
+        if (archived != null) #archived: archived,
+        if (lastUpdatedUtc != $none) #lastUpdatedUtc: lastUpdatedUtc,
+        if (imageUrl != null) #imageUrl: imageUrl,
         if (difficulty != null) #difficulty: difficulty,
         if (location != null) #location: location,
         if (type != null) #type: type,
-        if (imageUrl != null) #imageUrl: imageUrl,
-        if (lastUpdatedUtc != $none) #lastUpdatedUtc: lastUpdatedUtc
+        if (attemptsUtc != null) #attemptsUtc: attemptsUtc,
+        if (topsUtc != null) #topsUtc: topsUtc,
+        if (document != null) #document: document
       }));
   @override
   ClimbingNoteModel $make(CopyWithData data) => ClimbingNoteModel(
@@ -375,12 +422,15 @@ class _ClimbingNoteModelCopyWithImpl<$R, $Out>
       title: data.get(#title, or: $value.title),
       tagIds: data.get(#tagIds, or: $value.tagIds),
       hidden: data.get(#hidden, or: $value.hidden),
-      document: data.get(#document, or: $value.document),
+      archived: data.get(#archived, or: $value.archived),
+      lastUpdatedUtc: data.get(#lastUpdatedUtc, or: $value.lastUpdatedUtc),
+      imageUrl: data.get(#imageUrl, or: $value.imageUrl),
       difficulty: data.get(#difficulty, or: $value.difficulty),
       location: data.get(#location, or: $value.location),
       type: data.get(#type, or: $value.type),
-      imageUrl: data.get(#imageUrl, or: $value.imageUrl),
-      lastUpdatedUtc: data.get(#lastUpdatedUtc, or: $value.lastUpdatedUtc));
+      attemptsUtc: data.get(#attemptsUtc, or: $value.attemptsUtc),
+      topsUtc: data.get(#topsUtc, or: $value.topsUtc),
+      document: data.get(#document, or: $value.document));
 
   @override
   ClimbingNoteModelCopyWith<$R2, ClimbingNoteModel, $Out2> $chain<$R2, $Out2>(
@@ -462,27 +512,35 @@ class CookbookNoteModelMapper extends SubClassMapperBase<CookbookNoteModel> {
   final String id = 'CookbookNoteModel';
 
   static String _$id(CookbookNoteModel v) => v.id;
-  static const Field<CookbookNoteModel, String> _f$id = Field('id', _$id);
+  static const Field<CookbookNoteModel, String> _f$id =
+      Field('id', _$id, opt: true, def: '');
   static String _$title(CookbookNoteModel v) => v.title;
   static const Field<CookbookNoteModel, String> _f$title =
-      Field('title', _$title);
+      Field('title', _$title, opt: true, def: '');
   static Set<String> _$tagIds(CookbookNoteModel v) => v.tagIds;
   static const Field<CookbookNoteModel, Set<String>> _f$tagIds =
       Field('tagIds', _$tagIds, opt: true, def: const {});
   static bool _$hidden(CookbookNoteModel v) => v.hidden;
   static const Field<CookbookNoteModel, bool> _f$hidden =
-      Field('hidden', _$hidden);
+      Field('hidden', _$hidden, opt: true, def: false);
+  static bool _$archived(CookbookNoteModel v) => v.archived;
+  static const Field<CookbookNoteModel, bool> _f$archived =
+      Field('archived', _$archived, opt: true, def: false);
+  static DateTime? _$lastUpdatedUtc(CookbookNoteModel v) => v.lastUpdatedUtc;
+  static const Field<CookbookNoteModel, DateTime> _f$lastUpdatedUtc =
+      Field('lastUpdatedUtc', _$lastUpdatedUtc, opt: true);
   static String _$url(CookbookNoteModel v) => v.url;
-  static const Field<CookbookNoteModel, String> _f$url = Field('url', _$url);
+  static const Field<CookbookNoteModel, String> _f$url =
+      Field('url', _$url, opt: true, def: '');
   static String _$prepTime(CookbookNoteModel v) => v.prepTime;
   static const Field<CookbookNoteModel, String> _f$prepTime =
-      Field('prepTime', _$prepTime);
+      Field('prepTime', _$prepTime, opt: true, def: '');
   static String _$cookTime(CookbookNoteModel v) => v.cookTime;
   static const Field<CookbookNoteModel, String> _f$cookTime =
-      Field('cookTime', _$cookTime);
+      Field('cookTime', _$cookTime, opt: true, def: '');
   static int _$difficulty(CookbookNoteModel v) => v.difficulty;
   static const Field<CookbookNoteModel, int> _f$difficulty =
-      Field('difficulty', _$difficulty);
+      Field('difficulty', _$difficulty, opt: true, def: -1);
   static Set<String> _$types(CookbookNoteModel v) => v.types;
   static const Field<CookbookNoteModel, Set<String>> _f$types =
       Field('types', _$types, opt: true, def: const {});
@@ -491,10 +549,7 @@ class CookbookNoteModelMapper extends SubClassMapperBase<CookbookNoteModel> {
       Field('cuisines', _$cuisines, opt: true, def: const {});
   static List<dynamic> _$document(CookbookNoteModel v) => v.document;
   static const Field<CookbookNoteModel, List<dynamic>> _f$document =
-      Field('document', _$document);
-  static DateTime _$lastUpdatedUtc(CookbookNoteModel v) => v.lastUpdatedUtc;
-  static const Field<CookbookNoteModel, DateTime> _f$lastUpdatedUtc =
-      Field('lastUpdatedUtc', _$lastUpdatedUtc, opt: true);
+      Field('document', _$document, opt: true, def: Document.empty);
 
   @override
   final MappableFields<CookbookNoteModel> fields = const {
@@ -502,6 +557,8 @@ class CookbookNoteModelMapper extends SubClassMapperBase<CookbookNoteModel> {
     #title: _f$title,
     #tagIds: _f$tagIds,
     #hidden: _f$hidden,
+    #archived: _f$archived,
+    #lastUpdatedUtc: _f$lastUpdatedUtc,
     #url: _f$url,
     #prepTime: _f$prepTime,
     #cookTime: _f$cookTime,
@@ -509,7 +566,6 @@ class CookbookNoteModelMapper extends SubClassMapperBase<CookbookNoteModel> {
     #types: _f$types,
     #cuisines: _f$cuisines,
     #document: _f$document,
-    #lastUpdatedUtc: _f$lastUpdatedUtc,
   };
 
   @override
@@ -525,14 +581,15 @@ class CookbookNoteModelMapper extends SubClassMapperBase<CookbookNoteModel> {
         title: data.dec(_f$title),
         tagIds: data.dec(_f$tagIds),
         hidden: data.dec(_f$hidden),
+        archived: data.dec(_f$archived),
+        lastUpdatedUtc: data.dec(_f$lastUpdatedUtc),
         url: data.dec(_f$url),
         prepTime: data.dec(_f$prepTime),
         cookTime: data.dec(_f$cookTime),
         difficulty: data.dec(_f$difficulty),
         types: data.dec(_f$types),
         cuisines: data.dec(_f$cuisines),
-        document: data.dec(_f$document),
-        lastUpdatedUtc: data.dec(_f$lastUpdatedUtc));
+        document: data.dec(_f$document));
   }
 
   @override
@@ -599,14 +656,15 @@ abstract class CookbookNoteModelCopyWith<$R, $In extends CookbookNoteModel,
       String? title,
       Set<String>? tagIds,
       bool? hidden,
+      bool? archived,
+      DateTime? lastUpdatedUtc,
       String? url,
       String? prepTime,
       String? cookTime,
       int? difficulty,
       Set<String>? types,
       Set<String>? cuisines,
-      List<dynamic>? document,
-      DateTime? lastUpdatedUtc});
+      List<dynamic>? document});
   CookbookNoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -629,27 +687,29 @@ class _CookbookNoteModelCopyWithImpl<$R, $Out>
           String? title,
           Set<String>? tagIds,
           bool? hidden,
+          bool? archived,
+          Object? lastUpdatedUtc = $none,
           String? url,
           String? prepTime,
           String? cookTime,
           int? difficulty,
           Set<String>? types,
           Set<String>? cuisines,
-          List<dynamic>? document,
-          Object? lastUpdatedUtc = $none}) =>
+          List<dynamic>? document}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (title != null) #title: title,
         if (tagIds != null) #tagIds: tagIds,
         if (hidden != null) #hidden: hidden,
+        if (archived != null) #archived: archived,
+        if (lastUpdatedUtc != $none) #lastUpdatedUtc: lastUpdatedUtc,
         if (url != null) #url: url,
         if (prepTime != null) #prepTime: prepTime,
         if (cookTime != null) #cookTime: cookTime,
         if (difficulty != null) #difficulty: difficulty,
         if (types != null) #types: types,
         if (cuisines != null) #cuisines: cuisines,
-        if (document != null) #document: document,
-        if (lastUpdatedUtc != $none) #lastUpdatedUtc: lastUpdatedUtc
+        if (document != null) #document: document
       }));
   @override
   CookbookNoteModel $make(CopyWithData data) => CookbookNoteModel(
@@ -657,14 +717,15 @@ class _CookbookNoteModelCopyWithImpl<$R, $Out>
       title: data.get(#title, or: $value.title),
       tagIds: data.get(#tagIds, or: $value.tagIds),
       hidden: data.get(#hidden, or: $value.hidden),
+      archived: data.get(#archived, or: $value.archived),
+      lastUpdatedUtc: data.get(#lastUpdatedUtc, or: $value.lastUpdatedUtc),
       url: data.get(#url, or: $value.url),
       prepTime: data.get(#prepTime, or: $value.prepTime),
       cookTime: data.get(#cookTime, or: $value.cookTime),
       difficulty: data.get(#difficulty, or: $value.difficulty),
       types: data.get(#types, or: $value.types),
       cuisines: data.get(#cuisines, or: $value.cuisines),
-      document: data.get(#document, or: $value.document),
-      lastUpdatedUtc: data.get(#lastUpdatedUtc, or: $value.lastUpdatedUtc));
+      document: data.get(#document, or: $value.document));
 
   @override
   CookbookNoteModelCopyWith<$R2, CookbookNoteModel, $Out2> $chain<$R2, $Out2>(
@@ -688,22 +749,26 @@ class NotebookNoteModelMapper extends SubClassMapperBase<NotebookNoteModel> {
   final String id = 'NotebookNoteModel';
 
   static String _$id(NotebookNoteModel v) => v.id;
-  static const Field<NotebookNoteModel, String> _f$id = Field('id', _$id);
+  static const Field<NotebookNoteModel, String> _f$id =
+      Field('id', _$id, opt: true, def: '');
   static String _$title(NotebookNoteModel v) => v.title;
   static const Field<NotebookNoteModel, String> _f$title =
-      Field('title', _$title);
+      Field('title', _$title, opt: true, def: '');
   static Set<String> _$tagIds(NotebookNoteModel v) => v.tagIds;
   static const Field<NotebookNoteModel, Set<String>> _f$tagIds =
       Field('tagIds', _$tagIds, opt: true, def: const {});
   static bool _$hidden(NotebookNoteModel v) => v.hidden;
   static const Field<NotebookNoteModel, bool> _f$hidden =
-      Field('hidden', _$hidden);
-  static List<dynamic> _$document(NotebookNoteModel v) => v.document;
-  static const Field<NotebookNoteModel, List<dynamic>> _f$document =
-      Field('document', _$document);
-  static DateTime _$lastUpdatedUtc(NotebookNoteModel v) => v.lastUpdatedUtc;
+      Field('hidden', _$hidden, opt: true, def: false);
+  static bool _$archived(NotebookNoteModel v) => v.archived;
+  static const Field<NotebookNoteModel, bool> _f$archived =
+      Field('archived', _$archived, opt: true, def: false);
+  static DateTime? _$lastUpdatedUtc(NotebookNoteModel v) => v.lastUpdatedUtc;
   static const Field<NotebookNoteModel, DateTime> _f$lastUpdatedUtc =
       Field('lastUpdatedUtc', _$lastUpdatedUtc, opt: true);
+  static List<dynamic> _$document(NotebookNoteModel v) => v.document;
+  static const Field<NotebookNoteModel, List<dynamic>> _f$document =
+      Field('document', _$document, opt: true, def: Document.empty);
 
   @override
   final MappableFields<NotebookNoteModel> fields = const {
@@ -711,8 +776,9 @@ class NotebookNoteModelMapper extends SubClassMapperBase<NotebookNoteModel> {
     #title: _f$title,
     #tagIds: _f$tagIds,
     #hidden: _f$hidden,
-    #document: _f$document,
+    #archived: _f$archived,
     #lastUpdatedUtc: _f$lastUpdatedUtc,
+    #document: _f$document,
   };
 
   @override
@@ -728,8 +794,9 @@ class NotebookNoteModelMapper extends SubClassMapperBase<NotebookNoteModel> {
         title: data.dec(_f$title),
         tagIds: data.dec(_f$tagIds),
         hidden: data.dec(_f$hidden),
-        document: data.dec(_f$document),
-        lastUpdatedUtc: data.dec(_f$lastUpdatedUtc));
+        archived: data.dec(_f$archived),
+        lastUpdatedUtc: data.dec(_f$lastUpdatedUtc),
+        document: data.dec(_f$document));
   }
 
   @override
@@ -796,8 +863,9 @@ abstract class NotebookNoteModelCopyWith<$R, $In extends NotebookNoteModel,
       String? title,
       Set<String>? tagIds,
       bool? hidden,
-      List<dynamic>? document,
-      DateTime? lastUpdatedUtc});
+      bool? archived,
+      DateTime? lastUpdatedUtc,
+      List<dynamic>? document});
   NotebookNoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -820,15 +888,17 @@ class _NotebookNoteModelCopyWithImpl<$R, $Out>
           String? title,
           Set<String>? tagIds,
           bool? hidden,
-          List<dynamic>? document,
-          Object? lastUpdatedUtc = $none}) =>
+          bool? archived,
+          Object? lastUpdatedUtc = $none,
+          List<dynamic>? document}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (title != null) #title: title,
         if (tagIds != null) #tagIds: tagIds,
         if (hidden != null) #hidden: hidden,
-        if (document != null) #document: document,
-        if (lastUpdatedUtc != $none) #lastUpdatedUtc: lastUpdatedUtc
+        if (archived != null) #archived: archived,
+        if (lastUpdatedUtc != $none) #lastUpdatedUtc: lastUpdatedUtc,
+        if (document != null) #document: document
       }));
   @override
   NotebookNoteModel $make(CopyWithData data) => NotebookNoteModel(
@@ -836,8 +906,9 @@ class _NotebookNoteModelCopyWithImpl<$R, $Out>
       title: data.get(#title, or: $value.title),
       tagIds: data.get(#tagIds, or: $value.tagIds),
       hidden: data.get(#hidden, or: $value.hidden),
-      document: data.get(#document, or: $value.document),
-      lastUpdatedUtc: data.get(#lastUpdatedUtc, or: $value.lastUpdatedUtc));
+      archived: data.get(#archived, or: $value.archived),
+      lastUpdatedUtc: data.get(#lastUpdatedUtc, or: $value.lastUpdatedUtc),
+      document: data.get(#document, or: $value.document));
 
   @override
   NotebookNoteModelCopyWith<$R2, NotebookNoteModel, $Out2> $chain<$R2, $Out2>(

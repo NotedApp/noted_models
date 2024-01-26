@@ -6,6 +6,8 @@ class ClimbingNoteModel extends NoteModel with ClimbingNoteModelMappable {
   final String difficulty;
   final ClimbingNoteLocation location;
   final ClimbingNoteType type;
+  final List<DateTime> attemptsUtc;
+  final List<DateTime> topsUtc;
   final DocumentModel document;
 
   @override
@@ -14,26 +16,23 @@ class ClimbingNoteModel extends NoteModel with ClimbingNoteModelMappable {
   static const fromMap = ClimbingNoteModelMapper.fromMap;
   static const fromJson = ClimbingNoteModelMapper.fromJson;
 
-  ClimbingNoteModel({
-    required super.id,
+  const ClimbingNoteModel({
+    super.id = '',
     super.title = '',
     super.tagIds = const {},
     super.hidden = false,
+    super.archived = false,
+    super.lastUpdatedUtc,
     this.imageUrl = '',
     this.difficulty = '',
     this.location = ClimbingNoteLocation.indoors,
     this.type = ClimbingNoteType.bouldering,
+    this.attemptsUtc = const [],
+    this.topsUtc = const [],
     this.document = Document.empty,
-    super.lastUpdatedUtc,
   });
 
-  ClimbingNoteModel.empty()
-      : imageUrl = '',
-        difficulty = '',
-        location = ClimbingNoteLocation.indoors,
-        type = ClimbingNoteType.bouldering,
-        document = Document.empty,
-        super(id: '', title: '', tagIds: const {}, hidden: false);
+  const ClimbingNoteModel.empty() : this();
 }
 
 @MappableEnum()

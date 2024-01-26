@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 void main() {
   group('ClimbingNoteModel', () {
     test('creates an empty note', () {
-      ClimbingNoteModel note = ClimbingNoteModel.empty();
+      ClimbingNoteModel note = const ClimbingNoteModel.empty();
 
       expect(note.id, '');
       expect(note.title, '');
@@ -20,7 +20,7 @@ void main() {
     });
 
     test('parses to and from json', () {
-      ClimbingNoteModel note = ClimbingNoteModel(
+      ClimbingNoteModel note = const ClimbingNoteModel(
         id: 'test-id',
         title: 'test-title',
         hidden: true,
@@ -37,7 +37,7 @@ void main() {
     });
 
     test('parses to and from map', () {
-      ClimbingNoteModel note = ClimbingNoteModel(
+      ClimbingNoteModel note = const ClimbingNoteModel(
         id: 'test-id',
         title: 'test-title',
         hidden: true,
