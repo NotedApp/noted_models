@@ -12,7 +12,8 @@ void main() {
       expect(note.hidden, false);
       expect(note.imageUrl, '');
       expect(note.difficulty, '');
-      expect(note.location, ClimbingNoteLocation.indoors);
+      expect(note.location, '');
+      expect(note.setting, ClimbingNoteSetting.indoors);
       expect(note.type, ClimbingNoteType.bouldering);
       expect(note.document, Document.empty);
 
@@ -26,7 +27,8 @@ void main() {
         hidden: true,
         imageUrl: 'test-url',
         difficulty: '5.11b',
-        location: ClimbingNoteLocation.outdoors,
+        location: 'crg boston',
+        setting: ClimbingNoteSetting.outdoors,
         type: ClimbingNoteType.sport,
         document: [],
       );
@@ -43,7 +45,8 @@ void main() {
         hidden: true,
         imageUrl: 'test-url',
         difficulty: '5.11b',
-        location: ClimbingNoteLocation.outdoors,
+        location: 'crg boston',
+        setting: ClimbingNoteSetting.outdoors,
         type: ClimbingNoteType.sport,
         document: [],
       );
