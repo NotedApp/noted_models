@@ -42,5 +42,21 @@ void main() {
 
       expect(note, parsed);
     });
+
+    test('parses from json with default values', () {
+      String json = '{"plugin": "notebook", "id": "test"}';
+      NotebookNoteModel parsed = NotebookNoteModel.fromJson(json);
+
+      expect(parsed.id, 'test');
+      expect(parsed.title, '');
+    });
+
+    test('parses from map with default values', () {
+      Map<String, dynamic> map = {'plugin': 'notebook', 'id': 'test'};
+      NotebookNoteModel parsed = NotebookNoteModel.fromMap(map);
+
+      expect(parsed.id, 'test');
+      expect(parsed.title, '');
+    });
   });
 }

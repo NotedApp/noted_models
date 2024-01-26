@@ -52,5 +52,21 @@ void main() {
 
       expect(note, parsed);
     });
+
+    test('parses from json with default values', () {
+      String json = '{"plugin": "climbing", "id": "test"}';
+      ClimbingNoteModel parsed = ClimbingNoteModel.fromJson(json);
+
+      expect(parsed.id, 'test');
+      expect(parsed.title, '');
+    });
+
+    test('parses from map with default values', () {
+      Map<String, dynamic> map = {'plugin': 'climbing', 'id': 'test'};
+      ClimbingNoteModel parsed = ClimbingNoteModel.fromMap(map);
+
+      expect(parsed.id, 'test');
+      expect(parsed.title, '');
+    });
   });
 }
