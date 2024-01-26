@@ -3,6 +3,7 @@ part of 'note_model.dart';
 @MappableClass(discriminatorValue: 'cookbook')
 class CookbookNoteModel extends NoteModel with CookbookNoteModelMappable {
   final String url;
+  final String imageUrl;
   final String prepTime;
   final String cookTime;
   final int difficulty;
@@ -24,6 +25,7 @@ class CookbookNoteModel extends NoteModel with CookbookNoteModelMappable {
     super.archived = false,
     super.lastUpdatedUtc,
     this.url = '',
+    this.imageUrl = '',
     this.prepTime = '',
     this.cookTime = '',
     this.difficulty = -1,

@@ -87,50 +87,49 @@ abstract class NoteModelCopyWith<$R, $In extends NoteModel, $Out>
   NoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
-class ClimbingNoteLocationMapper extends EnumMapper<ClimbingNoteLocation> {
-  ClimbingNoteLocationMapper._();
+class ClimbingNoteSettingMapper extends EnumMapper<ClimbingNoteSetting> {
+  ClimbingNoteSettingMapper._();
 
-  static ClimbingNoteLocationMapper? _instance;
-  static ClimbingNoteLocationMapper ensureInitialized() {
+  static ClimbingNoteSettingMapper? _instance;
+  static ClimbingNoteSettingMapper ensureInitialized() {
     if (_instance == null) {
-      MapperContainer.globals.use(_instance = ClimbingNoteLocationMapper._());
+      MapperContainer.globals.use(_instance = ClimbingNoteSettingMapper._());
     }
     return _instance!;
   }
 
-  static ClimbingNoteLocation fromValue(dynamic value) {
+  static ClimbingNoteSetting fromValue(dynamic value) {
     ensureInitialized();
     return MapperContainer.globals.fromValue(value);
   }
 
   @override
-  ClimbingNoteLocation decode(dynamic value) {
+  ClimbingNoteSetting decode(dynamic value) {
     switch (value) {
       case 'indoors':
-        return ClimbingNoteLocation.indoors;
+        return ClimbingNoteSetting.indoors;
       case 'outdoors':
-        return ClimbingNoteLocation.outdoors;
+        return ClimbingNoteSetting.outdoors;
       default:
         throw MapperException.unknownEnumValue(value);
     }
   }
 
   @override
-  dynamic encode(ClimbingNoteLocation self) {
+  dynamic encode(ClimbingNoteSetting self) {
     switch (self) {
-      case ClimbingNoteLocation.indoors:
+      case ClimbingNoteSetting.indoors:
         return 'indoors';
-      case ClimbingNoteLocation.outdoors:
+      case ClimbingNoteSetting.outdoors:
         return 'outdoors';
     }
   }
 }
 
-extension ClimbingNoteLocationMapperExtension on ClimbingNoteLocation {
+extension ClimbingNoteSettingMapperExtension on ClimbingNoteSetting {
   String toValue() {
-    ClimbingNoteLocationMapper.ensureInitialized();
-    return MapperContainer.globals.toValue<ClimbingNoteLocation>(this)
-        as String;
+    ClimbingNoteSettingMapper.ensureInitialized();
+    return MapperContainer.globals.toValue<ClimbingNoteSetting>(this) as String;
   }
 }
 
@@ -192,7 +191,7 @@ class ClimbingNoteModelMapper extends SubClassMapperBase<ClimbingNoteModel> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = ClimbingNoteModelMapper._());
       NoteModelMapper.ensureInitialized().addSubMapper(_instance!);
-      ClimbingNoteLocationMapper.ensureInitialized();
+      ClimbingNoteSettingMapper.ensureInitialized();
       ClimbingNoteTypeMapper.ensureInitialized();
     }
     return _instance!;
@@ -225,10 +224,12 @@ class ClimbingNoteModelMapper extends SubClassMapperBase<ClimbingNoteModel> {
   static String _$difficulty(ClimbingNoteModel v) => v.difficulty;
   static const Field<ClimbingNoteModel, String> _f$difficulty =
       Field('difficulty', _$difficulty, opt: true, def: '');
-  static ClimbingNoteLocation _$location(ClimbingNoteModel v) => v.location;
-  static const Field<ClimbingNoteModel, ClimbingNoteLocation> _f$location =
-      Field('location', _$location,
-          opt: true, def: ClimbingNoteLocation.indoors);
+  static String _$location(ClimbingNoteModel v) => v.location;
+  static const Field<ClimbingNoteModel, String> _f$location =
+      Field('location', _$location, opt: true, def: '');
+  static ClimbingNoteSetting _$setting(ClimbingNoteModel v) => v.setting;
+  static const Field<ClimbingNoteModel, ClimbingNoteSetting> _f$setting =
+      Field('setting', _$setting, opt: true, def: ClimbingNoteSetting.indoors);
   static ClimbingNoteType _$type(ClimbingNoteModel v) => v.type;
   static const Field<ClimbingNoteModel, ClimbingNoteType> _f$type =
       Field('type', _$type, opt: true, def: ClimbingNoteType.bouldering);
@@ -253,6 +254,7 @@ class ClimbingNoteModelMapper extends SubClassMapperBase<ClimbingNoteModel> {
     #imageUrl: _f$imageUrl,
     #difficulty: _f$difficulty,
     #location: _f$location,
+    #setting: _f$setting,
     #type: _f$type,
     #attemptsUtc: _f$attemptsUtc,
     #topsUtc: _f$topsUtc,
@@ -277,6 +279,7 @@ class ClimbingNoteModelMapper extends SubClassMapperBase<ClimbingNoteModel> {
         imageUrl: data.dec(_f$imageUrl),
         difficulty: data.dec(_f$difficulty),
         location: data.dec(_f$location),
+        setting: data.dec(_f$setting),
         type: data.dec(_f$type),
         attemptsUtc: data.dec(_f$attemptsUtc),
         topsUtc: data.dec(_f$topsUtc),
@@ -355,7 +358,8 @@ abstract class ClimbingNoteModelCopyWith<$R, $In extends ClimbingNoteModel,
       DateTime? lastUpdatedUtc,
       String? imageUrl,
       String? difficulty,
-      ClimbingNoteLocation? location,
+      String? location,
+      ClimbingNoteSetting? setting,
       ClimbingNoteType? type,
       List<DateTime>? attemptsUtc,
       List<DateTime>? topsUtc,
@@ -396,7 +400,8 @@ class _ClimbingNoteModelCopyWithImpl<$R, $Out>
           Object? lastUpdatedUtc = $none,
           String? imageUrl,
           String? difficulty,
-          ClimbingNoteLocation? location,
+          String? location,
+          ClimbingNoteSetting? setting,
           ClimbingNoteType? type,
           List<DateTime>? attemptsUtc,
           List<DateTime>? topsUtc,
@@ -411,6 +416,7 @@ class _ClimbingNoteModelCopyWithImpl<$R, $Out>
         if (imageUrl != null) #imageUrl: imageUrl,
         if (difficulty != null) #difficulty: difficulty,
         if (location != null) #location: location,
+        if (setting != null) #setting: setting,
         if (type != null) #type: type,
         if (attemptsUtc != null) #attemptsUtc: attemptsUtc,
         if (topsUtc != null) #topsUtc: topsUtc,
@@ -427,6 +433,7 @@ class _ClimbingNoteModelCopyWithImpl<$R, $Out>
       imageUrl: data.get(#imageUrl, or: $value.imageUrl),
       difficulty: data.get(#difficulty, or: $value.difficulty),
       location: data.get(#location, or: $value.location),
+      setting: data.get(#setting, or: $value.setting),
       type: data.get(#type, or: $value.type),
       attemptsUtc: data.get(#attemptsUtc, or: $value.attemptsUtc),
       topsUtc: data.get(#topsUtc, or: $value.topsUtc),
@@ -532,6 +539,9 @@ class CookbookNoteModelMapper extends SubClassMapperBase<CookbookNoteModel> {
   static String _$url(CookbookNoteModel v) => v.url;
   static const Field<CookbookNoteModel, String> _f$url =
       Field('url', _$url, opt: true, def: '');
+  static String _$imageUrl(CookbookNoteModel v) => v.imageUrl;
+  static const Field<CookbookNoteModel, String> _f$imageUrl =
+      Field('imageUrl', _$imageUrl, opt: true, def: '');
   static String _$prepTime(CookbookNoteModel v) => v.prepTime;
   static const Field<CookbookNoteModel, String> _f$prepTime =
       Field('prepTime', _$prepTime, opt: true, def: '');
@@ -560,6 +570,7 @@ class CookbookNoteModelMapper extends SubClassMapperBase<CookbookNoteModel> {
     #archived: _f$archived,
     #lastUpdatedUtc: _f$lastUpdatedUtc,
     #url: _f$url,
+    #imageUrl: _f$imageUrl,
     #prepTime: _f$prepTime,
     #cookTime: _f$cookTime,
     #difficulty: _f$difficulty,
@@ -584,6 +595,7 @@ class CookbookNoteModelMapper extends SubClassMapperBase<CookbookNoteModel> {
         archived: data.dec(_f$archived),
         lastUpdatedUtc: data.dec(_f$lastUpdatedUtc),
         url: data.dec(_f$url),
+        imageUrl: data.dec(_f$imageUrl),
         prepTime: data.dec(_f$prepTime),
         cookTime: data.dec(_f$cookTime),
         difficulty: data.dec(_f$difficulty),
@@ -659,6 +671,7 @@ abstract class CookbookNoteModelCopyWith<$R, $In extends CookbookNoteModel,
       bool? archived,
       DateTime? lastUpdatedUtc,
       String? url,
+      String? imageUrl,
       String? prepTime,
       String? cookTime,
       int? difficulty,
@@ -690,6 +703,7 @@ class _CookbookNoteModelCopyWithImpl<$R, $Out>
           bool? archived,
           Object? lastUpdatedUtc = $none,
           String? url,
+          String? imageUrl,
           String? prepTime,
           String? cookTime,
           int? difficulty,
@@ -704,6 +718,7 @@ class _CookbookNoteModelCopyWithImpl<$R, $Out>
         if (archived != null) #archived: archived,
         if (lastUpdatedUtc != $none) #lastUpdatedUtc: lastUpdatedUtc,
         if (url != null) #url: url,
+        if (imageUrl != null) #imageUrl: imageUrl,
         if (prepTime != null) #prepTime: prepTime,
         if (cookTime != null) #cookTime: cookTime,
         if (difficulty != null) #difficulty: difficulty,
@@ -720,6 +735,7 @@ class _CookbookNoteModelCopyWithImpl<$R, $Out>
       archived: data.get(#archived, or: $value.archived),
       lastUpdatedUtc: data.get(#lastUpdatedUtc, or: $value.lastUpdatedUtc),
       url: data.get(#url, or: $value.url),
+      imageUrl: data.get(#imageUrl, or: $value.imageUrl),
       prepTime: data.get(#prepTime, or: $value.prepTime),
       cookTime: data.get(#cookTime, or: $value.cookTime),
       difficulty: data.get(#difficulty, or: $value.difficulty),

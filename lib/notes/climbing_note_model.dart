@@ -4,7 +4,8 @@ part of 'note_model.dart';
 class ClimbingNoteModel extends NoteModel with ClimbingNoteModelMappable {
   final String imageUrl;
   final String difficulty;
-  final ClimbingNoteLocation location;
+  final String location;
+  final ClimbingNoteSetting setting;
   final ClimbingNoteType type;
   final List<DateTime> attemptsUtc;
   final List<DateTime> topsUtc;
@@ -25,7 +26,8 @@ class ClimbingNoteModel extends NoteModel with ClimbingNoteModelMappable {
     super.lastUpdatedUtc,
     this.imageUrl = '',
     this.difficulty = '',
-    this.location = ClimbingNoteLocation.indoors,
+    this.location = '',
+    this.setting = ClimbingNoteSetting.indoors,
     this.type = ClimbingNoteType.bouldering,
     this.attemptsUtc = const [],
     this.topsUtc = const [],
@@ -36,7 +38,7 @@ class ClimbingNoteModel extends NoteModel with ClimbingNoteModelMappable {
 }
 
 @MappableEnum()
-enum ClimbingNoteLocation { indoors, outdoors }
+enum ClimbingNoteSetting { indoors, outdoors }
 
 @MappableEnum()
 enum ClimbingNoteType {
