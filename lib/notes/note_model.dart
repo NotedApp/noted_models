@@ -2,30 +2,94 @@ import 'package:dart_mappable/dart_mappable.dart';
 import 'package:noted_models/noted_models.dart';
 
 part 'note_model.mapper.dart';
-part 'climbing_note_model.dart';
-part 'cookbook_note_model.dart';
-part 'notebook_note_model.dart';
 
-@MappableClass(discriminatorKey: 'plugin')
-sealed class NoteModel with NoteModelMappable {
+@MappableClass()
+final class NoteModel with NoteModelMappable {
   final String id;
-  final String title;
-  final Set<TagId> tagIds;
-  final bool hidden;
-  final bool archived;
-  final DateTime? lastUpdatedUtc;
+  final NotedPlugin plugin;
+  final Map<String, dynamic> fields;
 
-  NotedPlugin get plugin;
+  const NoteModel({
+    required this.id,
+    required this.plugin,
+    this.fields = const {},
+  });
+
+  NoteModel._({
+    required NotedPlugin plugin,
+    required List<NoteField> fields,
+    Map<NoteField, dynamic> overrides = const {},
+  }) : this(
+          id: '',
+          plugin: plugin,
+          fields: {for (final field in fields) field.name: overrides[field] ?? field.defaultValue},
+        );
+
+  NoteModel.value(
+    NotedPlugin plugin, {
+    Map<NoteField, dynamic> overrides = const {},
+  }) : this._(
+          plugin: plugin,
+          fields: switch (plugin) {
+            NotedPlugin.notebook => _notebookFields,
+            NotedPlugin.cookbook => _cookbookFields,
+            NotedPlugin.climbing => _climbingFields,
+          },
+          overrides: overrides,
+        );
+
+  NoteModel.empty(NotedPlugin plugin) : this.value(plugin);
+
+  T field<T>(NoteField<T> field) {
+    final value = fields[field.name];
+    return value is T ? value : field.defaultValue;
+  }
+
+  NoteModel copyWithField<T>(NoteField<T> field, T value) {
+    final updated = Map.of(fields);
+    updated[field.name] = value;
+    return copyWith(fields: updated);
+  }
 
   static const fromMap = NoteModelMapper.fromMap;
   static const fromJson = NoteModelMapper.fromJson;
-
-  const NoteModel({
-    this.id = '',
-    this.title = '',
-    this.tagIds = const {},
-    this.hidden = false,
-    this.archived = false,
-    this.lastUpdatedUtc,
-  });
 }
+
+const _notebookFields = <NoteField>[
+  NoteField.title,
+  NoteField.tagIds,
+  NoteField.hidden,
+  NoteField.archived,
+  NoteField.lastUpdatedUtc,
+  NoteField.document,
+];
+
+const _cookbookFields = <NoteField>[
+  NoteField.title,
+  NoteField.tagIds,
+  NoteField.hidden,
+  NoteField.archived,
+  NoteField.lastUpdatedUtc,
+  NoteField.link,
+  NoteField.imageUrl,
+  NoteField.document,
+  NoteField.cookbookPrepTime,
+  NoteField.cookbookCookTime,
+  NoteField.cookbookDifficulty,
+];
+
+const _climbingFields = <NoteField>[
+  NoteField.title,
+  NoteField.tagIds,
+  NoteField.hidden,
+  NoteField.archived,
+  NoteField.lastUpdatedUtc,
+  NoteField.imageUrl,
+  NoteField.location,
+  NoteField.document,
+  NoteField.climbingRating,
+  NoteField.climbingSetting,
+  NoteField.climbingType,
+  NoteField.climbingAttemptsUtc,
+  NoteField.climbingTopsUtc,
+];

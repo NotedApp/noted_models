@@ -13,9 +13,7 @@ class NoteModelMapper extends ClassMapperBase<NoteModel> {
   static NoteModelMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = NoteModelMapper._());
-      ClimbingNoteModelMapper.ensureInitialized();
-      CookbookNoteModelMapper.ensureInitialized();
-      NotebookNoteModelMapper.ensureInitialized();
+      NotedPluginMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -24,37 +22,26 @@ class NoteModelMapper extends ClassMapperBase<NoteModel> {
   final String id = 'NoteModel';
 
   static String _$id(NoteModel v) => v.id;
-  static const Field<NoteModel, String> _f$id =
-      Field('id', _$id, opt: true, def: '');
-  static String _$title(NoteModel v) => v.title;
-  static const Field<NoteModel, String> _f$title =
-      Field('title', _$title, opt: true, def: '');
-  static Set<String> _$tagIds(NoteModel v) => v.tagIds;
-  static const Field<NoteModel, Set<String>> _f$tagIds =
-      Field('tagIds', _$tagIds, opt: true, def: const {});
-  static bool _$hidden(NoteModel v) => v.hidden;
-  static const Field<NoteModel, bool> _f$hidden =
-      Field('hidden', _$hidden, opt: true, def: false);
-  static bool _$archived(NoteModel v) => v.archived;
-  static const Field<NoteModel, bool> _f$archived =
-      Field('archived', _$archived, opt: true, def: false);
-  static DateTime? _$lastUpdatedUtc(NoteModel v) => v.lastUpdatedUtc;
-  static const Field<NoteModel, DateTime> _f$lastUpdatedUtc =
-      Field('lastUpdatedUtc', _$lastUpdatedUtc, opt: true);
+  static const Field<NoteModel, String> _f$id = Field('id', _$id);
+  static NotedPlugin _$plugin(NoteModel v) => v.plugin;
+  static const Field<NoteModel, NotedPlugin> _f$plugin =
+      Field('plugin', _$plugin);
+  static Map<String, dynamic> _$fields(NoteModel v) => v.fields;
+  static const Field<NoteModel, Map<String, dynamic>> _f$fields =
+      Field('fields', _$fields, opt: true, def: const {});
 
   @override
   final MappableFields<NoteModel> fields = const {
     #id: _f$id,
-    #title: _f$title,
-    #tagIds: _f$tagIds,
-    #hidden: _f$hidden,
-    #archived: _f$archived,
-    #lastUpdatedUtc: _f$lastUpdatedUtc,
+    #plugin: _f$plugin,
+    #fields: _f$fields,
   };
 
   static NoteModel _instantiate(DecodingData data) {
-    throw MapperException.missingSubclass(
-        'NoteModel', 'plugin', '${data.value['plugin']}');
+    return NoteModel(
+        id: data.dec(_f$id),
+        plugin: data.dec(_f$plugin),
+        fields: data.dec(_f$fields));
   }
 
   @override
@@ -70,864 +57,78 @@ class NoteModelMapper extends ClassMapperBase<NoteModel> {
 }
 
 mixin NoteModelMappable {
-  String toJson();
-  Map<String, dynamic> toMap();
-  NoteModelCopyWith<NoteModel, NoteModel, NoteModel> get copyWith;
+  String toJson() {
+    return NoteModelMapper.ensureInitialized()
+        .encodeJson<NoteModel>(this as NoteModel);
+  }
+
+  Map<String, dynamic> toMap() {
+    return NoteModelMapper.ensureInitialized()
+        .encodeMap<NoteModel>(this as NoteModel);
+  }
+
+  NoteModelCopyWith<NoteModel, NoteModel, NoteModel> get copyWith =>
+      _NoteModelCopyWithImpl(this as NoteModel, $identity, $identity);
+  @override
+  String toString() {
+    return NoteModelMapper.ensureInitialized()
+        .stringifyValue(this as NoteModel);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (runtimeType == other.runtimeType &&
+            NoteModelMapper.ensureInitialized()
+                .isValueEqual(this as NoteModel, other));
+  }
+
+  @override
+  int get hashCode {
+    return NoteModelMapper.ensureInitialized().hashValue(this as NoteModel);
+  }
+}
+
+extension NoteModelValueCopy<$R, $Out> on ObjectCopyWith<$R, NoteModel, $Out> {
+  NoteModelCopyWith<$R, NoteModel, $Out> get $asNoteModel =>
+      $base.as((v, t, t2) => _NoteModelCopyWithImpl(v, t, t2));
 }
 
 abstract class NoteModelCopyWith<$R, $In extends NoteModel, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call(
-      {String? id,
-      String? title,
-      Set<String>? tagIds,
-      bool? hidden,
-      bool? archived,
-      DateTime? lastUpdatedUtc});
+  MapCopyWith<$R, String, dynamic, ObjectCopyWith<$R, dynamic, dynamic>>
+      get fields;
+  $R call({String? id, NotedPlugin? plugin, Map<String, dynamic>? fields});
   NoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
-class ClimbingNoteSettingMapper extends EnumMapper<ClimbingNoteSetting> {
-  ClimbingNoteSettingMapper._();
-
-  static ClimbingNoteSettingMapper? _instance;
-  static ClimbingNoteSettingMapper ensureInitialized() {
-    if (_instance == null) {
-      MapperContainer.globals.use(_instance = ClimbingNoteSettingMapper._());
-    }
-    return _instance!;
-  }
-
-  static ClimbingNoteSetting fromValue(dynamic value) {
-    ensureInitialized();
-    return MapperContainer.globals.fromValue(value);
-  }
+class _NoteModelCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, NoteModel, $Out>
+    implements NoteModelCopyWith<$R, NoteModel, $Out> {
+  _NoteModelCopyWithImpl(super.value, super.then, super.then2);
 
   @override
-  ClimbingNoteSetting decode(dynamic value) {
-    switch (value) {
-      case 'indoors':
-        return ClimbingNoteSetting.indoors;
-      case 'outdoors':
-        return ClimbingNoteSetting.outdoors;
-      default:
-        throw MapperException.unknownEnumValue(value);
-    }
-  }
-
+  late final ClassMapperBase<NoteModel> $mapper =
+      NoteModelMapper.ensureInitialized();
   @override
-  dynamic encode(ClimbingNoteSetting self) {
-    switch (self) {
-      case ClimbingNoteSetting.indoors:
-        return 'indoors';
-      case ClimbingNoteSetting.outdoors:
-        return 'outdoors';
-    }
-  }
-}
-
-extension ClimbingNoteSettingMapperExtension on ClimbingNoteSetting {
-  String toValue() {
-    ClimbingNoteSettingMapper.ensureInitialized();
-    return MapperContainer.globals.toValue<ClimbingNoteSetting>(this) as String;
-  }
-}
-
-class ClimbingNoteTypeMapper extends EnumMapper<ClimbingNoteType> {
-  ClimbingNoteTypeMapper._();
-
-  static ClimbingNoteTypeMapper? _instance;
-  static ClimbingNoteTypeMapper ensureInitialized() {
-    if (_instance == null) {
-      MapperContainer.globals.use(_instance = ClimbingNoteTypeMapper._());
-    }
-    return _instance!;
-  }
-
-  static ClimbingNoteType fromValue(dynamic value) {
-    ensureInitialized();
-    return MapperContainer.globals.fromValue(value);
-  }
-
+  MapCopyWith<$R, String, dynamic, ObjectCopyWith<$R, dynamic, dynamic>>
+      get fields => MapCopyWith($value.fields,
+          (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(fields: v));
   @override
-  ClimbingNoteType decode(dynamic value) {
-    switch (value) {
-      case 'sport':
-        return ClimbingNoteType.sport;
-      case 'traditional':
-        return ClimbingNoteType.traditional;
-      case 'bouldering':
-        return ClimbingNoteType.bouldering;
-      default:
-        throw MapperException.unknownEnumValue(value);
-    }
-  }
-
-  @override
-  dynamic encode(ClimbingNoteType self) {
-    switch (self) {
-      case ClimbingNoteType.sport:
-        return 'sport';
-      case ClimbingNoteType.traditional:
-        return 'traditional';
-      case ClimbingNoteType.bouldering:
-        return 'bouldering';
-    }
-  }
-}
-
-extension ClimbingNoteTypeMapperExtension on ClimbingNoteType {
-  String toValue() {
-    ClimbingNoteTypeMapper.ensureInitialized();
-    return MapperContainer.globals.toValue<ClimbingNoteType>(this) as String;
-  }
-}
-
-class ClimbingNoteModelMapper extends SubClassMapperBase<ClimbingNoteModel> {
-  ClimbingNoteModelMapper._();
-
-  static ClimbingNoteModelMapper? _instance;
-  static ClimbingNoteModelMapper ensureInitialized() {
-    if (_instance == null) {
-      MapperContainer.globals.use(_instance = ClimbingNoteModelMapper._());
-      NoteModelMapper.ensureInitialized().addSubMapper(_instance!);
-      ClimbingNoteSettingMapper.ensureInitialized();
-      ClimbingNoteTypeMapper.ensureInitialized();
-    }
-    return _instance!;
-  }
-
-  @override
-  final String id = 'ClimbingNoteModel';
-
-  static String _$id(ClimbingNoteModel v) => v.id;
-  static const Field<ClimbingNoteModel, String> _f$id =
-      Field('id', _$id, opt: true, def: '');
-  static String _$title(ClimbingNoteModel v) => v.title;
-  static const Field<ClimbingNoteModel, String> _f$title =
-      Field('title', _$title, opt: true, def: '');
-  static Set<String> _$tagIds(ClimbingNoteModel v) => v.tagIds;
-  static const Field<ClimbingNoteModel, Set<String>> _f$tagIds =
-      Field('tagIds', _$tagIds, opt: true, def: const {});
-  static bool _$hidden(ClimbingNoteModel v) => v.hidden;
-  static const Field<ClimbingNoteModel, bool> _f$hidden =
-      Field('hidden', _$hidden, opt: true, def: false);
-  static bool _$archived(ClimbingNoteModel v) => v.archived;
-  static const Field<ClimbingNoteModel, bool> _f$archived =
-      Field('archived', _$archived, opt: true, def: false);
-  static DateTime? _$lastUpdatedUtc(ClimbingNoteModel v) => v.lastUpdatedUtc;
-  static const Field<ClimbingNoteModel, DateTime> _f$lastUpdatedUtc =
-      Field('lastUpdatedUtc', _$lastUpdatedUtc, opt: true);
-  static String _$imageUrl(ClimbingNoteModel v) => v.imageUrl;
-  static const Field<ClimbingNoteModel, String> _f$imageUrl =
-      Field('imageUrl', _$imageUrl, opt: true, def: '');
-  static String _$difficulty(ClimbingNoteModel v) => v.difficulty;
-  static const Field<ClimbingNoteModel, String> _f$difficulty =
-      Field('difficulty', _$difficulty, opt: true, def: '');
-  static String _$location(ClimbingNoteModel v) => v.location;
-  static const Field<ClimbingNoteModel, String> _f$location =
-      Field('location', _$location, opt: true, def: '');
-  static ClimbingNoteSetting _$setting(ClimbingNoteModel v) => v.setting;
-  static const Field<ClimbingNoteModel, ClimbingNoteSetting> _f$setting =
-      Field('setting', _$setting, opt: true, def: ClimbingNoteSetting.indoors);
-  static ClimbingNoteType _$type(ClimbingNoteModel v) => v.type;
-  static const Field<ClimbingNoteModel, ClimbingNoteType> _f$type =
-      Field('type', _$type, opt: true, def: ClimbingNoteType.bouldering);
-  static List<DateTime> _$attemptsUtc(ClimbingNoteModel v) => v.attemptsUtc;
-  static const Field<ClimbingNoteModel, List<DateTime>> _f$attemptsUtc =
-      Field('attemptsUtc', _$attemptsUtc, opt: true, def: const []);
-  static List<DateTime> _$topsUtc(ClimbingNoteModel v) => v.topsUtc;
-  static const Field<ClimbingNoteModel, List<DateTime>> _f$topsUtc =
-      Field('topsUtc', _$topsUtc, opt: true, def: const []);
-  static List<dynamic> _$document(ClimbingNoteModel v) => v.document;
-  static const Field<ClimbingNoteModel, List<dynamic>> _f$document =
-      Field('document', _$document, opt: true, def: Document.empty);
-
-  @override
-  final MappableFields<ClimbingNoteModel> fields = const {
-    #id: _f$id,
-    #title: _f$title,
-    #tagIds: _f$tagIds,
-    #hidden: _f$hidden,
-    #archived: _f$archived,
-    #lastUpdatedUtc: _f$lastUpdatedUtc,
-    #imageUrl: _f$imageUrl,
-    #difficulty: _f$difficulty,
-    #location: _f$location,
-    #setting: _f$setting,
-    #type: _f$type,
-    #attemptsUtc: _f$attemptsUtc,
-    #topsUtc: _f$topsUtc,
-    #document: _f$document,
-  };
-
-  @override
-  final String discriminatorKey = 'plugin';
-  @override
-  final dynamic discriminatorValue = 'climbing';
-  @override
-  late final ClassMapperBase superMapper = NoteModelMapper.ensureInitialized();
-
-  static ClimbingNoteModel _instantiate(DecodingData data) {
-    return ClimbingNoteModel(
-        id: data.dec(_f$id),
-        title: data.dec(_f$title),
-        tagIds: data.dec(_f$tagIds),
-        hidden: data.dec(_f$hidden),
-        archived: data.dec(_f$archived),
-        lastUpdatedUtc: data.dec(_f$lastUpdatedUtc),
-        imageUrl: data.dec(_f$imageUrl),
-        difficulty: data.dec(_f$difficulty),
-        location: data.dec(_f$location),
-        setting: data.dec(_f$setting),
-        type: data.dec(_f$type),
-        attemptsUtc: data.dec(_f$attemptsUtc),
-        topsUtc: data.dec(_f$topsUtc),
-        document: data.dec(_f$document));
-  }
-
-  @override
-  final Function instantiate = _instantiate;
-
-  static ClimbingNoteModel fromMap(Map<String, dynamic> map) {
-    return ensureInitialized().decodeMap<ClimbingNoteModel>(map);
-  }
-
-  static ClimbingNoteModel fromJson(String json) {
-    return ensureInitialized().decodeJson<ClimbingNoteModel>(json);
-  }
-}
-
-mixin ClimbingNoteModelMappable {
-  String toJson() {
-    return ClimbingNoteModelMapper.ensureInitialized()
-        .encodeJson<ClimbingNoteModel>(this as ClimbingNoteModel);
-  }
-
-  Map<String, dynamic> toMap() {
-    return ClimbingNoteModelMapper.ensureInitialized()
-        .encodeMap<ClimbingNoteModel>(this as ClimbingNoteModel);
-  }
-
-  ClimbingNoteModelCopyWith<ClimbingNoteModel, ClimbingNoteModel,
-          ClimbingNoteModel>
-      get copyWith => _ClimbingNoteModelCopyWithImpl(
-          this as ClimbingNoteModel, $identity, $identity);
-  @override
-  String toString() {
-    return ClimbingNoteModelMapper.ensureInitialized()
-        .stringifyValue(this as ClimbingNoteModel);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (runtimeType == other.runtimeType &&
-            ClimbingNoteModelMapper.ensureInitialized()
-                .isValueEqual(this as ClimbingNoteModel, other));
-  }
-
-  @override
-  int get hashCode {
-    return ClimbingNoteModelMapper.ensureInitialized()
-        .hashValue(this as ClimbingNoteModel);
-  }
-}
-
-extension ClimbingNoteModelValueCopy<$R, $Out>
-    on ObjectCopyWith<$R, ClimbingNoteModel, $Out> {
-  ClimbingNoteModelCopyWith<$R, ClimbingNoteModel, $Out>
-      get $asClimbingNoteModel =>
-          $base.as((v, t, t2) => _ClimbingNoteModelCopyWithImpl(v, t, t2));
-}
-
-abstract class ClimbingNoteModelCopyWith<$R, $In extends ClimbingNoteModel,
-    $Out> implements NoteModelCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, DateTime, ObjectCopyWith<$R, DateTime, DateTime>>
-      get attemptsUtc;
-  ListCopyWith<$R, DateTime, ObjectCopyWith<$R, DateTime, DateTime>>
-      get topsUtc;
-  ListCopyWith<$R, dynamic, ObjectCopyWith<$R, dynamic, dynamic>> get document;
-  @override
-  $R call(
-      {String? id,
-      String? title,
-      Set<String>? tagIds,
-      bool? hidden,
-      bool? archived,
-      DateTime? lastUpdatedUtc,
-      String? imageUrl,
-      String? difficulty,
-      String? location,
-      ClimbingNoteSetting? setting,
-      ClimbingNoteType? type,
-      List<DateTime>? attemptsUtc,
-      List<DateTime>? topsUtc,
-      List<dynamic>? document});
-  ClimbingNoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-      Then<$Out2, $R2> t);
-}
-
-class _ClimbingNoteModelCopyWithImpl<$R, $Out>
-    extends ClassCopyWithBase<$R, ClimbingNoteModel, $Out>
-    implements ClimbingNoteModelCopyWith<$R, ClimbingNoteModel, $Out> {
-  _ClimbingNoteModelCopyWithImpl(super.value, super.then, super.then2);
-
-  @override
-  late final ClassMapperBase<ClimbingNoteModel> $mapper =
-      ClimbingNoteModelMapper.ensureInitialized();
-  @override
-  ListCopyWith<$R, DateTime, ObjectCopyWith<$R, DateTime, DateTime>>
-      get attemptsUtc => ListCopyWith(
-          $value.attemptsUtc,
-          (v, t) => ObjectCopyWith(v, $identity, t),
-          (v) => call(attemptsUtc: v));
-  @override
-  ListCopyWith<$R, DateTime, ObjectCopyWith<$R, DateTime, DateTime>>
-      get topsUtc => ListCopyWith($value.topsUtc,
-          (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(topsUtc: v));
-  @override
-  ListCopyWith<$R, dynamic, ObjectCopyWith<$R, dynamic, dynamic>>
-      get document => ListCopyWith($value.document,
-          (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(document: v));
-  @override
-  $R call(
-          {String? id,
-          String? title,
-          Set<String>? tagIds,
-          bool? hidden,
-          bool? archived,
-          Object? lastUpdatedUtc = $none,
-          String? imageUrl,
-          String? difficulty,
-          String? location,
-          ClimbingNoteSetting? setting,
-          ClimbingNoteType? type,
-          List<DateTime>? attemptsUtc,
-          List<DateTime>? topsUtc,
-          List<dynamic>? document}) =>
+  $R call({String? id, NotedPlugin? plugin, Map<String, dynamic>? fields}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
-        if (title != null) #title: title,
-        if (tagIds != null) #tagIds: tagIds,
-        if (hidden != null) #hidden: hidden,
-        if (archived != null) #archived: archived,
-        if (lastUpdatedUtc != $none) #lastUpdatedUtc: lastUpdatedUtc,
-        if (imageUrl != null) #imageUrl: imageUrl,
-        if (difficulty != null) #difficulty: difficulty,
-        if (location != null) #location: location,
-        if (setting != null) #setting: setting,
-        if (type != null) #type: type,
-        if (attemptsUtc != null) #attemptsUtc: attemptsUtc,
-        if (topsUtc != null) #topsUtc: topsUtc,
-        if (document != null) #document: document
+        if (plugin != null) #plugin: plugin,
+        if (fields != null) #fields: fields
       }));
   @override
-  ClimbingNoteModel $make(CopyWithData data) => ClimbingNoteModel(
+  NoteModel $make(CopyWithData data) => NoteModel(
       id: data.get(#id, or: $value.id),
-      title: data.get(#title, or: $value.title),
-      tagIds: data.get(#tagIds, or: $value.tagIds),
-      hidden: data.get(#hidden, or: $value.hidden),
-      archived: data.get(#archived, or: $value.archived),
-      lastUpdatedUtc: data.get(#lastUpdatedUtc, or: $value.lastUpdatedUtc),
-      imageUrl: data.get(#imageUrl, or: $value.imageUrl),
-      difficulty: data.get(#difficulty, or: $value.difficulty),
-      location: data.get(#location, or: $value.location),
-      setting: data.get(#setting, or: $value.setting),
-      type: data.get(#type, or: $value.type),
-      attemptsUtc: data.get(#attemptsUtc, or: $value.attemptsUtc),
-      topsUtc: data.get(#topsUtc, or: $value.topsUtc),
-      document: data.get(#document, or: $value.document));
+      plugin: data.get(#plugin, or: $value.plugin),
+      fields: data.get(#fields, or: $value.fields));
 
   @override
-  ClimbingNoteModelCopyWith<$R2, ClimbingNoteModel, $Out2> $chain<$R2, $Out2>(
+  NoteModelCopyWith<$R2, NoteModel, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
-      _ClimbingNoteModelCopyWithImpl($value, $cast, t);
-}
-
-class RecipeTypeMapper extends EnumMapper<RecipeType> {
-  RecipeTypeMapper._();
-
-  static RecipeTypeMapper? _instance;
-  static RecipeTypeMapper ensureInitialized() {
-    if (_instance == null) {
-      MapperContainer.globals.use(_instance = RecipeTypeMapper._());
-    }
-    return _instance!;
-  }
-
-  static RecipeType fromValue(dynamic value) {
-    ensureInitialized();
-    return MapperContainer.globals.fromValue(value);
-  }
-
-  @override
-  RecipeType decode(dynamic value) {
-    switch (value) {
-      case 'breakfast':
-        return RecipeType.breakfast;
-      case 'lunch':
-        return RecipeType.lunch;
-      case 'dinner':
-        return RecipeType.dinner;
-      case 'snack':
-        return RecipeType.snack;
-      case 'drink':
-        return RecipeType.drink;
-      default:
-        throw MapperException.unknownEnumValue(value);
-    }
-  }
-
-  @override
-  dynamic encode(RecipeType self) {
-    switch (self) {
-      case RecipeType.breakfast:
-        return 'breakfast';
-      case RecipeType.lunch:
-        return 'lunch';
-      case RecipeType.dinner:
-        return 'dinner';
-      case RecipeType.snack:
-        return 'snack';
-      case RecipeType.drink:
-        return 'drink';
-    }
-  }
-}
-
-extension RecipeTypeMapperExtension on RecipeType {
-  String toValue() {
-    RecipeTypeMapper.ensureInitialized();
-    return MapperContainer.globals.toValue<RecipeType>(this) as String;
-  }
-}
-
-class CookbookNoteModelMapper extends SubClassMapperBase<CookbookNoteModel> {
-  CookbookNoteModelMapper._();
-
-  static CookbookNoteModelMapper? _instance;
-  static CookbookNoteModelMapper ensureInitialized() {
-    if (_instance == null) {
-      MapperContainer.globals.use(_instance = CookbookNoteModelMapper._());
-      NoteModelMapper.ensureInitialized().addSubMapper(_instance!);
-    }
-    return _instance!;
-  }
-
-  @override
-  final String id = 'CookbookNoteModel';
-
-  static String _$id(CookbookNoteModel v) => v.id;
-  static const Field<CookbookNoteModel, String> _f$id =
-      Field('id', _$id, opt: true, def: '');
-  static String _$title(CookbookNoteModel v) => v.title;
-  static const Field<CookbookNoteModel, String> _f$title =
-      Field('title', _$title, opt: true, def: '');
-  static Set<String> _$tagIds(CookbookNoteModel v) => v.tagIds;
-  static const Field<CookbookNoteModel, Set<String>> _f$tagIds =
-      Field('tagIds', _$tagIds, opt: true, def: const {});
-  static bool _$hidden(CookbookNoteModel v) => v.hidden;
-  static const Field<CookbookNoteModel, bool> _f$hidden =
-      Field('hidden', _$hidden, opt: true, def: false);
-  static bool _$archived(CookbookNoteModel v) => v.archived;
-  static const Field<CookbookNoteModel, bool> _f$archived =
-      Field('archived', _$archived, opt: true, def: false);
-  static DateTime? _$lastUpdatedUtc(CookbookNoteModel v) => v.lastUpdatedUtc;
-  static const Field<CookbookNoteModel, DateTime> _f$lastUpdatedUtc =
-      Field('lastUpdatedUtc', _$lastUpdatedUtc, opt: true);
-  static String _$url(CookbookNoteModel v) => v.url;
-  static const Field<CookbookNoteModel, String> _f$url =
-      Field('url', _$url, opt: true, def: '');
-  static String _$imageUrl(CookbookNoteModel v) => v.imageUrl;
-  static const Field<CookbookNoteModel, String> _f$imageUrl =
-      Field('imageUrl', _$imageUrl, opt: true, def: '');
-  static String _$prepTime(CookbookNoteModel v) => v.prepTime;
-  static const Field<CookbookNoteModel, String> _f$prepTime =
-      Field('prepTime', _$prepTime, opt: true, def: '');
-  static String _$cookTime(CookbookNoteModel v) => v.cookTime;
-  static const Field<CookbookNoteModel, String> _f$cookTime =
-      Field('cookTime', _$cookTime, opt: true, def: '');
-  static int _$difficulty(CookbookNoteModel v) => v.difficulty;
-  static const Field<CookbookNoteModel, int> _f$difficulty =
-      Field('difficulty', _$difficulty, opt: true, def: -1);
-  static Set<String> _$types(CookbookNoteModel v) => v.types;
-  static const Field<CookbookNoteModel, Set<String>> _f$types =
-      Field('types', _$types, opt: true, def: const {});
-  static Set<String> _$cuisines(CookbookNoteModel v) => v.cuisines;
-  static const Field<CookbookNoteModel, Set<String>> _f$cuisines =
-      Field('cuisines', _$cuisines, opt: true, def: const {});
-  static List<dynamic> _$document(CookbookNoteModel v) => v.document;
-  static const Field<CookbookNoteModel, List<dynamic>> _f$document =
-      Field('document', _$document, opt: true, def: Document.empty);
-
-  @override
-  final MappableFields<CookbookNoteModel> fields = const {
-    #id: _f$id,
-    #title: _f$title,
-    #tagIds: _f$tagIds,
-    #hidden: _f$hidden,
-    #archived: _f$archived,
-    #lastUpdatedUtc: _f$lastUpdatedUtc,
-    #url: _f$url,
-    #imageUrl: _f$imageUrl,
-    #prepTime: _f$prepTime,
-    #cookTime: _f$cookTime,
-    #difficulty: _f$difficulty,
-    #types: _f$types,
-    #cuisines: _f$cuisines,
-    #document: _f$document,
-  };
-
-  @override
-  final String discriminatorKey = 'plugin';
-  @override
-  final dynamic discriminatorValue = 'cookbook';
-  @override
-  late final ClassMapperBase superMapper = NoteModelMapper.ensureInitialized();
-
-  static CookbookNoteModel _instantiate(DecodingData data) {
-    return CookbookNoteModel(
-        id: data.dec(_f$id),
-        title: data.dec(_f$title),
-        tagIds: data.dec(_f$tagIds),
-        hidden: data.dec(_f$hidden),
-        archived: data.dec(_f$archived),
-        lastUpdatedUtc: data.dec(_f$lastUpdatedUtc),
-        url: data.dec(_f$url),
-        imageUrl: data.dec(_f$imageUrl),
-        prepTime: data.dec(_f$prepTime),
-        cookTime: data.dec(_f$cookTime),
-        difficulty: data.dec(_f$difficulty),
-        types: data.dec(_f$types),
-        cuisines: data.dec(_f$cuisines),
-        document: data.dec(_f$document));
-  }
-
-  @override
-  final Function instantiate = _instantiate;
-
-  static CookbookNoteModel fromMap(Map<String, dynamic> map) {
-    return ensureInitialized().decodeMap<CookbookNoteModel>(map);
-  }
-
-  static CookbookNoteModel fromJson(String json) {
-    return ensureInitialized().decodeJson<CookbookNoteModel>(json);
-  }
-}
-
-mixin CookbookNoteModelMappable {
-  String toJson() {
-    return CookbookNoteModelMapper.ensureInitialized()
-        .encodeJson<CookbookNoteModel>(this as CookbookNoteModel);
-  }
-
-  Map<String, dynamic> toMap() {
-    return CookbookNoteModelMapper.ensureInitialized()
-        .encodeMap<CookbookNoteModel>(this as CookbookNoteModel);
-  }
-
-  CookbookNoteModelCopyWith<CookbookNoteModel, CookbookNoteModel,
-          CookbookNoteModel>
-      get copyWith => _CookbookNoteModelCopyWithImpl(
-          this as CookbookNoteModel, $identity, $identity);
-  @override
-  String toString() {
-    return CookbookNoteModelMapper.ensureInitialized()
-        .stringifyValue(this as CookbookNoteModel);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (runtimeType == other.runtimeType &&
-            CookbookNoteModelMapper.ensureInitialized()
-                .isValueEqual(this as CookbookNoteModel, other));
-  }
-
-  @override
-  int get hashCode {
-    return CookbookNoteModelMapper.ensureInitialized()
-        .hashValue(this as CookbookNoteModel);
-  }
-}
-
-extension CookbookNoteModelValueCopy<$R, $Out>
-    on ObjectCopyWith<$R, CookbookNoteModel, $Out> {
-  CookbookNoteModelCopyWith<$R, CookbookNoteModel, $Out>
-      get $asCookbookNoteModel =>
-          $base.as((v, t, t2) => _CookbookNoteModelCopyWithImpl(v, t, t2));
-}
-
-abstract class CookbookNoteModelCopyWith<$R, $In extends CookbookNoteModel,
-    $Out> implements NoteModelCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, dynamic, ObjectCopyWith<$R, dynamic, dynamic>> get document;
-  @override
-  $R call(
-      {String? id,
-      String? title,
-      Set<String>? tagIds,
-      bool? hidden,
-      bool? archived,
-      DateTime? lastUpdatedUtc,
-      String? url,
-      String? imageUrl,
-      String? prepTime,
-      String? cookTime,
-      int? difficulty,
-      Set<String>? types,
-      Set<String>? cuisines,
-      List<dynamic>? document});
-  CookbookNoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-      Then<$Out2, $R2> t);
-}
-
-class _CookbookNoteModelCopyWithImpl<$R, $Out>
-    extends ClassCopyWithBase<$R, CookbookNoteModel, $Out>
-    implements CookbookNoteModelCopyWith<$R, CookbookNoteModel, $Out> {
-  _CookbookNoteModelCopyWithImpl(super.value, super.then, super.then2);
-
-  @override
-  late final ClassMapperBase<CookbookNoteModel> $mapper =
-      CookbookNoteModelMapper.ensureInitialized();
-  @override
-  ListCopyWith<$R, dynamic, ObjectCopyWith<$R, dynamic, dynamic>>
-      get document => ListCopyWith($value.document,
-          (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(document: v));
-  @override
-  $R call(
-          {String? id,
-          String? title,
-          Set<String>? tagIds,
-          bool? hidden,
-          bool? archived,
-          Object? lastUpdatedUtc = $none,
-          String? url,
-          String? imageUrl,
-          String? prepTime,
-          String? cookTime,
-          int? difficulty,
-          Set<String>? types,
-          Set<String>? cuisines,
-          List<dynamic>? document}) =>
-      $apply(FieldCopyWithData({
-        if (id != null) #id: id,
-        if (title != null) #title: title,
-        if (tagIds != null) #tagIds: tagIds,
-        if (hidden != null) #hidden: hidden,
-        if (archived != null) #archived: archived,
-        if (lastUpdatedUtc != $none) #lastUpdatedUtc: lastUpdatedUtc,
-        if (url != null) #url: url,
-        if (imageUrl != null) #imageUrl: imageUrl,
-        if (prepTime != null) #prepTime: prepTime,
-        if (cookTime != null) #cookTime: cookTime,
-        if (difficulty != null) #difficulty: difficulty,
-        if (types != null) #types: types,
-        if (cuisines != null) #cuisines: cuisines,
-        if (document != null) #document: document
-      }));
-  @override
-  CookbookNoteModel $make(CopyWithData data) => CookbookNoteModel(
-      id: data.get(#id, or: $value.id),
-      title: data.get(#title, or: $value.title),
-      tagIds: data.get(#tagIds, or: $value.tagIds),
-      hidden: data.get(#hidden, or: $value.hidden),
-      archived: data.get(#archived, or: $value.archived),
-      lastUpdatedUtc: data.get(#lastUpdatedUtc, or: $value.lastUpdatedUtc),
-      url: data.get(#url, or: $value.url),
-      imageUrl: data.get(#imageUrl, or: $value.imageUrl),
-      prepTime: data.get(#prepTime, or: $value.prepTime),
-      cookTime: data.get(#cookTime, or: $value.cookTime),
-      difficulty: data.get(#difficulty, or: $value.difficulty),
-      types: data.get(#types, or: $value.types),
-      cuisines: data.get(#cuisines, or: $value.cuisines),
-      document: data.get(#document, or: $value.document));
-
-  @override
-  CookbookNoteModelCopyWith<$R2, CookbookNoteModel, $Out2> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
-      _CookbookNoteModelCopyWithImpl($value, $cast, t);
-}
-
-class NotebookNoteModelMapper extends SubClassMapperBase<NotebookNoteModel> {
-  NotebookNoteModelMapper._();
-
-  static NotebookNoteModelMapper? _instance;
-  static NotebookNoteModelMapper ensureInitialized() {
-    if (_instance == null) {
-      MapperContainer.globals.use(_instance = NotebookNoteModelMapper._());
-      NoteModelMapper.ensureInitialized().addSubMapper(_instance!);
-    }
-    return _instance!;
-  }
-
-  @override
-  final String id = 'NotebookNoteModel';
-
-  static String _$id(NotebookNoteModel v) => v.id;
-  static const Field<NotebookNoteModel, String> _f$id =
-      Field('id', _$id, opt: true, def: '');
-  static String _$title(NotebookNoteModel v) => v.title;
-  static const Field<NotebookNoteModel, String> _f$title =
-      Field('title', _$title, opt: true, def: '');
-  static Set<String> _$tagIds(NotebookNoteModel v) => v.tagIds;
-  static const Field<NotebookNoteModel, Set<String>> _f$tagIds =
-      Field('tagIds', _$tagIds, opt: true, def: const {});
-  static bool _$hidden(NotebookNoteModel v) => v.hidden;
-  static const Field<NotebookNoteModel, bool> _f$hidden =
-      Field('hidden', _$hidden, opt: true, def: false);
-  static bool _$archived(NotebookNoteModel v) => v.archived;
-  static const Field<NotebookNoteModel, bool> _f$archived =
-      Field('archived', _$archived, opt: true, def: false);
-  static DateTime? _$lastUpdatedUtc(NotebookNoteModel v) => v.lastUpdatedUtc;
-  static const Field<NotebookNoteModel, DateTime> _f$lastUpdatedUtc =
-      Field('lastUpdatedUtc', _$lastUpdatedUtc, opt: true);
-  static List<dynamic> _$document(NotebookNoteModel v) => v.document;
-  static const Field<NotebookNoteModel, List<dynamic>> _f$document =
-      Field('document', _$document, opt: true, def: Document.empty);
-
-  @override
-  final MappableFields<NotebookNoteModel> fields = const {
-    #id: _f$id,
-    #title: _f$title,
-    #tagIds: _f$tagIds,
-    #hidden: _f$hidden,
-    #archived: _f$archived,
-    #lastUpdatedUtc: _f$lastUpdatedUtc,
-    #document: _f$document,
-  };
-
-  @override
-  final String discriminatorKey = 'plugin';
-  @override
-  final dynamic discriminatorValue = 'notebook';
-  @override
-  late final ClassMapperBase superMapper = NoteModelMapper.ensureInitialized();
-
-  static NotebookNoteModel _instantiate(DecodingData data) {
-    return NotebookNoteModel(
-        id: data.dec(_f$id),
-        title: data.dec(_f$title),
-        tagIds: data.dec(_f$tagIds),
-        hidden: data.dec(_f$hidden),
-        archived: data.dec(_f$archived),
-        lastUpdatedUtc: data.dec(_f$lastUpdatedUtc),
-        document: data.dec(_f$document));
-  }
-
-  @override
-  final Function instantiate = _instantiate;
-
-  static NotebookNoteModel fromMap(Map<String, dynamic> map) {
-    return ensureInitialized().decodeMap<NotebookNoteModel>(map);
-  }
-
-  static NotebookNoteModel fromJson(String json) {
-    return ensureInitialized().decodeJson<NotebookNoteModel>(json);
-  }
-}
-
-mixin NotebookNoteModelMappable {
-  String toJson() {
-    return NotebookNoteModelMapper.ensureInitialized()
-        .encodeJson<NotebookNoteModel>(this as NotebookNoteModel);
-  }
-
-  Map<String, dynamic> toMap() {
-    return NotebookNoteModelMapper.ensureInitialized()
-        .encodeMap<NotebookNoteModel>(this as NotebookNoteModel);
-  }
-
-  NotebookNoteModelCopyWith<NotebookNoteModel, NotebookNoteModel,
-          NotebookNoteModel>
-      get copyWith => _NotebookNoteModelCopyWithImpl(
-          this as NotebookNoteModel, $identity, $identity);
-  @override
-  String toString() {
-    return NotebookNoteModelMapper.ensureInitialized()
-        .stringifyValue(this as NotebookNoteModel);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (runtimeType == other.runtimeType &&
-            NotebookNoteModelMapper.ensureInitialized()
-                .isValueEqual(this as NotebookNoteModel, other));
-  }
-
-  @override
-  int get hashCode {
-    return NotebookNoteModelMapper.ensureInitialized()
-        .hashValue(this as NotebookNoteModel);
-  }
-}
-
-extension NotebookNoteModelValueCopy<$R, $Out>
-    on ObjectCopyWith<$R, NotebookNoteModel, $Out> {
-  NotebookNoteModelCopyWith<$R, NotebookNoteModel, $Out>
-      get $asNotebookNoteModel =>
-          $base.as((v, t, t2) => _NotebookNoteModelCopyWithImpl(v, t, t2));
-}
-
-abstract class NotebookNoteModelCopyWith<$R, $In extends NotebookNoteModel,
-    $Out> implements NoteModelCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, dynamic, ObjectCopyWith<$R, dynamic, dynamic>> get document;
-  @override
-  $R call(
-      {String? id,
-      String? title,
-      Set<String>? tagIds,
-      bool? hidden,
-      bool? archived,
-      DateTime? lastUpdatedUtc,
-      List<dynamic>? document});
-  NotebookNoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
-      Then<$Out2, $R2> t);
-}
-
-class _NotebookNoteModelCopyWithImpl<$R, $Out>
-    extends ClassCopyWithBase<$R, NotebookNoteModel, $Out>
-    implements NotebookNoteModelCopyWith<$R, NotebookNoteModel, $Out> {
-  _NotebookNoteModelCopyWithImpl(super.value, super.then, super.then2);
-
-  @override
-  late final ClassMapperBase<NotebookNoteModel> $mapper =
-      NotebookNoteModelMapper.ensureInitialized();
-  @override
-  ListCopyWith<$R, dynamic, ObjectCopyWith<$R, dynamic, dynamic>>
-      get document => ListCopyWith($value.document,
-          (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(document: v));
-  @override
-  $R call(
-          {String? id,
-          String? title,
-          Set<String>? tagIds,
-          bool? hidden,
-          bool? archived,
-          Object? lastUpdatedUtc = $none,
-          List<dynamic>? document}) =>
-      $apply(FieldCopyWithData({
-        if (id != null) #id: id,
-        if (title != null) #title: title,
-        if (tagIds != null) #tagIds: tagIds,
-        if (hidden != null) #hidden: hidden,
-        if (archived != null) #archived: archived,
-        if (lastUpdatedUtc != $none) #lastUpdatedUtc: lastUpdatedUtc,
-        if (document != null) #document: document
-      }));
-  @override
-  NotebookNoteModel $make(CopyWithData data) => NotebookNoteModel(
-      id: data.get(#id, or: $value.id),
-      title: data.get(#title, or: $value.title),
-      tagIds: data.get(#tagIds, or: $value.tagIds),
-      hidden: data.get(#hidden, or: $value.hidden),
-      archived: data.get(#archived, or: $value.archived),
-      lastUpdatedUtc: data.get(#lastUpdatedUtc, or: $value.lastUpdatedUtc),
-      document: data.get(#document, or: $value.document));
-
-  @override
-  NotebookNoteModelCopyWith<$R2, NotebookNoteModel, $Out2> $chain<$R2, $Out2>(
-          Then<$Out2, $R2> t) =>
-      _NotebookNoteModelCopyWithImpl($value, $cast, t);
+      _NoteModelCopyWithImpl($value, $cast, t);
 }

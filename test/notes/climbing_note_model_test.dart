@@ -1,75 +1,55 @@
 import 'package:noted_models/noted_models.dart';
 import 'package:test/test.dart';
 
+final _note = NoteModel.value(
+  NotedPlugin.climbing,
+  overrides: {
+    NoteField.title: 'test-title',
+    NoteField.tagIds: <String>['test-tag'],
+    NoteField.hidden: true,
+    NoteField.archived: true,
+    NoteField.imageUrl: 'test-url',
+    NoteField.location: 'crg boston',
+    NoteField.document: Document.mock,
+    NoteField.climbingRating: 'V5',
+    NoteField.climbingSetting: 'outdoors',
+    NoteField.climbingType: 'sport',
+  },
+);
+
 void main() {
-  group('ClimbingNoteModel', () {
+  group('Climbing NoteModel', () {
     test('creates an empty note', () {
-      ClimbingNoteModel note = const ClimbingNoteModel.empty();
+      final note = NoteModel.empty(NotedPlugin.climbing);
 
       expect(note.id, '');
-      expect(note.title, '');
-      expect(note.tagIds.length, 0);
-      expect(note.hidden, false);
-      expect(note.imageUrl, '');
-      expect(note.difficulty, '');
-      expect(note.location, '');
-      expect(note.setting, ClimbingNoteSetting.indoors);
-      expect(note.type, ClimbingNoteType.bouldering);
-      expect(note.document, Document.empty);
-
       expect(note.plugin, NotedPlugin.climbing);
+
+      expect(note.field(NoteField.title), '');
+      expect(note.field(NoteField.tagIds).length, 0);
+      expect(note.field(NoteField.hidden), false);
+      expect(note.field(NoteField.archived), false);
+      expect(note.field(NoteField.lastUpdatedUtc), null);
+      expect(note.field(NoteField.imageUrl), '');
+      expect(note.field(NoteField.location), '');
+      expect(note.field(NoteField.document), Document.empty);
+      expect(note.field(NoteField.climbingRating), '');
+      expect(note.field(NoteField.climbingSetting), 'indoors');
+      expect(note.field(NoteField.climbingType), 'boulder');
     });
 
     test('parses to and from json', () {
-      ClimbingNoteModel note = const ClimbingNoteModel(
-        id: 'test-id',
-        title: 'test-title',
-        hidden: true,
-        imageUrl: 'test-url',
-        difficulty: '5.11b',
-        location: 'crg boston',
-        setting: ClimbingNoteSetting.outdoors,
-        type: ClimbingNoteType.sport,
-        document: [],
-      );
-      String json = note.toJson();
-      ClimbingNoteModel parsed = ClimbingNoteModel.fromJson(json);
+      final json = _note.toJson();
+      final parsed = NoteModel.fromJson(json);
 
-      expect(note, parsed);
+      expect(parsed, _note);
     });
 
     test('parses to and from map', () {
-      ClimbingNoteModel note = const ClimbingNoteModel(
-        id: 'test-id',
-        title: 'test-title',
-        hidden: true,
-        imageUrl: 'test-url',
-        difficulty: '5.11b',
-        location: 'crg boston',
-        setting: ClimbingNoteSetting.outdoors,
-        type: ClimbingNoteType.sport,
-        document: [],
-      );
-      Map<String, dynamic> map = note.toMap();
-      ClimbingNoteModel parsed = ClimbingNoteModel.fromMap(map);
+      final map = _note.toMap();
+      final parsed = NoteModel.fromMap(map);
 
-      expect(note, parsed);
-    });
-
-    test('parses from json with default values', () {
-      String json = '{"plugin": "climbing", "id": "test"}';
-      ClimbingNoteModel parsed = ClimbingNoteModel.fromJson(json);
-
-      expect(parsed.id, 'test');
-      expect(parsed.title, '');
-    });
-
-    test('parses from map with default values', () {
-      Map<String, dynamic> map = {'plugin': 'climbing', 'id': 'test'};
-      ClimbingNoteModel parsed = ClimbingNoteModel.fromMap(map);
-
-      expect(parsed.id, 'test');
-      expect(parsed.title, '');
+      expect(parsed, _note);
     });
   });
 }
