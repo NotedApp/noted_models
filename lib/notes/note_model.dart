@@ -18,23 +18,27 @@ final class NoteModel with NoteModelMappable {
   NoteModel._({
     required NotedPlugin plugin,
     required List<NoteField> fields,
-    Map<NoteField, dynamic> overrides = const {},
+    List<NoteFieldValue> overrides = const [],
   }) : this(
           id: '',
           plugin: plugin,
-          fields: {for (final field in fields) field.name: overrides[field] ?? field.defaultValue},
+          fields: {
+            for (final field in fields)
+              field.name: overrides
+                  .firstWhere(
+                    (override) => override.field == field,
+                    orElse: () => NoteFieldValue(field, field.defaultValue),
+                  )
+                  .value,
+          },
         );
 
   NoteModel.value(
     NotedPlugin plugin, {
-    Map<NoteField, dynamic> overrides = const {},
+    List<NoteFieldValue> overrides = const [],
   }) : this._(
           plugin: plugin,
-          fields: switch (plugin) {
-            NotedPlugin.notebook => _notebookFields,
-            NotedPlugin.cookbook => _cookbookFields,
-            NotedPlugin.climbing => _climbingFields,
-          },
+          fields: plugin.fields(),
           overrides: overrides,
         );
 
@@ -45,14 +49,24 @@ final class NoteModel with NoteModelMappable {
     return value is T ? value : field.defaultValue;
   }
 
-  NoteModel copyWithField<T>(NoteField<T> field, T value) {
+  NoteModel copyWithField<T>(NoteFieldValue<T> update) {
     final updated = Map.of(fields);
-    updated[field.name] = value;
+    updated[update.field.name] = update.value;
     return copyWith(fields: updated);
   }
 
   static const fromMap = NoteModelMapper.fromMap;
   static const fromJson = NoteModelMapper.fromJson;
+}
+
+extension NotedPluginFields on NotedPlugin {
+  List<NoteField> fields() {
+    return switch (this) {
+      NotedPlugin.notebook => _notebookFields,
+      NotedPlugin.cookbook => _cookbookFields,
+      NotedPlugin.climbing => _climbingFields,
+    };
+  }
 }
 
 const _notebookFields = <NoteField>[

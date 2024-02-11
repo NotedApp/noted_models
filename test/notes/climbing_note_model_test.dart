@@ -3,18 +3,18 @@ import 'package:test/test.dart';
 
 final _note = NoteModel.value(
   NotedPlugin.climbing,
-  overrides: {
-    NoteField.title: 'test-title',
-    NoteField.tagIds: <String>['test-tag'],
-    NoteField.hidden: true,
-    NoteField.archived: true,
-    NoteField.imageUrl: 'test-url',
-    NoteField.location: 'crg boston',
-    NoteField.document: Document.mock,
-    NoteField.climbingRating: 'V5',
-    NoteField.climbingSetting: 'outdoors',
-    NoteField.climbingType: 'sport',
-  },
+  overrides: [
+    const NoteFieldValue(NoteField.title, 'test-title'),
+    const NoteFieldValue(NoteField.tagIds, <String>['test-tag']),
+    const NoteFieldValue(NoteField.hidden, true),
+    const NoteFieldValue(NoteField.archived, true),
+    const NoteFieldValue(NoteField.imageUrl, 'test-url'),
+    const NoteFieldValue(NoteField.location, 'crg boston'),
+    const NoteFieldValue(NoteField.document, Document.mock),
+    const NoteFieldValue(NoteField.climbingRating, 'V5'),
+    const NoteFieldValue(NoteField.climbingSetting, 'outdoors'),
+    const NoteFieldValue(NoteField.climbingType, 'sport'),
+  ],
 );
 
 void main() {

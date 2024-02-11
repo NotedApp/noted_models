@@ -3,14 +3,14 @@ import 'package:test/test.dart';
 
 final _note = NoteModel.value(
   NotedPlugin.notebook,
-  overrides: {
-    NoteField.title: 'test-title',
-    NoteField.tagIds: <String>['test-tag'],
-    NoteField.hidden: true,
-    NoteField.archived: true,
-    NoteField.lastUpdatedUtc: null,
-    NoteField.document: Document.mock,
-  },
+  overrides: [
+    const NoteFieldValue(NoteField.title, 'test-title'),
+    const NoteFieldValue(NoteField.tagIds, <String>['test-tag']),
+    const NoteFieldValue(NoteField.hidden, true),
+    const NoteFieldValue(NoteField.archived, true),
+    const NoteFieldValue(NoteField.lastUpdatedUtc, null),
+    const NoteFieldValue(NoteField.document, Document.mock),
+  ],
 );
 
 void main() {
@@ -33,7 +33,7 @@ void main() {
       final note = NoteModel.empty(NotedPlugin.notebook);
       expect(note.field(NoteField.title), '');
 
-      final updated = note.copyWithField(NoteField.title, 'test-title');
+      final updated = note.copyWithField(const NoteFieldValue(NoteField.title, 'test-title'));
       expect(updated.field(NoteField.title), 'test-title');
     });
 

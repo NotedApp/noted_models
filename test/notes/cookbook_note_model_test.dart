@@ -3,18 +3,18 @@ import 'package:test/test.dart';
 
 final _note = NoteModel.value(
   NotedPlugin.cookbook,
-  overrides: {
-    NoteField.title: 'test-title',
-    NoteField.tagIds: <String>['test-tag'],
-    NoteField.hidden: true,
-    NoteField.archived: true,
-    NoteField.link: 'test-link',
-    NoteField.imageUrl: 'test-url',
-    NoteField.document: Document.mock,
-    NoteField.cookbookPrepTime: 'prep-time',
-    NoteField.cookbookCookTime: 'cook-time',
-    NoteField.cookbookDifficulty: 1,
-  },
+  overrides: [
+    const NoteFieldValue(NoteField.title, 'test-title'),
+    const NoteFieldValue(NoteField.tagIds, <String>['test-tag']),
+    const NoteFieldValue(NoteField.hidden, true),
+    const NoteFieldValue(NoteField.archived, true),
+    const NoteFieldValue(NoteField.link, 'test-link'),
+    const NoteFieldValue(NoteField.imageUrl, 'test-url'),
+    const NoteFieldValue(NoteField.document, Document.mock),
+    const NoteFieldValue(NoteField.cookbookPrepTime, 'prep-time'),
+    const NoteFieldValue(NoteField.cookbookCookTime, 'cook-time'),
+    const NoteFieldValue(NoteField.cookbookDifficulty, 1),
+  ],
 );
 
 void main() {

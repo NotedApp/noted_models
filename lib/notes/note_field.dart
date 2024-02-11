@@ -3,6 +3,14 @@ import 'package:noted_models/noted_models.dart';
 
 part 'note_field.mapper.dart';
 
+@MappableClass()
+class NoteFieldValue<T> with NoteFieldValueMappable {
+  final NoteField<T> field;
+  final T value;
+
+  const NoteFieldValue(this.field, this.value);
+}
+
 /// Acceptable types:
 /// - String
 /// - bool
