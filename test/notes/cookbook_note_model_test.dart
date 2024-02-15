@@ -10,6 +10,7 @@ final _note = NoteModel.value(
     const NoteFieldValue(NoteField.archived, true),
     const NoteFieldValue(NoteField.link, 'test-link'),
     const NoteFieldValue(NoteField.imageUrl, 'test-url'),
+    NoteFieldValue(NoteField.lastUpdatedUtc, DateTime.now().toUtc()),
     const NoteFieldValue(NoteField.document, Document.mock),
     const NoteFieldValue(NoteField.cookbookPrepTime, 'prep-time'),
     const NoteFieldValue(NoteField.cookbookCookTime, 'cook-time'),

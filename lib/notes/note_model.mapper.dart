@@ -28,7 +28,7 @@ class NoteModelMapper extends ClassMapperBase<NoteModel> {
       Field('plugin', _$plugin);
   static Map<String, dynamic> _$fields(NoteModel v) => v.fields;
   static const Field<NoteModel, Map<String, dynamic>> _f$fields =
-      Field('fields', _$fields, opt: true, def: const {});
+      Field('fields', _$fields, opt: true, def: const {}, hook: FieldsHook());
 
   @override
   final MappableFields<NoteModel> fields = const {

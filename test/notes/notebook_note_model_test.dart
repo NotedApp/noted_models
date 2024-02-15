@@ -8,7 +8,7 @@ final _note = NoteModel.value(
     const NoteFieldValue(NoteField.tagIds, <String>['test-tag']),
     const NoteFieldValue(NoteField.hidden, true),
     const NoteFieldValue(NoteField.archived, true),
-    const NoteFieldValue(NoteField.lastUpdatedUtc, null),
+    NoteFieldValue(NoteField.lastUpdatedUtc, DateTime.now().toUtc()),
     const NoteFieldValue(NoteField.document, Document.mock),
   ],
 );

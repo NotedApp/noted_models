@@ -7,6 +7,8 @@ part 'note_model.mapper.dart';
 final class NoteModel with NoteModelMappable {
   final String id;
   final NotedPlugin plugin;
+
+  @MappableField(hook: FieldsHook())
   final Map<String, dynamic> fields;
 
   const NoteModel({
@@ -36,11 +38,7 @@ final class NoteModel with NoteModelMappable {
   NoteModel.value(
     NotedPlugin plugin, {
     List<NoteFieldValue> overrides = const [],
-  }) : this._(
-          plugin: plugin,
-          fields: plugin.fields(),
-          overrides: overrides,
-        );
+  }) : this._(plugin: plugin, fields: plugin.fields, overrides: overrides);
 
   NoteModel.empty(NotedPlugin plugin) : this.value(plugin);
 
@@ -59,51 +57,36 @@ final class NoteModel with NoteModelMappable {
   static const fromJson = NoteModelMapper.fromJson;
 }
 
-extension NotedPluginFields on NotedPlugin {
-  List<NoteField> fields() {
-    return switch (this) {
-      NotedPlugin.notebook => _notebookFields,
-      NotedPlugin.cookbook => _cookbookFields,
-      NotedPlugin.climbing => _climbingFields,
-    };
+class FieldsHook extends MappingHook {
+  const FieldsHook();
+
+  @override
+  Object? afterDecode(Object? value) {
+    if (value is! Map<String, dynamic>) {
+      return value;
+    }
+
+    return value.map(
+      (key, value) => switch (NoteFieldMapper.fromValue(key).runtimeType) {
+        const (NoteField<DateTime?>) => MapEntry(key, value == null ? null : DateTime.parse(value)),
+        const (NoteField<Set>) => MapEntry(key, value is List ? value.toSet() : value),
+        _ => MapEntry(key, value),
+      },
+    );
+  }
+
+  @override
+  Object? beforeEncode(Object? value) {
+    if (value is! Map<String, dynamic>) {
+      return value;
+    }
+
+    return value.map(
+      (key, value) => switch (NoteFieldMapper.fromValue(key).runtimeType) {
+        const (NoteField<DateTime?>) => MapEntry(key, value is DateTime ? value.toIso8601String() : value),
+        const (NoteField<Set>) => MapEntry(key, value is Set ? value.toList() : value),
+        _ => MapEntry(key, value),
+      },
+    );
   }
 }
-
-const _notebookFields = <NoteField>[
-  NoteField.title,
-  NoteField.tagIds,
-  NoteField.hidden,
-  NoteField.archived,
-  NoteField.lastUpdatedUtc,
-  NoteField.document,
-];
-
-const _cookbookFields = <NoteField>[
-  NoteField.title,
-  NoteField.tagIds,
-  NoteField.hidden,
-  NoteField.archived,
-  NoteField.lastUpdatedUtc,
-  NoteField.link,
-  NoteField.imageUrl,
-  NoteField.document,
-  NoteField.cookbookPrepTime,
-  NoteField.cookbookCookTime,
-  NoteField.cookbookDifficulty,
-];
-
-const _climbingFields = <NoteField>[
-  NoteField.title,
-  NoteField.tagIds,
-  NoteField.hidden,
-  NoteField.archived,
-  NoteField.lastUpdatedUtc,
-  NoteField.imageUrl,
-  NoteField.location,
-  NoteField.document,
-  NoteField.climbingRating,
-  NoteField.climbingSetting,
-  NoteField.climbingType,
-  NoteField.climbingAttemptsUtc,
-  NoteField.climbingTopsUtc,
-];
