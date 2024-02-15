@@ -21,19 +21,7 @@ final class NoteModel with NoteModelMappable {
     required NotedPlugin plugin,
     required List<NoteField> fields,
     List<NoteFieldValue> overrides = const [],
-  }) : this(
-          id: '',
-          plugin: plugin,
-          fields: {
-            for (final field in fields)
-              field.name: overrides
-                  .firstWhere(
-                    (override) => override.field == field,
-                    orElse: () => NoteFieldValue(field, field.defaultValue),
-                  )
-                  .value,
-          },
-        );
+  }) : this(id: '', plugin: plugin, fields: _overrideFields(fields, overrides));
 
   NoteModel.value(
     NotedPlugin plugin, {
@@ -55,25 +43,15 @@ final class NoteModel with NoteModelMappable {
 
   static const fromMap = NoteModelMapper.fromMap;
   static const fromJson = NoteModelMapper.fromJson;
+
+  static Map<String, dynamic> _overrideFields(List<NoteField> fields, List<NoteFieldValue> overrides) {
+    final overridesMap = {for (final override in overrides) override.field.name: override.value};
+    return {for (final field in fields) field.name: overridesMap[field.name] ?? field.defaultValue};
+  }
 }
 
 class FieldsHook extends MappingHook {
   const FieldsHook();
-
-  @override
-  Object? afterDecode(Object? value) {
-    if (value is! Map<String, dynamic>) {
-      return value;
-    }
-
-    return value.map(
-      (key, value) => switch (NoteFieldMapper.fromValue(key).runtimeType) {
-        const (NoteField<DateTime?>) => MapEntry(key, value == null ? null : DateTime.parse(value)),
-        const (NoteField<Set>) => MapEntry(key, value is List ? value.toSet() : value),
-        _ => MapEntry(key, value),
-      },
-    );
-  }
 
   @override
   Object? beforeEncode(Object? value) {
@@ -83,10 +61,56 @@ class FieldsHook extends MappingHook {
 
     return value.map(
       (key, value) => switch (NoteFieldMapper.fromValue(key).runtimeType) {
-        const (NoteField<DateTime?>) => MapEntry(key, value is DateTime ? value.toIso8601String() : value),
-        const (NoteField<Set>) => MapEntry(key, value is Set ? value.toList() : value),
+        const (NoteField<DateTime?>) => const _DateTimeHook().beforeEncode(key, value),
+        const (NoteField<List<DateTime>>) => const _ListDateTimeHook().beforeEncode(key, value),
         _ => MapEntry(key, value),
       },
     );
   }
+
+  @override
+  Object? afterDecode(Object? value) {
+    if (value is! Map<String, dynamic>) {
+      return value;
+    }
+
+    return value.map(
+      (key, value) => switch (NoteFieldMapper.fromValue(key).runtimeType) {
+        const (NoteField<DateTime?>) => const _DateTimeHook().afterDecode(key, value),
+        const (NoteField<List<DateTime>>) => const _ListDateTimeHook().afterDecode(key, value),
+        _ => MapEntry(key, value),
+      },
+    );
+  }
+}
+
+sealed class _FieldHook<T, S> {
+  const _FieldHook();
+
+  MapEntry<String, T> afterDecode(String key, value);
+  MapEntry<String, S> beforeEncode(String key, value);
+}
+
+class _DateTimeHook extends _FieldHook<DateTime?, String?> {
+  const _DateTimeHook();
+
+  @override
+  MapEntry<String, String?> beforeEncode(String key, value) =>
+      MapEntry(key, value is DateTime ? value.toIso8601String() : value);
+
+  @override
+  MapEntry<String, DateTime?> afterDecode(String key, value) =>
+      MapEntry(key, value == null ? null : DateTime.parse(value));
+}
+
+class _ListDateTimeHook extends _FieldHook<List<DateTime>, List<String>> {
+  const _ListDateTimeHook();
+
+  @override
+  MapEntry<String, List<String>> beforeEncode(String key, value) =>
+      MapEntry(key, value is List<DateTime> ? value.map((date) => date.toIso8601String()).toList() : value);
+
+  @override
+  MapEntry<String, List<DateTime>> afterDecode(String key, value) =>
+      MapEntry(key, value is List<dynamic> ? value.map((date) => DateTime.parse(date.toString())).toList() : value);
 }
