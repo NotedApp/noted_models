@@ -35,6 +35,7 @@ void main() {
 
       final updated = note.copyWithField(const NoteFieldValue(NoteField.title, 'test-title'));
       expect(updated.field(NoteField.title), 'test-title');
+      expect(updated.field(NoteField.lastUpdatedUtc), isNotNull);
     });
 
     test('parses to and from json', () {

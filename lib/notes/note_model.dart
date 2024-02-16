@@ -35,9 +35,14 @@ final class NoteModel with NoteModelMappable {
     return value is T ? value : field.defaultValue;
   }
 
-  NoteModel copyWithField<T>(NoteFieldValue<T> update) {
+  NoteModel copyWithField<T>(NoteFieldValue<T> update, {bool updateDateTime = true}) {
     final updated = Map.of(fields);
     updated[update.field.name] = update.value;
+
+    if (updateDateTime) {
+      updated[NoteField.lastUpdatedUtc.name] = DateTime.now().toUtc();
+    }
+
     return copyWith(fields: updated);
   }
 
