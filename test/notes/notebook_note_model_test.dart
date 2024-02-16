@@ -38,6 +38,21 @@ void main() {
       expect(updated.field(NoteField.lastUpdatedUtc), isNotNull);
     });
 
+    test('updates multiple fields', () {
+      final note = NoteModel.empty(NotedPlugin.notebook);
+      expect(note.field(NoteField.title), '');
+      expect(note.field(NoteField.document), Document.empty);
+
+      final updated = note.copyWithFields([
+        const NoteFieldValue(NoteField.title, 'test-title'),
+        const NoteFieldValue(NoteField.document, Document.mock),
+      ]);
+
+      expect(updated.field(NoteField.title), 'test-title');
+      expect(updated.field(NoteField.document), Document.mock);
+      expect(updated.field(NoteField.lastUpdatedUtc), isNotNull);
+    });
+
     test('parses to and from json', () {
       final json = _note.toJson();
       final parsed = NoteModel.fromJson(json);

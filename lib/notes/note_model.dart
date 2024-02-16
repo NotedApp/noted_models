@@ -46,6 +46,20 @@ final class NoteModel with NoteModelMappable {
     return copyWith(fields: updated);
   }
 
+  NoteModel copyWithFields(List<NoteFieldValue> updates, {bool updateDateTime = true}) {
+    final updated = Map.of(fields);
+
+    for (final update in updates) {
+      updated[update.field.name] = update.value;
+    }
+
+    if (updateDateTime) {
+      updated[NoteField.lastUpdatedUtc.name] = DateTime.now().toUtc();
+    }
+
+    return copyWith(fields: updated);
+  }
+
   static const fromMap = NoteModelMapper.fromMap;
   static const fromJson = NoteModelMapper.fromJson;
 
