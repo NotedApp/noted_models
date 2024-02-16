@@ -15,7 +15,7 @@ class NoteFieldValue<T> with NoteFieldValueMappable {
 /// - String
 /// - bool
 /// - int
-/// - DateTime
+/// - DateTime?
 /// - List<{any of the above}>
 
 @MappableEnum()
@@ -47,3 +47,52 @@ enum NoteField<T> {
 
   const NoteField(this.defaultValue);
 }
+
+extension NotedPluginFields on NotedPlugin {
+  List<NoteField> get fields {
+    return switch (this) {
+      NotedPlugin.notebook => _notebookFields,
+      NotedPlugin.cookbook => _cookbookFields,
+      NotedPlugin.climbing => _climbingFields,
+    };
+  }
+}
+
+const _notebookFields = <NoteField>[
+  NoteField.title,
+  NoteField.tagIds,
+  NoteField.hidden,
+  NoteField.archived,
+  NoteField.lastUpdatedUtc,
+  NoteField.document,
+];
+
+const _cookbookFields = <NoteField>[
+  NoteField.title,
+  NoteField.tagIds,
+  NoteField.hidden,
+  NoteField.archived,
+  NoteField.lastUpdatedUtc,
+  NoteField.link,
+  NoteField.imageUrl,
+  NoteField.document,
+  NoteField.cookbookPrepTime,
+  NoteField.cookbookCookTime,
+  NoteField.cookbookDifficulty,
+];
+
+const _climbingFields = <NoteField>[
+  NoteField.title,
+  NoteField.tagIds,
+  NoteField.hidden,
+  NoteField.archived,
+  NoteField.lastUpdatedUtc,
+  NoteField.imageUrl,
+  NoteField.location,
+  NoteField.document,
+  NoteField.climbingRating,
+  NoteField.climbingSetting,
+  NoteField.climbingType,
+  NoteField.climbingAttemptsUtc,
+  NoteField.climbingTopsUtc,
+];

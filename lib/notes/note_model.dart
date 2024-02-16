@@ -7,6 +7,8 @@ part 'note_model.mapper.dart';
 final class NoteModel with NoteModelMappable {
   final String id;
   final NotedPlugin plugin;
+
+  @MappableField(hook: FieldsHook())
   final Map<String, dynamic> fields;
 
   const NoteModel({
@@ -19,28 +21,12 @@ final class NoteModel with NoteModelMappable {
     required NotedPlugin plugin,
     required List<NoteField> fields,
     List<NoteFieldValue> overrides = const [],
-  }) : this(
-          id: '',
-          plugin: plugin,
-          fields: {
-            for (final field in fields)
-              field.name: overrides
-                  .firstWhere(
-                    (override) => override.field == field,
-                    orElse: () => NoteFieldValue(field, field.defaultValue),
-                  )
-                  .value,
-          },
-        );
+  }) : this(id: '', plugin: plugin, fields: _overrideFields(fields, overrides));
 
   NoteModel.value(
     NotedPlugin plugin, {
     List<NoteFieldValue> overrides = const [],
-  }) : this._(
-          plugin: plugin,
-          fields: plugin.fields(),
-          overrides: overrides,
-        );
+  }) : this._(plugin: plugin, fields: plugin.fields, overrides: overrides);
 
   NoteModel.empty(NotedPlugin plugin) : this.value(plugin);
 
@@ -49,61 +35,87 @@ final class NoteModel with NoteModelMappable {
     return value is T ? value : field.defaultValue;
   }
 
-  NoteModel copyWithField<T>(NoteFieldValue<T> update) {
+  NoteModel copyWithField<T>(NoteFieldValue<T> update, {bool updateDateTime = true}) {
     final updated = Map.of(fields);
     updated[update.field.name] = update.value;
+
+    if (updateDateTime) {
+      updated[NoteField.lastUpdatedUtc.name] = DateTime.now().toUtc();
+    }
+
     return copyWith(fields: updated);
   }
 
   static const fromMap = NoteModelMapper.fromMap;
   static const fromJson = NoteModelMapper.fromJson;
-}
 
-extension NotedPluginFields on NotedPlugin {
-  List<NoteField> fields() {
-    return switch (this) {
-      NotedPlugin.notebook => _notebookFields,
-      NotedPlugin.cookbook => _cookbookFields,
-      NotedPlugin.climbing => _climbingFields,
-    };
+  static Map<String, dynamic> _overrideFields(List<NoteField> fields, List<NoteFieldValue> overrides) {
+    final overridesMap = {for (final override in overrides) override.field.name: override.value};
+    return {for (final field in fields) field.name: overridesMap[field.name] ?? field.defaultValue};
   }
 }
 
-const _notebookFields = <NoteField>[
-  NoteField.title,
-  NoteField.tagIds,
-  NoteField.hidden,
-  NoteField.archived,
-  NoteField.lastUpdatedUtc,
-  NoteField.document,
-];
+class FieldsHook extends MappingHook {
+  const FieldsHook();
 
-const _cookbookFields = <NoteField>[
-  NoteField.title,
-  NoteField.tagIds,
-  NoteField.hidden,
-  NoteField.archived,
-  NoteField.lastUpdatedUtc,
-  NoteField.link,
-  NoteField.imageUrl,
-  NoteField.document,
-  NoteField.cookbookPrepTime,
-  NoteField.cookbookCookTime,
-  NoteField.cookbookDifficulty,
-];
+  @override
+  Object? beforeEncode(Object? value) {
+    if (value is! Map<String, dynamic>) {
+      return value;
+    }
 
-const _climbingFields = <NoteField>[
-  NoteField.title,
-  NoteField.tagIds,
-  NoteField.hidden,
-  NoteField.archived,
-  NoteField.lastUpdatedUtc,
-  NoteField.imageUrl,
-  NoteField.location,
-  NoteField.document,
-  NoteField.climbingRating,
-  NoteField.climbingSetting,
-  NoteField.climbingType,
-  NoteField.climbingAttemptsUtc,
-  NoteField.climbingTopsUtc,
-];
+    return value.map(
+      (key, value) => switch (NoteFieldMapper.fromValue(key).runtimeType) {
+        const (NoteField<DateTime?>) => const _DateTimeHook().beforeEncode(key, value),
+        const (NoteField<List<DateTime>>) => const _ListDateTimeHook().beforeEncode(key, value),
+        _ => MapEntry(key, value),
+      },
+    );
+  }
+
+  @override
+  Object? afterDecode(Object? value) {
+    if (value is! Map<String, dynamic>) {
+      return value;
+    }
+
+    return value.map(
+      (key, value) => switch (NoteFieldMapper.fromValue(key).runtimeType) {
+        const (NoteField<DateTime?>) => const _DateTimeHook().afterDecode(key, value),
+        const (NoteField<List<DateTime>>) => const _ListDateTimeHook().afterDecode(key, value),
+        _ => MapEntry(key, value),
+      },
+    );
+  }
+}
+
+sealed class _FieldHook<T, S> {
+  const _FieldHook();
+
+  MapEntry<String, T> afterDecode(String key, value);
+  MapEntry<String, S> beforeEncode(String key, value);
+}
+
+class _DateTimeHook extends _FieldHook<DateTime?, String?> {
+  const _DateTimeHook();
+
+  @override
+  MapEntry<String, String?> beforeEncode(String key, value) =>
+      MapEntry(key, value is DateTime ? value.toIso8601String() : value);
+
+  @override
+  MapEntry<String, DateTime?> afterDecode(String key, value) =>
+      MapEntry(key, value == null ? null : DateTime.parse(value));
+}
+
+class _ListDateTimeHook extends _FieldHook<List<DateTime>, List<String>> {
+  const _ListDateTimeHook();
+
+  @override
+  MapEntry<String, List<String>> beforeEncode(String key, value) =>
+      MapEntry(key, value is List<DateTime> ? value.map((date) => date.toIso8601String()).toList() : value);
+
+  @override
+  MapEntry<String, List<DateTime>> afterDecode(String key, value) =>
+      MapEntry(key, value is List<dynamic> ? value.map((date) => DateTime.parse(date.toString())).toList() : value);
+}
