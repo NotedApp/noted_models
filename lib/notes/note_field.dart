@@ -38,8 +38,8 @@ enum NoteField<T> {
 
   // Climbing
   climbingRating<String>(''),
-  climbingSetting<String>('indoors'),
-  climbingType<String>('boulder'),
+  climbingSetting<ClimbingSetting>(ClimbingSetting.indoor),
+  climbingType<ClimbingType>(ClimbingType.boulder),
   climbingAttemptsUtc<List<DateTime>>([]),
   climbingTopsUtc<List<DateTime>>([]);
 

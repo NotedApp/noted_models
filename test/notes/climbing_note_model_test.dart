@@ -13,8 +13,8 @@ final _note = NoteModel.value(
     NoteFieldValue(NoteField.lastUpdatedUtc, DateTime.now().toUtc()),
     const NoteFieldValue(NoteField.document, Document.mock),
     const NoteFieldValue(NoteField.climbingRating, 'V5'),
-    const NoteFieldValue(NoteField.climbingSetting, 'outdoors'),
-    const NoteFieldValue(NoteField.climbingType, 'sport'),
+    const NoteFieldValue(NoteField.climbingSetting, ClimbingSetting.outdoor),
+    const NoteFieldValue(NoteField.climbingType, ClimbingType.sport),
     NoteFieldValue(NoteField.climbingAttemptsUtc, [DateTime.fromMillisecondsSinceEpoch(0, isUtc: true)]),
     NoteFieldValue(NoteField.climbingTopsUtc, [DateTime.fromMillisecondsSinceEpoch(10, isUtc: true)]),
   ],
@@ -37,8 +37,8 @@ void main() {
       expect(note.field(NoteField.location), '');
       expect(note.field(NoteField.document), Document.empty);
       expect(note.field(NoteField.climbingRating), '');
-      expect(note.field(NoteField.climbingSetting), 'indoors');
-      expect(note.field(NoteField.climbingType), 'boulder');
+      expect(note.field(NoteField.climbingSetting), ClimbingSetting.indoor);
+      expect(note.field(NoteField.climbingType), ClimbingType.boulder);
       expect(note.field(NoteField.climbingAttemptsUtc), []);
       expect(note.field(NoteField.climbingTopsUtc), []);
     });

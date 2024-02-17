@@ -80,8 +80,10 @@ class FieldsHook extends MappingHook {
 
     return value.map(
       (key, value) => switch (NoteFieldMapper.fromValue(key).runtimeType) {
-        const (NoteField<DateTime?>) => const _DateTimeHook().beforeEncode(key, value),
-        const (NoteField<List<DateTime>>) => const _ListDateTimeHook().beforeEncode(key, value),
+        const (NoteField<DateTime?>) => const DateTimeHook().beforeEncode(key, value),
+        const (NoteField<List<DateTime>>) => const ListDateTimeHook().beforeEncode(key, value),
+        const (NoteField<ClimbingSetting>) => const ClimbingSettingHook().beforeEncode(key, value),
+        const (NoteField<ClimbingType>) => const ClimbingTypeHook().beforeEncode(key, value),
         _ => MapEntry(key, value),
       },
     );
@@ -95,23 +97,25 @@ class FieldsHook extends MappingHook {
 
     return value.map(
       (key, value) => switch (NoteFieldMapper.fromValue(key).runtimeType) {
-        const (NoteField<DateTime?>) => const _DateTimeHook().afterDecode(key, value),
-        const (NoteField<List<DateTime>>) => const _ListDateTimeHook().afterDecode(key, value),
+        const (NoteField<DateTime?>) => const DateTimeHook().afterDecode(key, value),
+        const (NoteField<List<DateTime>>) => const ListDateTimeHook().afterDecode(key, value),
+        const (NoteField<ClimbingSetting>) => const ClimbingSettingHook().afterDecode(key, value),
+        const (NoteField<ClimbingType>) => const ClimbingTypeHook().afterDecode(key, value),
         _ => MapEntry(key, value),
       },
     );
   }
 }
 
-sealed class _FieldHook<T, S> {
-  const _FieldHook();
+abstract class FieldHook<T, S> {
+  const FieldHook();
 
-  MapEntry<String, T> afterDecode(String key, value);
   MapEntry<String, S> beforeEncode(String key, value);
+  MapEntry<String, T> afterDecode(String key, value);
 }
 
-class _DateTimeHook extends _FieldHook<DateTime?, String?> {
-  const _DateTimeHook();
+class DateTimeHook extends FieldHook<DateTime?, String?> {
+  const DateTimeHook();
 
   @override
   MapEntry<String, String?> beforeEncode(String key, value) =>
@@ -122,8 +126,8 @@ class _DateTimeHook extends _FieldHook<DateTime?, String?> {
       MapEntry(key, value == null ? null : DateTime.parse(value));
 }
 
-class _ListDateTimeHook extends _FieldHook<List<DateTime>, List<String>> {
-  const _ListDateTimeHook();
+class ListDateTimeHook extends FieldHook<List<DateTime>, List<String>> {
+  const ListDateTimeHook();
 
   @override
   MapEntry<String, List<String>> beforeEncode(String key, value) =>
