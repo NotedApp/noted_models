@@ -13,7 +13,9 @@ class NoteFieldMapper extends ClassMapperBase<NoteField> {
   static NoteFieldMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = NoteFieldMapper._());
+      MapperContainer.globals.useAll([_DateTimeMapper(), _DurationMapper()]);
       NoteDateTimeFieldMapper.ensureInitialized();
+      NoteDurationFieldMapper.ensureInitialized();
       NoteImageFieldMapper.ensureInitialized();
       NoteLinkFieldMapper.ensureInitialized();
       NoteNumberFieldMapper.ensureInitialized();
@@ -93,9 +95,9 @@ class NoteDateTimeFieldMapper extends SubClassMapperBase<NoteDateTimeField> {
   static const Field<NoteDateTimeField, String> _f$id = Field('id', _$id);
   static String _$name(NoteDateTimeField v) => v.name;
   static const Field<NoteDateTimeField, String> _f$name = Field('name', _$name);
-  static DateTime? _$value(NoteDateTimeField v) => v.value;
+  static DateTime _$value(NoteDateTimeField v) => v.value;
   static const Field<NoteDateTimeField, DateTime> _f$value =
-      Field('value', _$value, opt: true, hook: _DateTimeHook());
+      Field('value', _$value);
 
   @override
   final MappableFields<NoteDateTimeField> fields = const {
@@ -177,9 +179,9 @@ extension NoteDateTimeFieldValueCopy<$R, $Out>
 }
 
 abstract class NoteDateTimeFieldCopyWith<$R, $In extends NoteDateTimeField,
-    $Out> implements NoteFieldCopyWith<$R, $In, $Out, DateTime?> {
+    $Out> implements NoteFieldCopyWith<$R, $In, $Out, DateTime> {
   @override
-  $R call({String? id, String? name, covariant DateTime? value});
+  $R call({String? id, String? name, DateTime? value});
   NoteDateTimeFieldCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -193,11 +195,11 @@ class _NoteDateTimeFieldCopyWithImpl<$R, $Out>
   late final ClassMapperBase<NoteDateTimeField> $mapper =
       NoteDateTimeFieldMapper.ensureInitialized();
   @override
-  $R call({String? id, String? name, Object? value = $none}) =>
+  $R call({String? id, String? name, DateTime? value}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (name != null) #name: name,
-        if (value != $none) #value: value
+        if (value != null) #value: value
       }));
   @override
   NoteDateTimeField $make(CopyWithData data) => NoteDateTimeField(
@@ -209,6 +211,143 @@ class _NoteDateTimeFieldCopyWithImpl<$R, $Out>
   NoteDateTimeFieldCopyWith<$R2, NoteDateTimeField, $Out2> $chain<$R2, $Out2>(
           Then<$Out2, $R2> t) =>
       _NoteDateTimeFieldCopyWithImpl($value, $cast, t);
+}
+
+class NoteDurationFieldMapper extends SubClassMapperBase<NoteDurationField> {
+  NoteDurationFieldMapper._();
+
+  static NoteDurationFieldMapper? _instance;
+  static NoteDurationFieldMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = NoteDurationFieldMapper._());
+      NoteFieldMapper.ensureInitialized().addSubMapper(_instance!);
+    }
+    return _instance!;
+  }
+
+  @override
+  final String id = 'NoteDurationField';
+
+  static String _$id(NoteDurationField v) => v.id;
+  static const Field<NoteDurationField, String> _f$id = Field('id', _$id);
+  static String _$name(NoteDurationField v) => v.name;
+  static const Field<NoteDurationField, String> _f$name = Field('name', _$name);
+  static Duration _$value(NoteDurationField v) => v.value;
+  static const Field<NoteDurationField, Duration> _f$value =
+      Field('value', _$value, opt: true, def: Duration.zero);
+
+  @override
+  final MappableFields<NoteDurationField> fields = const {
+    #id: _f$id,
+    #name: _f$name,
+    #value: _f$value,
+  };
+
+  @override
+  final String discriminatorKey = 'fieldType';
+  @override
+  final dynamic discriminatorValue = 'duration';
+  @override
+  late final ClassMapperBase superMapper = NoteFieldMapper.ensureInitialized();
+
+  @override
+  DecodingContext inherit(DecodingContext context) {
+    return context.inherit(args: () => []);
+  }
+
+  static NoteDurationField _instantiate(DecodingData data) {
+    return NoteDurationField(
+        id: data.dec(_f$id),
+        name: data.dec(_f$name),
+        value: data.dec(_f$value));
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+
+  static NoteDurationField fromMap(Map<String, dynamic> map) {
+    return ensureInitialized().decodeMap<NoteDurationField>(map);
+  }
+
+  static NoteDurationField fromJson(String json) {
+    return ensureInitialized().decodeJson<NoteDurationField>(json);
+  }
+}
+
+mixin NoteDurationFieldMappable {
+  String toJson() {
+    return NoteDurationFieldMapper.ensureInitialized()
+        .encodeJson<NoteDurationField>(this as NoteDurationField);
+  }
+
+  Map<String, dynamic> toMap() {
+    return NoteDurationFieldMapper.ensureInitialized()
+        .encodeMap<NoteDurationField>(this as NoteDurationField);
+  }
+
+  NoteDurationFieldCopyWith<NoteDurationField, NoteDurationField,
+          NoteDurationField>
+      get copyWith => _NoteDurationFieldCopyWithImpl(
+          this as NoteDurationField, $identity, $identity);
+  @override
+  String toString() {
+    return NoteDurationFieldMapper.ensureInitialized()
+        .stringifyValue(this as NoteDurationField);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return NoteDurationFieldMapper.ensureInitialized()
+        .equalsValue(this as NoteDurationField, other);
+  }
+
+  @override
+  int get hashCode {
+    return NoteDurationFieldMapper.ensureInitialized()
+        .hashValue(this as NoteDurationField);
+  }
+}
+
+extension NoteDurationFieldValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, NoteDurationField, $Out> {
+  NoteDurationFieldCopyWith<$R, NoteDurationField, $Out>
+      get $asNoteDurationField =>
+          $base.as((v, t, t2) => _NoteDurationFieldCopyWithImpl(v, t, t2));
+}
+
+abstract class NoteDurationFieldCopyWith<$R, $In extends NoteDurationField,
+    $Out> implements NoteFieldCopyWith<$R, $In, $Out, Duration> {
+  @override
+  $R call({String? id, String? name, Duration? value});
+  NoteDurationFieldCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
+      Then<$Out2, $R2> t);
+}
+
+class _NoteDurationFieldCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, NoteDurationField, $Out>
+    implements NoteDurationFieldCopyWith<$R, NoteDurationField, $Out> {
+  _NoteDurationFieldCopyWithImpl(super.value, super.then, super.then2);
+
+  @override
+  late final ClassMapperBase<NoteDurationField> $mapper =
+      NoteDurationFieldMapper.ensureInitialized();
+  @override
+  $R call({String? id, String? name, Duration? value}) =>
+      $apply(FieldCopyWithData({
+        if (id != null) #id: id,
+        if (name != null) #name: name,
+        if (value != null) #value: value
+      }));
+  @override
+  NoteDurationField $make(CopyWithData data) => NoteDurationField(
+      id: data.get(#id, or: $value.id),
+      name: data.get(#name, or: $value.name),
+      value: data.get(#value, or: $value.value));
+
+  @override
+  NoteDurationFieldCopyWith<$R2, NoteDurationField, $Out2> $chain<$R2, $Out2>(
+          Then<$Out2, $R2> t) =>
+      _NoteDurationFieldCopyWithImpl($value, $cast, t);
 }
 
 class NoteImageFieldTypeMapper extends EnumMapper<NoteImageFieldType> {

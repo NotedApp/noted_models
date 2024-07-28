@@ -7,6 +7,9 @@ class NoteLinkField extends NoteField<String> with NoteLinkFieldMappable {
   @override
   String? get searchableText => value;
 
+  @override
+  bool get isEmpty => value.isEmpty;
+
   const NoteLinkField({
     required super.id,
     required super.name,

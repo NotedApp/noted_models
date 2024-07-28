@@ -7,6 +7,9 @@ class NoteSelectField extends NoteField<String> with NoteSelectFieldMappable {
   @override
   String? get searchableText => value;
 
+  @override
+  bool get isEmpty => value.isEmpty;
+
   const NoteSelectField({
     required super.id,
     required super.name,

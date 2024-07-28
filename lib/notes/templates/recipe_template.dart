@@ -6,8 +6,8 @@ const NoteModel recipeTemplate = NoteModel(
   fields: {
     CommonField.title: NoteTextField(id: CommonField.title, name: 'title', type: NoteTextFieldType.title),
     CommonField.link: NoteLinkField(id: CommonField.link, name: 'link', useAsCoverImage: true),
-    RecipeField.prepTime: NoteTextField(id: RecipeField.prepTime, name: 'prep time'),
-    RecipeField.cookTime: NoteTextField(id: RecipeField.cookTime, name: 'cook time'),
+    RecipeField.prepTime: NoteDurationField(id: RecipeField.prepTime, name: 'prep time'),
+    RecipeField.cookTime: NoteDurationField(id: RecipeField.cookTime, name: 'cook time'),
   },
   editLayout: NoteEditLayout(
     rows: [
