@@ -1,16 +1,28 @@
-import 'package:dart_mappable/dart_mappable.dart';
-import 'package:noted_models/noted_models.dart';
-
-part 'note_date_time_field.mapper.dart';
+part of 'note_field.dart';
 
 @MappableClass(discriminatorValue: 'dateTime')
 class NoteDateTimeField extends NoteField<DateTime?> with NoteDateTimeFieldMappable {
+  @MappableField(hook: _DateTimeHook())
   @override
-  String? get searchableText => value?.toString();
+  // ignore: overridden_fields
+  final DateTime? value;
+
+  @override
+  String? get searchableText => null;
 
   const NoteDateTimeField({
     required super.id,
     required super.name,
-    super.value,
-  });
+    this.value,
+  }) : super(value: value);
+}
+
+class _DateTimeHook extends MappingHook {
+  const _DateTimeHook();
+
+  @override
+  Object? beforeEncode(Object? value) => value is DateTime ? value.toIso8601String() : value;
+
+  @override
+  Object? afterDecode(Object? value) => value == null ? null : DateTime.tryParse(value.toString());
 }

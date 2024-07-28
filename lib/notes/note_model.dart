@@ -31,6 +31,8 @@ final class NoteDefaultFields with NoteDefaultFieldsMappable {
   final DocumentModel? document;
   final bool hidden;
   final bool archived;
+
+  @MappableField(hook: _DateTimeHook())
   final DateTime? lastUpdatedUtc;
 
   const NoteDefaultFields({
@@ -40,4 +42,14 @@ final class NoteDefaultFields with NoteDefaultFieldsMappable {
     this.archived = false,
     this.lastUpdatedUtc,
   });
+}
+
+class _DateTimeHook extends MappingHook {
+  const _DateTimeHook();
+
+  @override
+  Object? beforeEncode(Object? value) => value is DateTime ? value.toIso8601String() : value;
+
+  @override
+  Object? afterDecode(Object? value) => value == null ? null : DateTime.tryParse(value.toString());
 }

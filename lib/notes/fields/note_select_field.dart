@@ -1,7 +1,4 @@
-import 'package:dart_mappable/dart_mappable.dart';
-import 'package:noted_models/noted_models.dart';
-
-part 'note_select_field.mapper.dart';
+part of 'note_field.dart';
 
 @MappableClass(discriminatorValue: 'select')
 class NoteSelectField extends NoteField<String> with NoteSelectFieldMappable {

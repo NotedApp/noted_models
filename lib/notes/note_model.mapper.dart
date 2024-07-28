@@ -210,8 +210,9 @@ class NoteDefaultFieldsMapper extends ClassMapperBase<NoteDefaultFields> {
   static const Field<NoteDefaultFields, bool> _f$archived =
       Field('archived', _$archived, opt: true, def: false);
   static DateTime? _$lastUpdatedUtc(NoteDefaultFields v) => v.lastUpdatedUtc;
-  static const Field<NoteDefaultFields, DateTime> _f$lastUpdatedUtc =
-      Field('lastUpdatedUtc', _$lastUpdatedUtc, opt: true);
+  static const Field<NoteDefaultFields, DateTime> _f$lastUpdatedUtc = Field(
+      'lastUpdatedUtc', _$lastUpdatedUtc,
+      opt: true, hook: _DateTimeHook());
 
   @override
   final MappableFields<NoteDefaultFields> fields = const {
