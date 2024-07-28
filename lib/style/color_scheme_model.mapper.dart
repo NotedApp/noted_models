@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, unnecessary_cast
+// ignore_for_file: unused_element, unnecessary_cast, override_on_non_overriding_member
 // ignore_for_file: strict_raw_type, inference_failure_on_untyped_parameter
 
 part of 'color_scheme_model.dart';
@@ -165,9 +165,6 @@ class ColorSchemeModelMapper extends ClassMapperBase<ColorSchemeModel> {
   static int _$background(ColorSchemeModel v) => v.background;
   static const Field<ColorSchemeModel, int> _f$background =
       Field('background', _$background);
-  static int _$onBackground(ColorSchemeModel v) => v.onBackground;
-  static const Field<ColorSchemeModel, int> _f$onBackground =
-      Field('onBackground', _$onBackground);
 
   @override
   final MappableFields<ColorSchemeModel> fields = const {
@@ -183,7 +180,6 @@ class ColorSchemeModelMapper extends ClassMapperBase<ColorSchemeModel> {
     #surface: _f$surface,
     #onSurface: _f$onSurface,
     #background: _f$background,
-    #onBackground: _f$onBackground,
   };
 
   static ColorSchemeModel _instantiate(DecodingData data) {
@@ -199,8 +195,7 @@ class ColorSchemeModelMapper extends ClassMapperBase<ColorSchemeModel> {
         onError: data.dec(_f$onError),
         surface: data.dec(_f$surface),
         onSurface: data.dec(_f$onSurface),
-        background: data.dec(_f$background),
-        onBackground: data.dec(_f$onBackground));
+        background: data.dec(_f$background));
   }
 
   @override
@@ -237,10 +232,8 @@ mixin ColorSchemeModelMappable {
 
   @override
   bool operator ==(Object other) {
-    return identical(this, other) ||
-        (runtimeType == other.runtimeType &&
-            ColorSchemeModelMapper.ensureInitialized()
-                .isValueEqual(this as ColorSchemeModel, other));
+    return ColorSchemeModelMapper.ensureInitialized()
+        .equalsValue(this as ColorSchemeModel, other);
   }
 
   @override
@@ -271,8 +264,7 @@ abstract class ColorSchemeModelCopyWith<$R, $In extends ColorSchemeModel, $Out>
       int? onError,
       int? surface,
       int? onSurface,
-      int? background,
-      int? onBackground});
+      int? background});
   ColorSchemeModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -298,8 +290,7 @@ class _ColorSchemeModelCopyWithImpl<$R, $Out>
           int? onError,
           int? surface,
           int? onSurface,
-          int? background,
-          int? onBackground}) =>
+          int? background}) =>
       $apply(FieldCopyWithData({
         if (brightness != null) #brightness: brightness,
         if (primary != null) #primary: primary,
@@ -312,8 +303,7 @@ class _ColorSchemeModelCopyWithImpl<$R, $Out>
         if (onError != null) #onError: onError,
         if (surface != null) #surface: surface,
         if (onSurface != null) #onSurface: onSurface,
-        if (background != null) #background: background,
-        if (onBackground != null) #onBackground: onBackground
+        if (background != null) #background: background
       }));
   @override
   ColorSchemeModel $make(CopyWithData data) => ColorSchemeModel(
@@ -328,8 +318,7 @@ class _ColorSchemeModelCopyWithImpl<$R, $Out>
       onError: data.get(#onError, or: $value.onError),
       surface: data.get(#surface, or: $value.surface),
       onSurface: data.get(#onSurface, or: $value.onSurface),
-      background: data.get(#background, or: $value.background),
-      onBackground: data.get(#onBackground, or: $value.onBackground));
+      background: data.get(#background, or: $value.background));
 
   @override
   ColorSchemeModelCopyWith<$R2, ColorSchemeModel, $Out2> $chain<$R2, $Out2>(

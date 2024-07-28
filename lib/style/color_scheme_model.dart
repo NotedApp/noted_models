@@ -32,7 +32,6 @@ class ColorSchemeModel with ColorSchemeModelMappable {
   final int surface;
   final int onSurface;
   final int background;
-  final int onBackground;
 
   static const fromMap = ColorSchemeModelMapper.fromMap;
   static const fromJson = ColorSchemeModelMapper.fromJson;
@@ -50,7 +49,6 @@ class ColorSchemeModel with ColorSchemeModelMappable {
     required this.surface,
     required this.onSurface,
     required this.background,
-    required this.onBackground,
   });
 
   factory ColorSchemeModel.fromName(ColorSchemeModelName name, ColorSchemeModel custom) {
@@ -75,7 +73,6 @@ class ColorSchemeModel with ColorSchemeModelMappable {
     error: 0xFFB33951,
     onError: 0xFFEEEEEE,
     background: 0xFFE5E3C9,
-    onBackground: 0xFF111111,
     surface: 0xFFE5E3C9,
     onSurface: 0xFF111111,
   );
@@ -91,7 +88,6 @@ class ColorSchemeModel with ColorSchemeModelMappable {
     error: 0xFFB33951,
     onError: 0xFFEEEEEE,
     background: 0xFFE5E3C9,
-    onBackground: 0xFF111111,
     surface: 0xFFE5E3C9,
     onSurface: 0xFF111111,
   );
@@ -107,7 +103,6 @@ class ColorSchemeModel with ColorSchemeModelMappable {
     error: 0xFFB33951,
     onError: 0xFFEEEEEE,
     background: 0xFF121212,
-    onBackground: 0xFFEEEEEE,
     surface: 0xFF121212,
     onSurface: 0xFFEEEEEE,
   );
@@ -123,7 +118,6 @@ class ColorSchemeModel with ColorSchemeModelMappable {
     error: 0xFFB33951,
     onError: 0xFFEEEEEE,
     background: 0xFF000000,
-    onBackground: 0xFFEEEEEE,
     surface: 0xFF000000,
     onSurface: 0xFFEEEEEE,
   );
@@ -139,7 +133,6 @@ class ColorSchemeModel with ColorSchemeModelMappable {
     error: 0xFFB33951,
     onError: 0xFFEEEEEE,
     background: 0xFFFFFFFF,
-    onBackground: 0xFF111111,
     surface: 0xFFFFFFFF,
     onSurface: 0xFF111111,
   );
