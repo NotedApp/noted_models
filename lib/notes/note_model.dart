@@ -21,6 +21,28 @@ final class NoteModel with NoteModelMappable {
     this.cardLayout = const NoteCardLayout(),
   });
 
+  ValueType? getField<ValueType>(String fieldId) {
+    final field = fields[fieldId];
+
+    if (field == null || field is! NoteField<ValueType>) {
+      return null;
+    }
+
+    return field.value;
+  }
+
+  NoteModel updateField<ValueType>(String fieldId, ValueType fieldValue) {
+    final field = fields[fieldId];
+
+    if (field == null || field is! NoteField<ValueType>) {
+      return copyWith();
+    }
+
+    final updatedFields = {...fields};
+    updatedFields[fieldId] = field.copyWith(value: fieldValue);
+    return copyWith(fields: updatedFields);
+  }
+
   static const fromMap = NoteModelMapper.fromMap;
   static const fromJson = NoteModelMapper.fromJson;
 }
