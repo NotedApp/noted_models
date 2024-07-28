@@ -8,6 +8,9 @@ class NoteImageField extends NoteField<String> with NoteImageFieldMappable {
   @override
   String? get searchableText => value;
 
+  @override
+  bool get isEmpty => value.isEmpty;
+
   const NoteImageField({
     required super.id,
     required super.name,

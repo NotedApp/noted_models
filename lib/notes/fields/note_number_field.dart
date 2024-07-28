@@ -7,6 +7,9 @@ class NoteNumberField extends NoteField<double> with NoteNumberFieldMappable {
   @override
   String? get searchableText => value.toString();
 
+  @override
+  bool get isEmpty => false;
+
   const NoteNumberField({
     required super.id,
     required super.name,
