@@ -14,6 +14,7 @@ class SettingsModelMapper extends ClassMapperBase<SettingsModel> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = SettingsModelMapper._());
       StyleSettingsModelMapper.ensureInitialized();
+      TagSettingsModelMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -24,8 +25,8 @@ class SettingsModelMapper extends ClassMapperBase<SettingsModel> {
   static StyleSettingsModel _$style(SettingsModel v) => v.style;
   static const Field<SettingsModel, StyleSettingsModel> _f$style =
       Field('style', _$style, opt: true, def: const StyleSettingsModel());
-  static InvalidType _$tags(SettingsModel v) => v.tags;
-  static const Field<SettingsModel, InvalidType> _f$tags =
+  static TagSettingsModel _$tags(SettingsModel v) => v.tags;
+  static const Field<SettingsModel, TagSettingsModel> _f$tags =
       Field('tags', _$tags, opt: true, def: const TagSettingsModel());
 
   @override
@@ -93,7 +94,8 @@ abstract class SettingsModelCopyWith<$R, $In extends SettingsModel, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   StyleSettingsModelCopyWith<$R, StyleSettingsModel, StyleSettingsModel>
       get style;
-  $R call({StyleSettingsModel? style, InvalidType? tags});
+  TagSettingsModelCopyWith<$R, TagSettingsModel, TagSettingsModel> get tags;
+  $R call({StyleSettingsModel? style, TagSettingsModel? tags});
   SettingsModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -109,7 +111,10 @@ class _SettingsModelCopyWithImpl<$R, $Out>
   StyleSettingsModelCopyWith<$R, StyleSettingsModel, StyleSettingsModel>
       get style => $value.style.copyWith.$chain((v) => call(style: v));
   @override
-  $R call({StyleSettingsModel? style, InvalidType? tags}) =>
+  TagSettingsModelCopyWith<$R, TagSettingsModel, TagSettingsModel> get tags =>
+      $value.tags.copyWith.$chain((v) => call(tags: v));
+  @override
+  $R call({StyleSettingsModel? style, TagSettingsModel? tags}) =>
       $apply(FieldCopyWithData(
           {if (style != null) #style: style, if (tags != null) #tags: tags}));
   @override

@@ -13,6 +13,7 @@ class TagSettingsModelMapper extends ClassMapperBase<TagSettingsModel> {
   static TagSettingsModelMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = TagSettingsModelMapper._());
+      TagModelMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -23,8 +24,8 @@ class TagSettingsModelMapper extends ClassMapperBase<TagSettingsModel> {
   static bool _$showTags(TagSettingsModel v) => v.showTags;
   static const Field<TagSettingsModel, bool> _f$showTags =
       Field('showTags', _$showTags, opt: true, def: true);
-  static Set<InvalidType> _$tags(TagSettingsModel v) => v.tags;
-  static const Field<TagSettingsModel, Set<InvalidType>> _f$tags =
+  static Set<TagModel> _$tags(TagSettingsModel v) => v.tags;
+  static const Field<TagSettingsModel, Set<TagModel>> _f$tags =
       Field('tags', _$tags, opt: true, def: const {});
 
   @override
@@ -92,7 +93,7 @@ extension TagSettingsModelValueCopy<$R, $Out>
 
 abstract class TagSettingsModelCopyWith<$R, $In extends TagSettingsModel, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({bool? showTags, Set<InvalidType>? tags});
+  $R call({bool? showTags, Set<TagModel>? tags});
   TagSettingsModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
       Then<$Out2, $R2> t);
 }
@@ -106,8 +107,7 @@ class _TagSettingsModelCopyWithImpl<$R, $Out>
   late final ClassMapperBase<TagSettingsModel> $mapper =
       TagSettingsModelMapper.ensureInitialized();
   @override
-  $R call({bool? showTags, Set<InvalidType>? tags}) =>
-      $apply(FieldCopyWithData({
+  $R call({bool? showTags, Set<TagModel>? tags}) => $apply(FieldCopyWithData({
         if (showTags != null) #showTags: showTags,
         if (tags != null) #tags: tags
       }));

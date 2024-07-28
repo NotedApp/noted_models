@@ -1,7 +1,7 @@
 import 'package:dart_mappable/dart_mappable.dart';
 import 'package:noted_models/noted_models.dart';
 
-part '../style/style_settings_model.mapper.dart';
+part 'style_settings_model.mapper.dart';
 
 const List<int> _textColors = [
   0xFFFFFFFF,
