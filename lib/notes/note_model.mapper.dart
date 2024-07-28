@@ -13,7 +13,6 @@ class NoteModelMapper extends ClassMapperBase<NoteModel> {
   static NoteModelMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = NoteModelMapper._());
-      NotedPluginMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -23,8 +22,8 @@ class NoteModelMapper extends ClassMapperBase<NoteModel> {
 
   static String _$id(NoteModel v) => v.id;
   static const Field<NoteModel, String> _f$id = Field('id', _$id);
-  static NotedPlugin _$plugin(NoteModel v) => v.plugin;
-  static const Field<NoteModel, NotedPlugin> _f$plugin =
+  static InvalidType _$plugin(NoteModel v) => v.plugin;
+  static const Field<NoteModel, InvalidType> _f$plugin =
       Field('plugin', _$plugin);
   static Map<String, dynamic> _$fields(NoteModel v) => v.fields;
   static const Field<NoteModel, Map<String, dynamic>> _f$fields =
@@ -96,7 +95,7 @@ abstract class NoteModelCopyWith<$R, $In extends NoteModel, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   MapCopyWith<$R, String, dynamic, ObjectCopyWith<$R, dynamic, dynamic>>
       get fields;
-  $R call({String? id, NotedPlugin? plugin, Map<String, dynamic>? fields});
+  $R call({String? id, InvalidType? plugin, Map<String, dynamic>? fields});
   NoteModelCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -113,7 +112,7 @@ class _NoteModelCopyWithImpl<$R, $Out>
       get fields => MapCopyWith($value.fields,
           (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(fields: v));
   @override
-  $R call({String? id, NotedPlugin? plugin, Map<String, dynamic>? fields}) =>
+  $R call({String? id, InvalidType? plugin, Map<String, dynamic>? fields}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (plugin != null) #plugin: plugin,

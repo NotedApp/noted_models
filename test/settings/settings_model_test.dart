@@ -8,7 +8,6 @@ void main() {
 
       expect(settings.style, const StyleSettingsModel());
       expect(settings.tags, const TagSettingsModel());
-      expect(settings.plugins, const PluginSettingsModel());
     });
 
     test('parses to and from json', () {

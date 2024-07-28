@@ -7,7 +7,6 @@ part 'settings_model.mapper.dart';
 class SettingsModel with SettingsModelMappable {
   final StyleSettingsModel style;
   final TagSettingsModel tags;
-  final PluginSettingsModel plugins;
 
   static const fromMap = SettingsModelMapper.fromMap;
   static const fromJson = SettingsModelMapper.fromJson;
@@ -15,6 +14,5 @@ class SettingsModel with SettingsModelMappable {
   const SettingsModel({
     this.style = const StyleSettingsModel(),
     this.tags = const TagSettingsModel(),
-    this.plugins = const PluginSettingsModel(),
   });
 }
