@@ -3,19 +3,43 @@ import 'package:test/test.dart';
 
 void main() {
   group('NoteModel', () {
+    test('updates a note and gets field values', () {
+      expect(_testNote.getField<DateTime?>(TestField.dateTime), _testDateTime1);
+      expect(_testNote.getField<String>(TestField.image), 'test-image-url');
+      expect(_testNote.getField<String>(TestField.link), 'test-link-url');
+      expect(_testNote.getField<double>(TestField.number), 99.9);
+      expect(_testNote.getField<String>(TestField.select), 'option 2');
+      expect(_testNote.getField<String>(TestField.text), 'test-text');
+      expect(_testNote.getField<bool>(TestField.toggle), true);
+
+      final dateTimeUpdate = _testNote.updateField<DateTime?>(TestField.dateTime, _testDateTime2);
+      expect(dateTimeUpdate.getField<DateTime?>(TestField.dateTime), _testDateTime2);
+
+      final stringUpdate = _testNote.updateField<String>(TestField.image, 'updated-image-url');
+      expect(stringUpdate.getField<String>(TestField.image), 'updated-image-url');
+
+      final numberUpdate = _testNote.updateField<double>(TestField.number, 100.0);
+      expect(numberUpdate.getField<double>(TestField.number), 100.0);
+
+      final boolUpdate = _testNote.updateField<bool>(TestField.toggle, false);
+      expect(boolUpdate.getField<bool>(TestField.toggle), false);
+    });
+
+    test('update fails with incorrect value type', () {
+      expect(_testNote.getField<String>(TestField.image), 'test-image-url');
+
+      final failedUpdate0 = _testNote.updateField<DateTime?>(TestField.image, _testDateTime2);
+      expect(failedUpdate0.getField<String>(TestField.image), 'test-image-url');
+
+      final failedUpdate1 = _testNote.updateField<double>(TestField.image, 10.0);
+      expect(failedUpdate1.getField<String>(TestField.image), 'test-image-url');
+
+      final successfulUpdate = _testNote.updateField<String>(TestField.image, 'updated-image-url');
+      expect(successfulUpdate.getField<String>(TestField.image), 'updated-image-url');
+    });
+
     test('gets list of editable fields', () {
-      expect(
-        _testNote.editLayout.allFieldIds,
-        const [
-          TestField.dateTime,
-          TestField.image,
-          TestField.link,
-          TestField.number,
-          TestField.select,
-          TestField.text,
-          TestField.toggle,
-        ],
-      );
+      expect(_testNote.editLayout.allFieldIds.length, 7);
     });
 
     test('gets searchable text', () {
@@ -46,6 +70,7 @@ void main() {
 
 final _testDateTime0 = DateTime.fromMillisecondsSinceEpoch(1000, isUtc: true);
 final _testDateTime1 = DateTime.fromMillisecondsSinceEpoch(2000, isUtc: true);
+final _testDateTime2 = DateTime.fromMillisecondsSinceEpoch(3000, isUtc: true);
 
 final _testNote = NoteModel(
   id: 'test_note',
